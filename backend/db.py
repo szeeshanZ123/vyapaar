@@ -7,8 +7,14 @@ from pymongo import MongoClient, ASCENDING, DESCENDING, GEOSPHERE
 from pymongo.database import Database
 from pymongo.errors import ConnectionFailure, PyMongoError
 
-# Load environment variables from .env file
-load_dotenv()
+from pathlib import Path
+
+# Load environment variables from backend/.env or root .env
+env_file = Path(__file__).resolve().parent / ".env"
+if env_file.exists():
+    load_dotenv(dotenv_path=env_file)
+else:
+    load_dotenv()
 
 logger = logging.getLogger("vyapar.db")
 
