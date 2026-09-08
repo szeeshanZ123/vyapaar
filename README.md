@@ -1,4 +1,4 @@
-# Vyapar 🛍️📍
+# team Vyapar 🛍️📍
 
 ### Location Intelligence & Real-Time Demand Platform for Street Vendors
 
