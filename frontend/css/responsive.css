@@ -1,0 +1,107 @@
+/**
+ * responsive.css - VYAPAR Responsive Layout System
+ * Breakpoints: Desktop (1200px+), Tablet (768px-1199px), Mobile (<768px)
+ */
+
+/* ===================================================
+   MOBILE STYLES (Viewport < 768px)
+   =================================================== */
+@media (max-width: 767px) {
+  /* 1. Hide Desktop Sidebar */
+  aside.vyapar-desktop-sidebar,
+  aside:not(#mobile-drawer) {
+    display: none !important;
+  }
+
+  /* 2. Reset Layout Offsets */
+  .vyapar-main-layout,
+  div.pl-\[76px\] {
+    padding-left: 0 !important;
+  }
+
+  /* 3. Adjust Header */
+  header.vyapar-top-header,
+  header.left-\[76px\] {
+    left: 0 !important;
+    top: 3.5rem !important; /* sits below mobile branding bar if both present, or adapts */
+  }
+
+  /* 4. Display Mobile Shell */
+  .vyapar-mobile-header {
+    display: flex !important;
+  }
+
+  .mobile-bottom-nav {
+    display: flex !important;
+  }
+
+  /* 5. Content Padding to prevent bottom nav overlap */
+  main {
+    padding-top: 4.5rem !important;
+    padding-bottom: 7.5rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* 6. Form controls & buttons full width */
+  .mobile-full-width {
+    width: 100% !important;
+  }
+
+  /* 7. Prevent any horizontal scrolling */
+  body, html {
+    overflow-x: hidden !important;
+  }
+
+  /* 8. Toast placement on mobile */
+  #live-toast,
+  #toast-notification {
+    bottom: 5rem !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    max-width: calc(100vw - 2rem) !important;
+  }
+}
+
+/* ===================================================
+   TABLET STYLES (768px <= Viewport <= 1199px)
+   =================================================== */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .vyapar-desktop-sidebar {
+    display: flex !important;
+    width: 76px !important;
+  }
+
+  .vyapar-mobile-header {
+    display: none !important;
+  }
+
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  main {
+    padding-bottom: 4rem !important;
+  }
+}
+
+/* ===================================================
+   DESKTOP STYLES (Viewport >= 1200px)
+   =================================================== */
+@media (min-width: 1200px) {
+  .vyapar-desktop-sidebar {
+    display: flex !important;
+  }
+
+  .vyapar-mobile-header {
+    display: none !important;
+  }
+
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  main {
+    padding-bottom: 4rem !important;
+  }
+}

@@ -1,0 +1,6 @@
+/**
+ * pages/alerts.css - Alerts List Specific Styles
+ */
+.alert-card {
+  transition: all 0.25s ease-out;
+}

@@ -1,0 +1,1677 @@
+<!doctype html>
+<html lang="en" style="">
+  <svg
+    class="inline-defs-container"
+    aria-hidden="true"
+    style="position: absolute; width: 0; height: 0; overflow: hidden"
+  ></svg
+  ><head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/pages/recommendations.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#fff8f5",
+              "on-secondary-container": "#676160",
+              "surface-dim": "#e2d8d2",
+              "inverse-primary": "#ffb59f",
+              "surface-container-high": "#f0e6e0",
+              secondary: "#635d5c",
+              "on-tertiary-container": "#fffbff",
+              tertiary: "#825100",
+              "on-tertiary-fixed-variant": "#653e00",
+              "tertiary-fixed": "#ffddb8",
+              "on-secondary-fixed": "#1e1b1a",
+              "on-surface-variant": "#5a4139",
+              "primary-fixed": "#ffdbd0",
+              surface: "#fff8f5",
+              outline: "#8e7068",
+              "on-error": "#ffffff",
+              "tertiary-container": "#a36700",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed": "#2a1700",
+              "inverse-on-surface": "#f9efe8",
+              background: "#fff8f5",
+              error: "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "surface-container-low": "#fcf2eb",
+              "on-secondary-fixed-variant": "#4b4644",
+              "inverse-surface": "#342f2b",
+              "surface-tint": "#ae3100",
+              "surface-container-highest": "#eae1da",
+              "surface-container": "#f6ece6",
+              "on-primary-container": "#fffbff",
+              "primary-fixed-dim": "#ffb59f",
+              "on-primary-fixed-variant": "#852400",
+              "on-error-container": "#93000a",
+              "on-primary-fixed": "#3a0a00",
+              primary: "#aa3000",
+              "secondary-fixed-dim": "#cdc5c3",
+              "secondary-fixed": "#e9e1df",
+              "tertiary-fixed-dim": "#ffb95f",
+              "on-surface": "#1f1b17",
+              "secondary-container": "#e6dedc",
+              "primary-container": "#d04411",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#eae1da",
+              "on-primary": "#ffffff",
+              "on-background": "#1f1b17",
+              "outline-variant": "#e2bfb5",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "space-2xl": "2rem",
+              "space-lg": "1.25rem",
+              "space-3xl": "2.5rem",
+              "space-4xl": "3rem",
+              "space-xs": "0.5rem",
+              "gutter-mobile": "1rem",
+              "gutter-desktop": "1.5rem",
+              "margin-mobile": "1rem",
+              "space-sm": "0.75rem",
+              "margin-desktop": "2rem",
+              "space-md": "1rem",
+              "space-2xs": "0.25rem",
+              "space-xl": "1.5rem",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "display-mobile": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "label-caps": ["Plus Jakarta Sans"],
+              "body-sm": ["Inter"],
+              "body-md": ["Inter"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-lg": ["Inter"],
+              display: ["Plus Jakarta Sans"],
+              "headline-sm": ["Plus Jakarta Sans"],
+              "label-numeric-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-mobile": [
+                "34px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.025em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "26px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.015em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.08em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-sm": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0em",
+                  fontWeight: "400",
+                },
+              ],
+              "body-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0em",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-md": [
+                "22px",
+                {
+                  lineHeight: "28px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "16px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "400",
+                },
+              ],
+              display: [
+                "44px",
+                {
+                  lineHeight: "52px",
+                  letterSpacing: "-0.03em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-sm": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "0em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-numeric-lg": [
+                "28px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    data-page="recommendations"
+    class="bg-surface font-body-md text-on-surface antialiased"
+    style="
+      min-height: 100vh;
+      height: auto;
+      overflow-y: auto;
+      overscroll-behavior-y: auto;
+    "
+  >
+    <!-- Desktop Sidebar Shell -->
+    <aside
+      class="vyapar-desktop-sidebar fixed left-0 top-0 h-full w-[76px] bg-surface-container-low z-50 flex flex-col items-center py-space-md shadow-[0_1px_8px_rgba(41,37,36,0.04)]"
+    >
+      <div class="flex items-center justify-center mb-space-xl">
+        <a href="index.html" class="flex items-center justify-center">
+          <img
+            alt="VYAPAR Brand Mark"
+            class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
+          />
+        </a>
+      </div>
+      <nav
+        class="flex-1 flex flex-col items-center gap-space-xs w-full px-space-2xs"
+        data-active-classes="bg-primary-container text-on-primary-container font-headline-sm"
+      >
+        <a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="dashboard"
+          href="index.html"
+          title="Dashboard"
+          ><span class="material-symbols-outlined text-[22px]"
+            >grid_view</span
+          ></a
+        ><a
+          aria-current="page"
+          class="w-12 h-12 rounded-xl flex items-center justify-center transition-all bg-primary-container text-on-primary-container font-headline-sm shadow-sm"
+          data-path="places"
+          href="recommendations.html"
+          title="Places"
+          ><span class="material-symbols-outlined text-[22px]">near_me</span></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="check-in"
+          href="checkin.html"
+          title="Check-in"
+          ><span class="material-symbols-outlined text-[22px]"
+            >pin_drop</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="alerts"
+          href="alerts.html"
+          title="Alerts"
+          ><span class="material-symbols-outlined text-[22px]"
+            >notifications_active</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="discover-vendors"
+          href="discover.html"
+          title="Discover Vendors"
+          ><span class="material-symbols-outlined text-[22px]"
+            >storefront</span
+          ></a
+        >
+      </nav>
+      <div
+        class="flex flex-col items-center gap-space-xs w-full px-space-2xs pt-space-xs"
+      >
+        <a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="profile"
+          href="#profile"
+          title="Profile"
+          ><span class="material-symbols-outlined text-[22px]">person</span></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="settings"
+          href="#settings"
+          title="Settings"
+          ><span class="material-symbols-outlined text-[22px]"
+            >settings</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="logout"
+          href="#logout"
+          title="Logout"
+          ><span class="material-symbols-outlined text-[22px]">logout</span></a
+        >
+      </div>
+    </aside>
+
+    <!-- Mobile Top Header Bar: VYAPAR ☰ -->
+    <header class="vyapar-mobile-header md:hidden">
+      <a href="index.html" class="flex items-center gap-2">
+        <img
+          alt="VYAPAR Brand Mark"
+          class="h-7 w-auto object-contain"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
+        />
+        <span class="font-headline-sm font-bold text-primary tracking-tight">VYAPAR</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <button
+          id="vyapar-mobile-hamburger"
+          type="button"
+          class="w-10 h-10 rounded-xl flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"
+          aria-label="Open Navigation Menu"
+        >
+          <span class="material-symbols-outlined text-[26px]">menu</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-drawer-overlay" class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 hidden md:hidden"></div>
+    <div id="mobile-drawer" class="fixed top-0 left-0 bottom-0 w-72 bg-surface-container-low z-50 transform -translate-x-full md:hidden flex flex-col p-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-surface-container-high mb-4">
+        <div class="flex items-center gap-2">
+          <img
+            alt="VYAPAR Brand Mark"
+            class="h-7 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
+          />
+          <span class="font-headline-sm font-bold text-primary">VYAPAR</span>
+        </div>
+        <button id="mobile-drawer-close" type="button" class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface">
+          <span class="material-symbols-outlined text-[22px]">close</span>
+        </button>
+      </div>
+      <nav class="flex-1 flex flex-col gap-1">
+        <a data-path="dashboard" href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">grid_view</span>
+          <span>Dashboard</span>
+        </a>
+        <a data-path="places" href="recommendations.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">near_me</span>
+          <span>Places</span>
+        </a>
+        <a data-path="check-in" href="checkin.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">pin_drop</span>
+          <span>Check-in</span>
+        </a>
+        <a data-path="alerts" href="alerts.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">notifications_active</span>
+          <span>Alerts</span>
+        </a>
+        <a data-path="discover-vendors" href="discover.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">storefront</span>
+          <span>Discover Vendors</span>
+        </a>
+      </nav>
+      <div class="pt-4 border-t border-surface-container-high flex flex-col gap-1">
+        <a data-path="profile" href="#profile" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">person</span>
+          <span>Vendor Profile</span>
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="pl-[76px] vyapar-main-layout"
+      style="
+        min-height: 100vh;
+        height: auto;
+        overflow-y: visible;
+        padding-bottom: 4rem;
+      "
+    >
+      <header
+        class="vyapar-top-header fixed top-0 left-[76px] right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(41,37,36,0.03)] px-space-md lg:px-space-xl flex items-center justify-between"
+      >
+        <div class="flex flex-col justify-center min-w-0 pr-space-md">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate"
+              >Good evening, Vendor</span
+            ><span class="text-[18px] leading-none select-none">👋</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+            Here's what's happening around you right now.
+          </p>
+        </div>
+        <div class="flex items-center gap-space-sm sm:gap-space-md shrink-0">
+          <button
+            class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-2xs rounded-full shadow-[0_2px_4px_rgba(41,37,36,0.02)] hover:bg-surface-container transition-colors"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-primary text-[18px]"
+              >location_on</span
+            ><span
+              class="font-label-md text-label-md text-on-surface font-semibold"
+              >Mumbai</span
+            ><span
+              class="flex items-center gap-1.5 font-label-caps text-label-caps text-tertiary"
+              ><span class="relative flex h-2 w-2"
+                ><span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                ></span
+                ><span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+                ></span></span
+              >Live</span
+            ><span
+              class="material-symbols-outlined text-on-surface-variant text-[18px]"
+              >arrow_drop_down</span
+            ></button
+          ><button
+            class="relative w-9 h-9 rounded-full flex items-center justify-center bg-surface-container-lowest hover:bg-surface-container transition-colors text-on-surface-variant shadow-[0_2px_4px_rgba(41,37,36,0.02)]"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >notifications</span
+            ><span
+              class="absolute top-1 right-1 w-2.5 h-2.5 bg-primary rounded-full ring-2 ring-surface-container-lowest"
+            ></span>
+          </button>
+          <div class="flex items-center pl-space-2xs">
+            <img
+              alt="Profile"
+              class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(41,37,36,0.1)]"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvisN5NJL57RB3l5qnYVbpLkreiLabrf4G-i9Ozx6mw-lzAf4ylG4CA9xB1CjpobMFzk_lfGOKdw-hGH_Dj7r1_82mAW-JpLz148pU9mBSt_ISeHiRMTFNWrtZUhDYDOIxoUQ2nSZpZdjSvfJl2GA63buxQhw8LTYqW8WyYseJzWILnnjW9my6Qdn7G2qqM7kyXV0kM8K8PKrX0NI3GFhp2f9DDjBXeEbroqXd010JkHLA895TnrmK"
+            />
+          </div>
+        </div>
+      </header>
+      <main
+        class="relative pt-16 w-full px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto py-space-lg min-h-[calc(100vh-4rem)]"
+        style="
+          min-height: calc(-4rem + 100vh);
+          height: auto;
+          overflow-y: visible;
+          padding-bottom: 120px;
+        "
+      >
+        <div class="flex flex-col w-full gap-y-space-xl pb-space-4xl">
+          <!-- Top Level Command Bar / Header -->
+          <div
+            class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md"
+          >
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <span
+                  class="font-label-caps text-label-caps text-primary uppercase tracking-widest bg-primary-fixed/60 px-2 py-0.5 rounded-full"
+                  >Telemetry Active</span
+                >
+                <span
+                  class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1"
+                >
+                  <span
+                    class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"
+                  ></span>
+                  Sub-meter Accuracy
+                </span>
+              </div>
+              <h1
+                class="font-display text-display font-extrabold tracking-tight text-on-surface leading-tight"
+              >
+                FIND YOUR BEST SELLING SPOT
+              </h1>
+              <p class="font-body-lg text-body-lg text-on-surface-variant">
+                Real-time footfall &amp; demand signals nearby.
+              </p>
+            </div>
+            <!-- Live Telemetry Badge -->
+            <div
+              class="flex items-center gap-3 bg-surface-container-lowest p-2 pr-4 rounded-full shadow-sm"
+            >
+              <div
+                class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-primary"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >near_me</span
+                >
+              </div>
+              <div class="flex flex-col">
+                <div
+                  class="flex items-center gap-1.5 font-label-md text-label-md text-on-surface"
+                >
+                  <span class="">Mumbai Central Sector</span>
+                  <span
+                    class="inline-block w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"
+                  ></span>
+                  <span class="font-label-caps text-label-caps text-emerald-700"
+                    >LIVE</span
+                  >
+                </div>
+                <span
+                  class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1"
+                >
+                  <span class="material-symbols-outlined text-[13px]"
+                    >history</span
+                  >
+                  Updated 1m ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- Search & Geospatial Anchor Controls -->
+          <div
+            class="bg-surface-container-lowest p-space-md rounded-[20px] shadow-sm flex flex-col md:flex-row items-center gap-space-sm"
+          >
+            <div class="relative flex-1 w-full flex items-center">
+              <span
+                class="material-symbols-outlined absolute left-4 text-on-surface-variant pointer-events-none"
+                >search</span
+              >
+              <input
+                class="w-full h-12 pl-12 pr-10 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none transition-all"
+                id="spotSearchInput"
+                placeholder="Search area, market, station, landmark..."
+                type="text"
+              />
+              <button
+                class="hidden absolute right-3 w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center text-[16px]"
+                id="clearSearchBtn"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[16px]">close</span>
+              </button>
+            </div>
+            <div
+              class="flex items-center gap-space-xs w-full md:w-auto shrink-0"
+            >
+              <button
+                class="flex-1 md:flex-initial h-12 px-space-lg rounded-xl bg-surface-container font-label-md text-label-md text-on-surface hover:bg-surface-container-high transition-colors flex items-center justify-center gap-2"
+                id="useLocationBtn"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >my_location</span
+                >
+                <span class="">Use my location</span>
+              </button>
+            </div>
+          </div>
+          <!-- Filter Ribbon -->
+          <div
+            class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar"
+          >
+            <button
+              class="filter-chip active flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md transition-all shrink-0 bg-primary text-on-primary shadow-sm shadow-primary/20"
+              data-filter="all"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >travel_explore</span
+              >
+              <span class="">ALL PLACES</span>
+              <span
+                class="bg-on-primary/20 px-1.5 py-0.5 rounded-full text-label-sm font-bold ml-0.5"
+                id="allCountBadge"
+                >3</span
+              >
+            </button>
+            <button
+              class="filter-chip flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md transition-all shrink-0 bg-surface-container-lowest text-on-surface hover:bg-surface-container"
+              data-filter="very-busy"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-red-500 animate-pulse"
+              ></span>
+              <span class="">🔥 VERY BUSY</span>
+            </button>
+            <button
+              class="filter-chip flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md transition-all shrink-0 bg-surface-container-lowest text-on-surface hover:bg-surface-container"
+              data-filter="busy"
+            >
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              <span class="">🟠 BUSY</span>
+            </button>
+            <button
+              class="filter-chip flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md transition-all shrink-0 bg-surface-container-lowest text-on-surface hover:bg-surface-container"
+              data-filter="nearby"
+            >
+              <span class="material-symbols-outlined text-[16px] text-primary"
+                >distance</span
+              >
+              <span class="">📍 NEARBY &lt; 1km</span>
+            </button>
+          </div>
+          <!-- Tri-Pane Grid: Left Command Cards (58%) & Right Geospatial Canvas (42%) -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start"
+          >
+            <!-- Left Column: Spot Recommendations -->
+            <div class="lg:col-span-7 flex flex-col gap-space-lg">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <h2
+                    class="font-headline-md text-headline-md text-on-surface tracking-tight"
+                  >
+                    TOP SPOTS NEARBY
+                  </h2>
+                  <span
+                    class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-high px-2.5 py-1 rounded-full"
+                    id="spotCountIndicator"
+                    >(3 spots)</span
+                  >
+                </div>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Sorted by real-time conversion index</span
+                >
+              </div>
+              <!-- Card Stream Container -->
+              <div class="flex flex-col gap-space-md" id="spotsContainer">
+                <div
+                  id="spot-card-kurla-station"
+                  data-spot-id="kurla-station"
+                  class="spot-recommendation-card ring-2 ring-primary bg-surface-container-lowest shadow-md rounded-[20px] p-space-md lg:p-space-lg transition-all duration-200 cursor-pointer flex flex-col gap-space-md"
+                >
+                  <!-- Top Card Meta -->
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-headline-sm text-headline-sm text-on-surface font-extrabold"
+                      >
+                        #1
+                      </span>
+                      <div>
+                        <h3
+                          class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight"
+                        >
+                          Kurla Station West
+                        </h3>
+                        <div class="flex items-center gap-2 mt-0.5">
+                          <span
+                            class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"
+                          >
+                            <span
+                              class="material-symbols-outlined text-[15px] text-primary"
+                              >near_me</span
+                            >
+                            0.8 km away
+                          </span>
+                          <span class="text-surface-dim">•</span>
+                          <span
+                            class="font-label-sm text-label-sm text-tertiary font-medium"
+                            >Best: NOW</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Status Badge -->
+                    <span
+                      class="font-label-caps text-label-caps px-3 py-1 rounded-full bg-red-50 text-red-700 font-bold tracking-wider shrink-0 flex items-center gap-1.5"
+                    >
+                      🔥 VERY BUSY
+                    </span>
+                  </div>
+
+                  <!-- Mid Metrics Grid -->
+                  <div
+                    class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm bg-surface-container-low/70 p-space-sm rounded-xl"
+                  >
+                    <!-- Customer Rush Metric -->
+                    <div class="flex flex-col gap-1.5">
+                      <div class="flex items-baseline justify-between">
+                        <span
+                          class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider"
+                          >Customer Rush</span
+                        >
+                        <span
+                          class="font-label-numeric-lg text-label-numeric-lg font-extrabold text-on-surface"
+                          >91
+                          <span
+                            class="text-body-sm font-normal text-on-surface-variant"
+                            >/ 100</span
+                          ></span
+                        >
+                      </div>
+                      <div
+                        class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden"
+                      >
+                        <div
+                          class="h-full bg-red-500 rounded-full"
+                          style="width: 91%"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <!-- Trend & Velocity Metric -->
+                    <div class="flex flex-col justify-center gap-1">
+                      <span
+                        class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider"
+                        >Footfall Velocity</span
+                      >
+                      <div
+                        class="flex items-center gap-1 font-label-md text-label-md font-bold text-emerald-800"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >trending_up</span
+                        >
+                        <span class="">+22% activity vs 1 hr ago</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Micro context detail -->
+                  <div
+                    class="flex flex-wrap items-center justify-between gap-y-2 text-on-surface-variant font-body-sm text-body-sm"
+                  >
+                    <span class="flex items-center gap-1.5">
+                      <span
+                        class="material-symbols-outlined text-[17px] text-on-surface-variant"
+                        >groups</span
+                      >
+                      High crowd volume
+                    </span>
+                    <span
+                      class="flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-lg text-on-surface"
+                    >
+                      <span class="">💡</span>
+                      <span class="font-medium">Key Driver:</span> Transit Peak
+                      (local train rush)
+                    </span>
+                  </div>
+
+                  <!-- Bottom Actions Actionable Ribbon -->
+                  <div
+                    class="pt-2 flex items-center justify-between gap-space-sm"
+                  >
+                    <a
+                      href="spot.html?id=kurla-station"
+                      onclick="event.stopPropagation()"
+                      class="font-label-md text-label-md text-on-surface hover:text-primary flex items-center gap-1 font-semibold transition-colors"
+                    >
+                      <span class="">Inspect Spot Intelligence</span>
+                      <span class="material-symbols-outlined text-[16px]"
+                        >arrow_forward</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&amp;destination=Kurla%20Station%20West%20Mumbai"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onclick="event.stopPropagation()"
+                      class="h-10 px-4 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container transition-all flex items-center gap-1.5 shadow-sm shadow-primary/20"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >navigation</span
+                      >
+                      <span class="">NAVIGATE TO SPOT →</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  id="spot-card-phoenix-marketcity"
+                  data-spot-id="phoenix-marketcity"
+                  class="spot-recommendation-card bg-surface-container-lowest shadow-sm hover:shadow-md rounded-[20px] p-space-md lg:p-space-lg transition-all duration-200 cursor-pointer flex flex-col gap-space-md"
+                >
+                  <!-- Top Card Meta -->
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-headline-sm text-headline-sm text-on-surface font-extrabold"
+                      >
+                        #2
+                      </span>
+                      <div>
+                        <h3
+                          class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight"
+                        >
+                          Phoenix Marketcity
+                        </h3>
+                        <div class="flex items-center gap-2 mt-0.5">
+                          <span
+                            class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"
+                          >
+                            <span
+                              class="material-symbols-outlined text-[15px] text-primary"
+                              >near_me</span
+                            >
+                            1.4 km away
+                          </span>
+                          <span class="text-surface-dim">•</span>
+                          <span
+                            class="font-label-sm text-label-sm text-tertiary font-medium"
+                            >Best: Next 45 min</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Status Badge -->
+                    <span
+                      class="font-label-caps text-label-caps px-3 py-1 rounded-full bg-red-50 text-red-700 font-bold tracking-wider shrink-0 flex items-center gap-1.5"
+                    >
+                      🔥 VERY BUSY
+                    </span>
+                  </div>
+
+                  <!-- Mid Metrics Grid -->
+                  <div
+                    class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm bg-surface-container-low/70 p-space-sm rounded-xl"
+                  >
+                    <!-- Customer Rush Metric -->
+                    <div class="flex flex-col gap-1.5">
+                      <div class="flex items-baseline justify-between">
+                        <span
+                          class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider"
+                          >Customer Rush</span
+                        >
+                        <span
+                          class="font-label-numeric-lg text-label-numeric-lg font-extrabold text-on-surface"
+                          >86
+                          <span
+                            class="text-body-sm font-normal text-on-surface-variant"
+                            >/ 100</span
+                          ></span
+                        >
+                      </div>
+                      <div
+                        class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden"
+                      >
+                        <div
+                          class="h-full bg-red-500 rounded-full"
+                          style="width: 86%"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <!-- Trend & Velocity Metric -->
+                    <div class="flex flex-col justify-center gap-1">
+                      <span
+                        class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider"
+                        >Footfall Velocity</span
+                      >
+                      <div
+                        class="flex items-center gap-1 font-label-md text-label-md font-bold text-emerald-800"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >trending_up</span
+                        >
+                        <span class="">+18% activity</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Micro context detail -->
+                  <div
+                    class="flex flex-wrap items-center justify-between gap-y-2 text-on-surface-variant font-body-sm text-body-sm"
+                  >
+                    <span class="flex items-center gap-1.5">
+                      <span
+                        class="material-symbols-outlined text-[17px] text-on-surface-variant"
+                        >groups</span
+                      >
+                      Strong customer movement
+                    </span>
+                    <span
+                      class="flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-lg text-on-surface"
+                    >
+                      <span class="">💡</span>
+                      <span class="font-medium">Key Driver:</span> Retail shift
+                      change &amp; evening rush
+                    </span>
+                  </div>
+
+                  <!-- Bottom Actions Actionable Ribbon -->
+                  <div
+                    class="pt-2 flex items-center justify-between gap-space-sm"
+                  >
+                    <a
+                      href="spot.html?id=phoenix-marketcity"
+                      onclick="event.stopPropagation()"
+                      class="font-label-md text-label-md text-on-surface hover:text-primary flex items-center gap-1 font-semibold transition-colors"
+                    >
+                      <span class="">Inspect Spot Intelligence</span>
+                      <span class="material-symbols-outlined text-[16px]"
+                        >arrow_forward</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&amp;destination=Phoenix%20Marketcity%20Mumbai"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onclick="event.stopPropagation()"
+                      class="h-10 px-4 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container transition-all flex items-center gap-1.5 shadow-sm shadow-primary/20"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >navigation</span
+                      >
+                      <span class="">NAVIGATE TO SPOT →</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  id="spot-card-bkc-hub"
+                  data-spot-id="bkc-hub"
+                  class="spot-recommendation-card bg-surface-container-lowest shadow-sm hover:shadow-md rounded-[20px] p-space-md lg:p-space-lg transition-all duration-200 cursor-pointer flex flex-col gap-space-md"
+                >
+                  <!-- Top Card Meta -->
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-headline-sm text-headline-sm text-on-surface font-extrabold"
+                      >
+                        #3
+                      </span>
+                      <div>
+                        <h3
+                          class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight"
+                        >
+                          BKC Hub
+                        </h3>
+                        <div class="flex items-center gap-2 mt-0.5">
+                          <span
+                            class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"
+                          >
+                            <span
+                              class="material-symbols-outlined text-[15px] text-primary"
+                              >near_me</span
+                            >
+                            2.1 km away
+                          </span>
+                          <span class="text-surface-dim">•</span>
+                          <span
+                            class="font-label-sm text-label-sm text-tertiary font-medium"
+                            >Best: Rising Soon</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Status Badge -->
+                    <span
+                      class="font-label-caps text-label-caps px-3 py-1 rounded-full bg-amber-50 text-amber-800 font-bold tracking-wider shrink-0 flex items-center gap-1.5"
+                    >
+                      🟠 BUSY
+                    </span>
+                  </div>
+
+                  <!-- Mid Metrics Grid -->
+                  <div
+                    class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm bg-surface-container-low/70 p-space-sm rounded-xl"
+                  >
+                    <!-- Customer Rush Metric -->
+                    <div class="flex flex-col gap-1.5">
+                      <div class="flex items-baseline justify-between">
+                        <span
+                          class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider"
+                          >Customer Rush</span
+                        >
+                        <span
+                          class="font-label-numeric-lg text-label-numeric-lg font-extrabold text-on-surface"
+                          >82
+                          <span
+                            class="text-body-sm font-normal text-on-surface-variant"
+                            >/ 100</span
+                          ></span
+                        >
+                      </div>
+                      <div
+                        class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden"
+                      >
+                        <div
+                          class="h-full bg-amber-500 rounded-full"
+                          style="width: 82%"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <!-- Trend & Velocity Metric -->
+                    <div class="flex flex-col justify-center gap-1">
+                      <span
+                        class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider"
+                        >Footfall Velocity</span
+                      >
+                      <div
+                        class="flex items-center gap-1 font-label-md text-label-md font-bold text-emerald-800"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >trending_up</span
+                        >
+                        <span class="">+12% activity</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Micro context detail -->
+                  <div
+                    class="flex flex-wrap items-center justify-between gap-y-2 text-on-surface-variant font-body-sm text-body-sm"
+                  >
+                    <span class="flex items-center gap-1.5">
+                      <span
+                        class="material-symbols-outlined text-[17px] text-on-surface-variant"
+                        >groups</span
+                      >
+                      Growing movement
+                    </span>
+                    <span
+                      class="flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-lg text-on-surface"
+                    >
+                      <span class="">💡</span>
+                      <span class="font-medium">Key Driver:</span> Evening
+                      dining &amp; commuter corridor
+                    </span>
+                  </div>
+
+                  <!-- Bottom Actions Actionable Ribbon -->
+                  <div
+                    class="pt-2 flex items-center justify-between gap-space-sm"
+                  >
+                    <a
+                      href="spot.html?id=bkc-hub"
+                      onclick="event.stopPropagation()"
+                      class="font-label-md text-label-md text-on-surface hover:text-primary flex items-center gap-1 font-semibold transition-colors"
+                    >
+                      <span class="">Inspect Spot Intelligence</span>
+                      <span class="material-symbols-outlined text-[16px]"
+                        >arrow_forward</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&amp;destination=BKC%20Hub%20Mumbai"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onclick="event.stopPropagation()"
+                      class="h-10 px-4 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container transition-all flex items-center gap-1.5 shadow-sm shadow-primary/20"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >navigation</span
+                      >
+                      <span class="">NAVIGATE TO SPOT →</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- Zero-Result State Container (Hidden by default) -->
+              <div
+                class="hidden flex-col items-center justify-center p-space-3xl bg-surface-container-lowest rounded-[20px] text-center"
+                id="emptyResultsState"
+              >
+                <div
+                  class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-space-sm"
+                >
+                  <span class="material-symbols-outlined text-[28px]"
+                    >wrong_location</span
+                  >
+                </div>
+                <h3
+                  class="font-headline-sm text-headline-sm text-on-surface mb-1"
+                >
+                  No nearby selling spots found
+                </h3>
+                <p
+                  class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-space-md"
+                >
+                  Try expanding your search query or reset filters to see all
+                  high-velocity selling sectors in Mumbai.
+                </p>
+                <button
+                  class="px-4 py-2 bg-primary text-on-primary rounded-xl font-label-md text-label-md"
+                  id="resetSearchAction"
+                >
+                  Reset Search &amp; Filters
+                </button>
+              </div>
+            </div>
+            <!-- Right Column: Interactive Real-Time Demand Canvas -->
+            <div
+              class="lg:col-span-5 flex flex-col gap-space-sm lg:sticky lg:top-20"
+            >
+              <div
+                class="bg-surface-container-lowest p-space-md rounded-[20px] shadow-sm flex flex-col gap-space-sm"
+              >
+                <div class="flex items-center justify-between">
+                  <div class="flex flex-col">
+                    <h3
+                      class="font-headline-sm text-headline-sm text-on-surface"
+                    >
+                      LIVE DEMAND MAP
+                    </h3>
+                    <p
+                      class="font-body-sm text-body-sm text-on-surface-variant"
+                    >
+                      Visualizing real-time vendor demand density
+                    </p>
+                  </div>
+                  <span
+                    class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"
+                  ></span>
+                </div>
+                <!-- Legend Pill Strip -->
+                <div
+                  class="flex flex-wrap items-center gap-2 p-2 bg-surface-container-low rounded-xl text-label-sm font-label-sm text-on-surface-variant"
+                >
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                    Very Busy (90+)
+                  </span>
+                  <span class="flex items-center gap-1.5 ml-1">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    Busy (75-89)
+                  </span>
+                  <span class="flex items-center gap-1.5 ml-1">
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                    Moderate
+                  </span>
+                  <span class="flex items-center gap-1.5 ml-1">
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-emerald-500"
+                    ></span>
+                    Quiet
+                  </span>
+                </div>
+                <!-- Simulated Vector/Interactive Map Canvas -->
+                <div
+                  class="relative w-full h-[460px] bg-[#f2ede7] rounded-xl overflow-hidden shadow-inner select-none"
+                  id="geospatialCanvas"
+                >
+                  <!-- Ambient Network & Road Grid SVG -->
+                  <svg
+                    class="absolute inset-0 w-full h-full text-surface-dim pointer-events-none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <defs>
+                      <pattern
+                        height="40"
+                        id="grid"
+                        patternUnits="userSpaceOnUse"
+                        width="40"
+                      >
+                        <path
+                          d="M 40 0 L 0 0 0 40"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-opacity="0.4"
+                          stroke-width="0.8"
+                        ></path>
+                      </pattern>
+                      <!-- Heat Radiance Gradients -->
+                      <radialGradient cx="50%" cy="50%" id="heatRed" r="50%">
+                        <stop
+                          offset="0%"
+                          stop-color="#ef4444"
+                          stop-opacity="0.45"
+                        ></stop>
+                        <stop
+                          offset="70%"
+                          stop-color="#ef4444"
+                          stop-opacity="0.15"
+                        ></stop>
+                        <stop
+                          offset="100%"
+                          stop-color="#ef4444"
+                          stop-opacity="0"
+                        ></stop>
+                      </radialGradient>
+                      <radialGradient
+                        cx="50%"
+                        cy="50%"
+                        id="heatOrangeRed"
+                        r="50%"
+                      >
+                        <stop
+                          offset="0%"
+                          stop-color="#f97316"
+                          stop-opacity="0.42"
+                        ></stop>
+                        <stop
+                          offset="70%"
+                          stop-color="#f97316"
+                          stop-opacity="0.12"
+                        ></stop>
+                        <stop
+                          offset="100%"
+                          stop-color="#f97316"
+                          stop-opacity="0"
+                        ></stop>
+                      </radialGradient>
+                      <radialGradient cx="50%" cy="50%" id="heatOrange" r="50%">
+                        <stop
+                          offset="0%"
+                          stop-color="#f59e0b"
+                          stop-opacity="0.38"
+                        ></stop>
+                        <stop
+                          offset="70%"
+                          stop-color="#f59e0b"
+                          stop-opacity="0.10"
+                        ></stop>
+                        <stop
+                          offset="100%"
+                          stop-color="#f59e0b"
+                          stop-opacity="0"
+                        ></stop>
+                      </radialGradient>
+                    </defs>
+                    <rect fill="url(#grid)" height="100%" width="100%"></rect>
+                    <!-- Simulated Road System (LBS Marg, CST Rd, SCLR) -->
+                    <!-- Major Arterials -->
+                    <path
+                      d="M -20,180 C 140,160 260,240 460,200"
+                      fill="none"
+                      stroke="#e0d6cb"
+                      stroke-linecap="round"
+                      stroke-width="14"
+                    ></path>
+                    <path
+                      d="M 120,-30 C 140,140 180,300 240,490"
+                      fill="none"
+                      stroke="#e0d6cb"
+                      stroke-linecap="round"
+                      stroke-width="12"
+                    ></path>
+                    <path
+                      d="M 30,360 C 190,320 280,240 450,140"
+                      fill="none"
+                      stroke="#e0d6cb"
+                      stroke-linecap="round"
+                      stroke-width="10"
+                    ></path>
+                    <!-- Secondary Veins -->
+                    <path
+                      d="M 220,120 L 380,80"
+                      fill="none"
+                      stroke="#ebe2d7"
+                      stroke-width="6"
+                    ></path>
+                    <path
+                      d="M 80,280 L 260,340"
+                      fill="none"
+                      stroke="#ebe2d7"
+                      stroke-width="5"
+                    ></path>
+                    <path
+                      d="M 160,210 L 300,220"
+                      fill="none"
+                      stroke="#ebe2d7"
+                      stroke-width="7"
+                    ></path>
+                    <!-- Dynamic Heatmap Radii (Simulated footfall density clusters) -->
+                    <!-- Kurla Station Cluster -->
+                    <circle
+                      cx="165"
+                      cy="185"
+                      fill="url(#heatRed)"
+                      r="75"
+                    ></circle>
+                    <!-- Phoenix Cluster -->
+                    <circle
+                      cx="340"
+                      cy="130"
+                      fill="url(#heatOrangeRed)"
+                      r="68"
+                    ></circle>
+                    <!-- BKC Cluster -->
+                    <circle
+                      cx="140"
+                      cy="355"
+                      fill="url(#heatOrange)"
+                      r="60"
+                    ></circle>
+                    <!-- Green calm sector -->
+                    <circle
+                      cx="370"
+                      cy="370"
+                      fill="#10b981"
+                      fill-opacity="0.08"
+                      r="45"
+                    ></circle>
+                    <!-- Geographic Road Labeling -->
+                    <text
+                      fill="#a89a8c"
+                      font-family="Plus Jakarta Sans"
+                      font-size="9"
+                      font-weight="600"
+                      letter-spacing="0.05em"
+                      x="50"
+                      y="160"
+                    >
+                      LBS MARG
+                    </text>
+                    <text
+                      fill="#a89a8c"
+                      font-family="Plus Jakarta Sans"
+                      font-size="9"
+                      font-weight="600"
+                      letter-spacing="0.05em"
+                      x="250"
+                      y="270"
+                    >
+                      CST ROAD LINK
+                    </text>
+                    <text
+                      fill="#a89a8c"
+                      font-family="Plus Jakarta Sans"
+                      font-size="9"
+                      font-weight="600"
+                      letter-spacing="0.05em"
+                      x="20"
+                      y="380"
+                    >
+                      BKC CONNECTOR
+                    </text>
+                    <text
+                      fill="#a89a8c"
+                      font-family="Plus Jakarta Sans"
+                      font-size="9"
+                      font-weight="600"
+                      letter-spacing="0.05em"
+                      x="350"
+                      y="70"
+                    >
+                      KURLA-ANDHERI ROAD
+                    </text>
+                  </svg>
+                  <!-- Current Vendor Origin ("You Are Here") -->
+                  <div
+                    class="absolute left-[200px] top-[260px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none group z-10"
+                  >
+                    <div class="relative flex items-center justify-center">
+                      <span
+                        class="w-8 h-8 rounded-full bg-blue-500/20 animate-ping absolute"
+                      ></span>
+                      <span
+                        class="w-5 h-5 rounded-full bg-blue-600 shadow-md flex items-center justify-center text-white text-[12px] font-bold"
+                      >
+                        <span class="material-symbols-outlined text-[12px]"
+                          >store</span
+                        >
+                      </span>
+                    </div>
+                    <span
+                      class="mt-1 px-2 py-0.5 rounded-full bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps tracking-wider shadow"
+                      >YOU ARE HERE</span
+                    >
+                  </div>
+                  <!-- Spot Markers Over Map with Interactive IDs -->
+                  <!-- Marker 1: Kurla Station -->
+                  <div
+                    class="map-marker absolute left-[165px] top-[185px] -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 transform hover:scale-110 z-20 scale-125 z-30"
+                    data-spot-id="kurla-station"
+                    id="mapPin-kurla-station"
+                  >
+                    <div
+                      class="marker-bubble bg-surface-container-lowest px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1.5 ring-2 ring-primary bg-primary-fixed"
+                    >
+                      <span
+                        class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"
+                      ></span>
+                      <span
+                        class="font-label-md text-label-md text-on-surface font-bold"
+                        >#1 Kurla West</span
+                      >
+                      <span
+                        class="text-label-sm font-extrabold text-red-600 bg-red-50 px-1 rounded"
+                        >91</span
+                      >
+                    </div>
+                    <div
+                      class="w-2 h-2 bg-surface-container-lowest rotate-45 mx-auto -mt-1 shadow-sm"
+                    ></div>
+                  </div>
+                  <!-- Marker 2: Phoenix Marketcity -->
+                  <div
+                    class="map-marker absolute left-[340px] top-[130px] -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 transform hover:scale-110 z-20"
+                    data-spot-id="phoenix-marketcity"
+                    id="mapPin-phoenix-marketcity"
+                  >
+                    <div
+                      class="marker-bubble bg-surface-container-lowest px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1.5"
+                    >
+                      <span
+                        class="w-2.5 h-2.5 rounded-full bg-orange-600"
+                      ></span>
+                      <span
+                        class="font-label-md text-label-md text-on-surface font-bold"
+                        >#2 Phoenix</span
+                      >
+                      <span
+                        class="text-label-sm font-extrabold text-orange-600 bg-orange-50 px-1 rounded"
+                        >86</span
+                      >
+                    </div>
+                    <div
+                      class="w-2 h-2 bg-surface-container-lowest rotate-45 mx-auto -mt-1 shadow-sm"
+                    ></div>
+                  </div>
+                  <!-- Marker 3: BKC Hub -->
+                  <div
+                    class="map-marker absolute left-[140px] top-[355px] -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 transform hover:scale-110 z-20"
+                    data-spot-id="bkc-hub"
+                    id="mapPin-bkc-hub"
+                  >
+                    <div
+                      class="marker-bubble bg-surface-container-lowest px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1.5"
+                    >
+                      <span
+                        class="w-2.5 h-2.5 rounded-full bg-amber-500"
+                      ></span>
+                      <span
+                        class="font-label-md text-label-md text-on-surface font-bold"
+                        >#3 BKC Hub</span
+                      >
+                      <span
+                        class="text-label-sm font-extrabold text-amber-600 bg-amber-50 px-1 rounded"
+                        >82</span
+                      >
+                    </div>
+                    <div
+                      class="w-2 h-2 bg-surface-container-lowest rotate-45 mx-auto -mt-1 shadow-sm"
+                    ></div>
+                  </div>
+                  <!-- Floating Map Canvas Controls -->
+                  <div
+                    class="absolute right-3 bottom-3 flex flex-col gap-1.5 bg-surface-container-lowest p-1 rounded-xl shadow-md z-30"
+                  >
+                    <button
+                      class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant transition-colors"
+                      title="Zoom in"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >add</span
+                      >
+                    </button>
+                    <button
+                      class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant transition-colors"
+                      title="Zoom out"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >remove</span
+                      >
+                    </button>
+                    <button
+                      class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-primary transition-colors"
+                      id="recenterMapBtn"
+                      title="Recenter on current location"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >near_me</span
+                      >
+                    </button>
+                    <button
+                      class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant transition-colors"
+                      title="Toggle heat overlay"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >layers</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <!-- Quick Summary Mini-bar below Map -->
+                <div
+                  class="flex items-center justify-between px-2 pt-1 font-body-sm text-body-sm text-on-surface-variant"
+                >
+                  <span class="flex items-center gap-1">
+                    <span
+                      class="material-symbols-outlined text-[16px] text-tertiary"
+                      >analytics</span
+                    >
+                    Live Heat Engine v3.4
+                  </span>
+                  <span class="">Coverage: 3.5 km radius</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Bottom Intelligence Deck: "WHY THESE PLACES?" Section -->
+          <div class="flex flex-col gap-space-md pt-space-lg">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[24px]"
+                  >psychology</span
+                >
+                <h2
+                  class="font-headline-md text-headline-md text-on-surface tracking-tight"
+                >
+                  WHY THESE PLACES? — AI Street Insights
+                </h2>
+              </div>
+              <span
+                class="font-label-caps text-label-caps text-primary tracking-widest bg-primary-fixed/50 px-3 py-1 rounded-full font-bold"
+                >PREDICTIVE SIGNALS</span
+              >
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md"
+            >
+              <!-- Insight 1 -->
+              <div
+                class="bg-surface-container-lowest p-space-md rounded-[20px] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined text-[22px]"
+                      >trending_up</span
+                    >
+                  </div>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface">
+                    Demand Surge
+                  </h3>
+                  <p
+                    class="font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >
+                    Real-time telemetry detects unexpected surge around railway
+                    transfer points due to harbor line train intervals.
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 flex items-center justify-between font-label-sm text-label-sm text-red-600 bg-red-50/50 p-2 rounded-lg"
+                >
+                  <span class="">Surge Velocity</span>
+                  <span class="font-bold">+28% foot/min</span>
+                </div>
+              </div>
+              <!-- Insight 2 -->
+              <div
+                class="bg-surface-container-lowest p-space-md rounded-[20px] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined text-[22px]"
+                      >directions_walk</span
+                    >
+                  </div>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface">
+                    Customer Movement
+                  </h3>
+                  <p
+                    class="font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >
+                    Evening shift exit patterns peak in the next 40 minutes
+                    across corporate corridors and shopping promenades.
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 flex items-center justify-between font-label-sm text-label-sm text-orange-600 bg-orange-50/50 p-2 rounded-lg"
+                >
+                  <span class="">Egress Peak</span>
+                  <span class="font-bold">18:15 – 19:30</span>
+                </div>
+              </div>
+              <!-- Insight 3 -->
+              <div
+                class="bg-surface-container-lowest p-space-md rounded-[20px] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined text-[22px]"
+                      >schedule</span
+                    >
+                  </div>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface">
+                    Optimal Selling Window
+                  </h3>
+                  <p
+                    class="font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >
+                    Next 45-60 minutes has 3.2x average footfall before domestic
+                    dinners and transit dispersal sets in.
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 flex items-center justify-between font-label-sm text-label-sm text-amber-700 bg-amber-50/50 p-2 rounded-lg"
+                >
+                  <span class="">Conversion Multiplier</span>
+                  <span class="font-bold">3.2x Normal</span>
+                </div>
+              </div>
+              <!-- Insight 4 -->
+              <div
+                class="bg-surface-container-lowest p-space-md rounded-[20px] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined text-[22px]"
+                      >pie_chart</span
+                    >
+                  </div>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface">
+                    Low Competition Gap
+                  </h3>
+                  <p
+                    class="font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >
+                    Only 12 peer stalls active within 500m of South Gate,
+                    creating an unserved snack &amp; beverage deficit.
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 flex items-center justify-between font-label-sm text-label-sm text-emerald-700 bg-emerald-50/50 p-2 rounded-lg"
+                >
+                  <span class="">Territory Density</span>
+                  <span class="font-bold">Low Saturation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fixed Mobile Bottom Navigation -->
+        <nav class="mobile-bottom-nav md:hidden" data-bottom-nav>
+          <a href="index.html" data-nav-key="dashboard" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">grid_view</span>
+            <span>Home</span>
+          </a>
+          <a href="recommendations.html" data-nav-key="places" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">near_me</span>
+            <span>Places</span>
+          </a>
+          <a href="alerts.html" data-nav-key="alerts" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">notifications_active</span>
+            <span>Alerts</span>
+          </a>
+          <a href="discover.html" data-nav-key="discover-vendors" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">storefront</span>
+            <span>Discover</span>
+          </a>
+          <a href="#profile" data-path="profile" data-nav-key="profile" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">person</span>
+            <span>Profile</span>
+          </a>
+        </nav>
+
+        <!-- Application Scripts -->
+        <script src="js/api.js"></script>
+        <script src="js/map.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/pages/recommendations.js"></script>
+      </main>
+    </div>
+  </body>
+</html>

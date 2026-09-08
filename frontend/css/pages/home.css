@@ -1,0 +1,7 @@
+/**
+ * pages/home.css - Dashboard Specific Layout Styles
+ */
+#map-viewport {
+  transition: transform 0.25s ease-out;
+  transform-origin: center center;
+}

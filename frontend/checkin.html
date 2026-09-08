@@ -1,0 +1,1451 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/pages/checkin.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#fff8f5",
+              "on-secondary-container": "#676160",
+              "surface-dim": "#e2d8d2",
+              "inverse-primary": "#ffb59f",
+              "surface-container-high": "#f0e6e0",
+              secondary: "#635d5c",
+              "on-tertiary-container": "#fffbff",
+              tertiary: "#825100",
+              "on-tertiary-fixed-variant": "#653e00",
+              "tertiary-fixed": "#ffddb8",
+              "on-secondary-fixed": "#1e1b1a",
+              "on-surface-variant": "#5a4139",
+              "primary-fixed": "#ffdbd0",
+              surface: "#fff8f5",
+              outline: "#8e7068",
+              "on-error": "#ffffff",
+              "tertiary-container": "#a36700",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed": "#2a1700",
+              "inverse-on-surface": "#f9efe8",
+              background: "#fff8f5",
+              error: "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "surface-container-low": "#fcf2eb",
+              "on-secondary-fixed-variant": "#4b4644",
+              "inverse-surface": "#342f2b",
+              "surface-tint": "#ae3100",
+              "surface-container-highest": "#eae1da",
+              "surface-container": "#f6ece6",
+              "on-primary-container": "#fffbff",
+              "primary-fixed-dim": "#ffb59f",
+              "on-primary-fixed-variant": "#852400",
+              "on-error-container": "#93000a",
+              "on-primary-fixed": "#3a0a00",
+              primary: "#aa3000",
+              "secondary-fixed-dim": "#cdc5c3",
+              "secondary-fixed": "#e9e1df",
+              "tertiary-fixed-dim": "#ffb95f",
+              "on-surface": "#1f1b17",
+              "secondary-container": "#e6dedc",
+              "primary-container": "#d04411",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#eae1da",
+              "on-primary": "#ffffff",
+              "on-background": "#1f1b17",
+              "outline-variant": "#e2bfb5",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "space-2xl": "2rem",
+              "space-lg": "1.25rem",
+              "space-3xl": "2.5rem",
+              "space-4xl": "3rem",
+              "space-xs": "0.5rem",
+              "gutter-mobile": "1rem",
+              "gutter-desktop": "1.5rem",
+              "margin-mobile": "1rem",
+              "space-sm": "0.75rem",
+              "margin-desktop": "2rem",
+              "space-md": "1rem",
+              "space-2xs": "0.25rem",
+              "space-xl": "1.5rem",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "display-mobile": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "label-caps": ["Plus Jakarta Sans"],
+              "body-sm": ["Inter"],
+              "body-md": ["Inter"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-lg": ["Inter"],
+              display: ["Plus Jakarta Sans"],
+              "headline-sm": ["Plus Jakarta Sans"],
+              "label-numeric-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-mobile": [
+                "34px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.025em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "26px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.015em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.08em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-sm": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0em",
+                  fontWeight: "400",
+                },
+              ],
+              "body-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0em",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-md": [
+                "22px",
+                {
+                  lineHeight: "28px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "16px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "400",
+                },
+              ],
+              display: [
+                "44px",
+                {
+                  lineHeight: "52px",
+                  letterSpacing: "-0.03em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-sm": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "0em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-numeric-lg": [
+                "28px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    data-page="checkin"
+    class="bg-surface font-body-md text-on-surface antialiased"
+  >
+    <!-- Desktop Sidebar Shell -->
+    <aside
+      class="vyapar-desktop-sidebar fixed left-0 top-0 h-full w-[76px] bg-surface-container-low z-50 flex flex-col items-center py-space-md shadow-[0_1px_8px_rgba(41,37,36,0.04)]"
+    >
+      <div class="flex items-center justify-center mb-space-xl">
+        <a href="index.html" class="flex items-center justify-center">
+          <img
+            alt="VYAPAR Brand Mark"
+            class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
+          />
+        </a>
+      </div>
+      <nav
+        class="flex-1 flex flex-col items-center gap-space-xs w-full px-space-2xs"
+        data-active-classes="bg-primary-container text-on-primary-container font-headline-sm"
+      >
+        <a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="dashboard"
+          href="index.html"
+          title="Dashboard"
+          ><span class="material-symbols-outlined text-[22px]"
+            >grid_view</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="places"
+          href="recommendations.html"
+          title="Places"
+          ><span class="material-symbols-outlined text-[22px]">near_me</span></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="check-in"
+          href="checkin.html"
+          title="Check-in"
+          ><span class="material-symbols-outlined text-[22px]"
+            >pin_drop</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="alerts"
+          href="alerts.html"
+          title="Alerts"
+          ><span class="material-symbols-outlined text-[22px]"
+            >notifications_active</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="discover-vendors"
+          href="discover.html"
+          title="Discover Vendors"
+          ><span class="material-symbols-outlined text-[22px]"
+            >storefront</span
+          ></a
+        >
+      </nav>
+      <div
+        class="flex flex-col items-center gap-space-xs w-full px-space-2xs pt-space-xs"
+      >
+        <a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="profile"
+          href="#profile"
+          title="Profile"
+          ><span class="material-symbols-outlined text-[22px]">person</span></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="settings"
+          href="#settings"
+          title="Settings"
+          ><span class="material-symbols-outlined text-[22px]"
+            >settings</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="logout"
+          href="#logout"
+          title="Logout"
+          ><span class="material-symbols-outlined text-[22px]">logout</span></a
+        >
+      </div>
+    </aside>
+
+    <!-- Mobile Top Header Bar: VYAPAR ☰ -->
+    <header class="vyapar-mobile-header md:hidden">
+      <a href="index.html" class="flex items-center gap-2">
+        <img
+          alt="VYAPAR Brand Mark"
+          class="h-7 w-auto object-contain"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
+        />
+        <span class="font-headline-sm font-bold text-primary tracking-tight">VYAPAR</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <button
+          id="vyapar-mobile-hamburger"
+          type="button"
+          class="w-10 h-10 rounded-xl flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"
+          aria-label="Open Navigation Menu"
+        >
+          <span class="material-symbols-outlined text-[26px]">menu</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-drawer-overlay" class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 hidden md:hidden"></div>
+    <div id="mobile-drawer" class="fixed top-0 left-0 bottom-0 w-72 bg-surface-container-low z-50 transform -translate-x-full md:hidden flex flex-col p-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-surface-container-high mb-4">
+        <div class="flex items-center gap-2">
+          <img
+            alt="VYAPAR Brand Mark"
+            class="h-7 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
+          />
+          <span class="font-headline-sm font-bold text-primary">VYAPAR</span>
+        </div>
+        <button id="mobile-drawer-close" type="button" class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface">
+          <span class="material-symbols-outlined text-[22px]">close</span>
+        </button>
+      </div>
+      <nav class="flex-1 flex flex-col gap-1">
+        <a data-path="dashboard" href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">grid_view</span>
+          <span>Dashboard</span>
+        </a>
+        <a data-path="places" href="recommendations.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">near_me</span>
+          <span>Places</span>
+        </a>
+        <a data-path="check-in" href="checkin.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">pin_drop</span>
+          <span>Check-in</span>
+        </a>
+        <a data-path="alerts" href="alerts.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">notifications_active</span>
+          <span>Alerts</span>
+        </a>
+        <a data-path="discover-vendors" href="discover.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">storefront</span>
+          <span>Discover Vendors</span>
+        </a>
+      </nav>
+      <div class="pt-4 border-t border-surface-container-high flex flex-col gap-1">
+        <a data-path="profile" href="#profile" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high">
+          <span class="material-symbols-outlined text-[22px]">person</span>
+          <span>Vendor Profile</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="pl-[76px] vyapar-main-layout">
+      <header
+        class="vyapar-top-header fixed top-0 left-[76px] right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(41,37,36,0.03)] px-space-md lg:px-space-xl flex items-center justify-between"
+      >
+        <div class="flex flex-col justify-center min-w-0 pr-space-md">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate"
+              >Good evening, Vendor</span
+            ><span class="text-[18px] leading-none select-none">👋</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+            Here's what's happening around you right now.
+          </p>
+        </div>
+        <div class="flex items-center gap-space-sm sm:gap-space-md shrink-0">
+          <button
+            class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-2xs rounded-full shadow-[0_2px_4px_rgba(41,37,36,0.02)] hover:bg-surface-container transition-colors"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-primary text-[18px]"
+              >location_on</span
+            ><span
+              class="font-label-md text-label-md text-on-surface font-semibold"
+              >Mumbai</span
+            ><span
+              class="flex items-center gap-1.5 font-label-caps text-label-caps text-tertiary"
+              ><span class="relative flex h-2 w-2"
+                ><span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                ></span
+                ><span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+                ></span></span
+              >Live</span
+            ><span
+              class="material-symbols-outlined text-on-surface-variant text-[18px]"
+              >arrow_drop_down</span
+            ></button
+          ><button
+            class="relative w-9 h-9 rounded-full flex items-center justify-center bg-surface-container-lowest hover:bg-surface-container transition-colors text-on-surface-variant shadow-[0_2px_4px_rgba(41,37,36,0.02)]"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >notifications</span
+            ><span
+              class="absolute top-1 right-1 w-2.5 h-2.5 bg-primary rounded-full ring-2 ring-surface-container-lowest"
+            ></span>
+          </button>
+          <div class="flex items-center pl-space-2xs">
+            <img
+              alt="Profile"
+              class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(41,37,36,0.1)]"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvisN5NJL57RB3l5qnYVbpLkreiLabrf4G-i9Ozx6mw-lzAf4ylG4CA9xB1CjpobMFzk_lfGOKdw-hGH_Dj7r1_82mAW-JpLz148pU9mBSt_ISeHiRMTFNWrtZUhDYDOIxoUQ2nSZpZdjSvfJl2GA63buxQhw8LTYqW8WyYseJzWILnnjW9my6Qdn7G2qqM7kyXV0kM8K8PKrX0NI3GFhp2f9DDjBXeEbroqXd010JkHLA895TnrmK"
+            />
+          </div>
+        </div>
+      </header>
+      <main
+        class="relative pt-16 w-full px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto py-space-lg min-h-[calc(100vh-4rem)]"
+      >
+        <div class="flex flex-col w-full pb-32">
+          <!-- Live Telemetry Status & Breadcrumbs Bar -->
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs mb-space-md"
+          >
+            <div
+              class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"
+            >
+              <span class="font-semibold text-primary">VYAPAR</span>
+              <span>›</span>
+              <span
+                class="hover:text-on-surface cursor-pointer transition-colors"
+                >Places</span
+              >
+              <span>›</span>
+              <span
+                class="hover:text-on-surface cursor-pointer transition-colors font-medium"
+                >Kurla West</span
+              >
+              <span>›</span>
+              <span class="text-on-surface font-semibold">Check-in</span>
+            </div>
+            <div class="flex items-center gap-space-sm">
+              <div
+                class="inline-flex items-center gap-2 bg-surface-container-lowest px-space-sm py-1.5 rounded-full shadow-sm"
+              >
+                <span class="relative flex h-2.5 w-2.5">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"
+                  ></span>
+                </span>
+                <span
+                  class="font-label-caps text-label-caps text-on-surface tracking-wider uppercase"
+                  >Live Telemetry</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >• GPS 🟢</span
+                >
+              </div>
+              <a
+                class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:text-primary-container transition-colors py-1.5 px-space-xs"
+                href="spot.html?id=kurla-station-west"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >arrow_back</span
+                >
+                <span>Back to Spot Details</span>
+              </a>
+            </div>
+          </div>
+          <!-- Header Banner & Active Context -->
+          <div
+            class="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg md:p-space-xl mb-space-lg"
+          >
+            <div
+              class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md"
+            >
+              <div class="min-w-0">
+                <div
+                  class="inline-flex items-center gap-2 px-space-sm py-1 rounded-full bg-surface-container font-label-caps text-label-caps text-tertiary mb-space-xs"
+                >
+                  <span class="material-symbols-outlined text-[14px]"
+                    >cell_tower</span
+                  >
+                  <span>FIELD TELEMETRY GATEWAY</span>
+                </div>
+                <h1
+                  class="font-display-mobile md:font-display text-display-mobile md:text-display text-on-surface tracking-tight uppercase"
+                >
+                  CHECK IN &amp; START SELLING SESSION
+                </h1>
+                <p
+                  class="font-body-lg text-body-lg text-on-surface-variant mt-1"
+                >
+                  Confirm your location and start your selling session at this
+                  spot.
+                </p>
+              </div>
+              <div
+                class="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-space-xs shrink-0"
+              >
+                <div
+                  class="bg-surface-container px-space-md py-space-sm rounded-xl flex items-center gap-space-sm"
+                >
+                  <div
+                    class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary"
+                  >
+                    <span class="material-symbols-outlined text-[24px]"
+                      >storefront</span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      class="font-label-caps text-label-caps text-on-surface-variant block uppercase"
+                      >Selected Spot</span
+                    >
+                    <span
+                      class="font-headline-sm text-headline-sm text-on-surface"
+                      id="spotNameHeader"
+                      >KURLA STATION — WEST EXIT</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-high text-on-surface font-label-sm text-label-sm"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-[16px]"
+                    >track_changes</span
+                  >
+                  <span id="targetZoneHeader"
+                    >Target Zone: Main Auto Stand</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Step Progression Pills -->
+            <div
+              class="grid grid-cols-1 md:grid-cols-3 gap-space-sm mt-space-xl pt-space-md border-t border-surface-container"
+            >
+              <div
+                class="flex items-center gap-space-sm p-space-sm rounded-xl bg-primary/10 text-primary"
+              >
+                <div
+                  class="w-7 h-7 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center"
+                >
+                  1
+                </div>
+                <div class="flex flex-col">
+                  <span
+                    class="font-label-caps text-label-caps uppercase tracking-wider"
+                    >Step 01</span
+                  >
+                  <span
+                    class="font-headline-sm text-headline-sm leading-tight text-on-surface"
+                    >VERIFY LOCATION</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container text-on-surface"
+              >
+                <div
+                  class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant font-headline-sm text-headline-sm flex items-center justify-center"
+                >
+                  2
+                </div>
+                <div class="flex flex-col">
+                  <span
+                    class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant"
+                    >Step 02</span
+                  >
+                  <span class="font-headline-sm text-headline-sm leading-tight"
+                    >CHECK DEMAND</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container text-on-surface"
+              >
+                <div
+                  class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant font-headline-sm text-headline-sm flex items-center justify-center"
+                >
+                  3
+                </div>
+                <div class="flex flex-col">
+                  <span
+                    class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant"
+                    >Step 03</span
+                  >
+                  <span class="font-headline-sm text-headline-sm leading-tight"
+                    >SESSION SETUP</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Active Session Dynamic Banner (Hidden until session starts) -->
+          <div
+            class="hidden mb-space-lg p-space-md md:p-space-lg rounded-2xl bg-surface-container-lowest shadow-md transition-all"
+            id="activeSessionBanner"
+          >
+            <div
+              class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md"
+            >
+              <div class="flex items-start md:items-center gap-space-md">
+                <div
+                  class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0"
+                >
+                  <span class="material-symbols-outlined text-[32px]"
+                    >check_circle</span
+                  >
+                </div>
+                <div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span
+                      class="font-headline-md text-headline-md text-on-surface font-bold"
+                      >✓ SELLING SESSION ACTIVE</span
+                    >
+                    <span
+                      class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-caps text-label-caps font-bold animate-pulse"
+                      >RECORDING LIVE TELEMETRY</span
+                    >
+                  </div>
+                  <p
+                    class="font-body-md text-body-md text-on-surface-variant mt-0.5"
+                  >
+                    <span id="activeSpotLabel">Kurla Station (West Exit)</span>
+                    · Started
+                    <span
+                      class="font-semibold text-on-surface"
+                      id="sessionStartTime"
+                      >just now</span
+                    >
+                    ·
+                    <span class="font-semibold text-primary"
+                      >CUSTOMER RUSH · 91 / 100 · 🔥 VERY BUSY</span
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-sm shrink-0">
+                <a
+                  class="px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition-colors flex items-center gap-1.5"
+                  href="places.html"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >insights</span
+                  >
+                  <span>View Live Demand</span>
+                </a>
+                <button
+                  class="px-space-md py-2.5 rounded-xl bg-error/10 hover:bg-error/20 text-error font-label-md text-label-md font-semibold transition-colors flex items-center gap-1.5"
+                  id="endSessionBtn"
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >stop_circle</span
+                  >
+                  <span>End Selling Session</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- STEP 1: VERIFY YOUR SPOT LOCATION -->
+          <section class="mb-space-lg">
+            <div class="flex items-center justify-between mb-space-sm">
+              <div class="flex items-center gap-2">
+                <span
+                  class="font-label-caps text-label-caps text-primary bg-primary/10 px-2 py-0.5 rounded uppercase"
+                  >Step 01</span
+                >
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">
+                  VERIFY YOUR SPOT LOCATION
+                </h2>
+              </div>
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >Real-time GPS Geo-fence Validation</span
+              >
+            </div>
+            <div
+              class="bg-surface-container-lowest rounded-2xl shadow-sm p-space-md md:p-space-xl grid grid-cols-1 lg:grid-cols-12 gap-space-xl"
+            >
+              <!-- Left Column: Location Verification Telemetry -->
+              <div
+                class="lg:col-span-5 flex flex-col justify-between space-y-space-md"
+              >
+                <div>
+                  <div
+                    class="flex items-center justify-between gap-space-xs mb-space-sm"
+                  >
+                    <span
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider"
+                      >Spot Telemetry</span
+                    >
+                    <span
+                      class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800"
+                    >
+                      <span
+                        class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+                      ></span>
+                      GPS Locked
+                    </span>
+                  </div>
+                  <h3
+                    class="font-headline-md text-headline-md text-on-surface mb-1"
+                    id="spotVerifyTitle"
+                  >
+                    KURLA STATION — WEST EXIT
+                  </h3>
+                  <p
+                    class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1.5 mb-space-md"
+                  >
+                    <span
+                      class="material-symbols-outlined text-primary text-[18px]"
+                      >pin_drop</span
+                    >
+                    <span id="spotVerifyZone"
+                      >Target Zone: Main Auto Stand, Station Road</span
+                    >
+                  </p>
+                  <div class="space-y-space-sm">
+                    <!-- Detection Status Pill -->
+                    <div
+                      class="p-space-sm rounded-xl bg-surface-container flex items-start gap-space-sm"
+                    >
+                      <div
+                        class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >my_location</span
+                        >
+                      </div>
+                      <div class="min-w-0">
+                        <div
+                          class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5"
+                        >
+                          <span>🟢 GPS Detected — Within 10m of spot</span>
+                        </div>
+                        <p
+                          class="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+                        >
+                          High-accuracy mobile triangulation confirmed via
+                          satellite fix.
+                        </p>
+                      </div>
+                    </div>
+                    <!-- Distance Callout -->
+                    <div
+                      class="p-space-sm rounded-xl bg-surface-container flex items-start gap-space-sm"
+                    >
+                      <div
+                        class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >radar</span
+                        >
+                      </div>
+                      <div>
+                        <div
+                          class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                        >
+                          8m away
+                          <span
+                            class="font-body-sm text-body-sm text-emerald-700 font-medium"
+                            >(Well within allowed 100m zone)</span
+                          >
+                        </div>
+                        <div
+                          class="w-full bg-surface-container-high h-2 rounded-full mt-2 overflow-hidden"
+                        >
+                          <div
+                            class="bg-primary h-full rounded-full transition-all duration-500"
+                            style="width: 8%"
+                          ></div>
+                        </div>
+                        <div
+                          class="flex justify-between font-label-caps text-label-caps text-on-surface-variant mt-1"
+                        >
+                          <span>Current: 8m</span>
+                          <span>Geofence Limit: 100m</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-space-sm">
+                  <button
+                    class="w-full py-3 px-space-md rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition-all flex items-center justify-center gap-2"
+                    id="refreshLocationBtn"
+                    type="button"
+                  >
+                    <span
+                      class="material-symbols-outlined text-[18px] text-primary"
+                      id="refreshIcon"
+                      >refresh</span
+                    >
+                    <span>Refresh Location Telemetry</span>
+                  </button>
+                  <span
+                    class="block text-center font-body-sm text-body-sm text-on-surface-variant mt-2"
+                  >
+                    Last GPS ping updated
+                    <span
+                      class="font-semibold text-on-surface"
+                      id="lastPingTime"
+                      >3 seconds ago</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <!-- Right Column: Interactive Visual Radar Map -->
+              <div class="lg:col-span-7">
+                <div
+                  class="relative w-full h-[320px] md:h-[360px] rounded-xl overflow-hidden bg-surface-container-highest shadow-inner"
+                  id="checkinMap"
+                >
+                  <!-- Static Mumbai Street Grid Canvas SVG -->
+                  <svg
+                    class="absolute inset-0 w-full h-full"
+                    preserveaspectratio="xMidYMid slice"
+                    viewbox="0 0 600 360"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <defs>
+                      <pattern
+                        height="40"
+                        id="streetGrid"
+                        patternunits="userSpaceOnUse"
+                        width="40"
+                      >
+                        <path
+                          d="M 40 0 L 0 0 0 40"
+                          fill="none"
+                          opacity="0.6"
+                          stroke="#ded5cc"
+                          stroke-width="1.2"
+                        ></path>
+                      </pattern>
+                      <radialgradient
+                        cx="50%"
+                        cy="50%"
+                        id="geofenceGradiant"
+                        r="50%"
+                      >
+                        <stop
+                          offset="0%"
+                          stop-color="#f05a28"
+                          stop-opacity="0.18"
+                        ></stop>
+                        <stop
+                          offset="70%"
+                          stop-color="#f05a28"
+                          stop-opacity="0.06"
+                        ></stop>
+                        <stop
+                          offset="100%"
+                          stop-color="#f05a28"
+                          stop-opacity="0.0"
+                        ></stop>
+                      </radialgradient>
+                    </defs>
+                    <!-- Base Canvas Fill -->
+                    <rect fill="#f4ebe4" height="100%" width="100%"></rect>
+                    <rect
+                      fill="url(#streetGrid)"
+                      height="100%"
+                      width="100%"
+                    ></rect>
+                    <!-- Arterial Roads (Kurla Station West Road network) -->
+                    <path
+                      d="M -20 180 Q 200 170 300 180 T 620 190"
+                      fill="none"
+                      stroke="#ffffff"
+                      stroke-width="26"
+                    ></path>
+                    <path
+                      d="M 280 -20 L 300 380"
+                      fill="none"
+                      stroke="#ffffff"
+                      stroke-width="20"
+                    ></path>
+                    <path
+                      d="M 120 -20 L 160 380"
+                      fill="none"
+                      stroke="#ffffff"
+                      stroke-width="14"
+                    ></path>
+                    <path
+                      d="M 450 -20 L 420 380"
+                      fill="none"
+                      stroke="#ffffff"
+                      stroke-width="16"
+                    ></path>
+                    <!-- Rail Transit Corridor -->
+                    <path
+                      d="M 520 -20 L 520 380"
+                      fill="none"
+                      stroke="#cfc3ba"
+                      stroke-dasharray="10 6"
+                      stroke-width="18"
+                    ></path>
+                    <!-- Geofence 100m Perimeter -->
+                    <circle
+                      cx="300"
+                      cy="180"
+                      fill="url(#geofenceGradiant)"
+                      opacity="0.8"
+                      r="130"
+                      stroke="#f05a28"
+                      stroke-dasharray="4 4"
+                      stroke-width="1.5"
+                    ></circle>
+                    <!-- Connection Distance Line between Spot Center and User -->
+                    <line
+                      stroke="#aa3000"
+                      stroke-dasharray="3 3"
+                      stroke-width="2.5"
+                      x1="300"
+                      x2="335"
+                      y1="180"
+                      y2="165"
+                    ></line>
+                    <!-- Spot Center (Kurla West Auto Stand) -->
+                    <circle
+                      cx="300"
+                      cy="180"
+                      fill="#aa3000"
+                      opacity="0.25"
+                      r="14"
+                    ></circle>
+                    <circle cx="300" cy="180" fill="#aa3000" r="8"></circle>
+                    <circle cx="300" cy="180" fill="#ffffff" r="3"></circle>
+                    <!-- User Pulse Beacon (YOU) -->
+                    <circle
+                      cx="335"
+                      cy="165"
+                      fill="#0284c7"
+                      opacity="0.2"
+                      r="18"
+                    >
+                      <animate
+                        attributename="r"
+                        dur="2.5s"
+                        repeatcount="indefinite"
+                        values="12;24;12"
+                      ></animate>
+                      <animate
+                        attributename="opacity"
+                        dur="2.5s"
+                        repeatcount="indefinite"
+                        values="0.4;0.05;0.4"
+                      ></animate>
+                    </circle>
+                    <circle
+                      cx="335"
+                      cy="165"
+                      fill="#0284c7"
+                      r="7"
+                      stroke="#ffffff"
+                      stroke-width="2.5"
+                    ></circle>
+                  </svg>
+                  <!-- Overlay UI Labels inside Map Canvas -->
+                  <div
+                    class="absolute top-space-sm left-space-sm bg-surface-container-lowest/90 backdrop-blur-md px- space-sm py-1.5 rounded-lg shadow-sm font-label-caps text-label-caps text-on-surface"
+                  >
+                    <span
+                      class="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-1.5"
+                    ></span>
+                    KURLA WEST TRANSIT SECTOR 4
+                  </div>
+                  <!-- Spot Center Tag Pin -->
+                  <div
+                    class="absolute top-[38%] left-[26%] -translate-y-full flex flex-col items-center pointer-events-none"
+                  >
+                    <div
+                      class="bg-primary text-on-primary px-2.5 py-1 rounded-md text-[11px] font-bold shadow-md whitespace-nowrap"
+                    >
+                      🔴 Spot Center: Kurla West Auto Stand
+                    </div>
+                    <div class="w-2 h-2 bg-primary rotate-45 -mt-1"></div>
+                  </div>
+                  <!-- User Position Tag Pin -->
+                  <div
+                    class="absolute top-[32%] left-[58%] -translate-y-full flex flex-col items-center pointer-events-none"
+                  >
+                    <div
+                      class="bg-sky-700 text-white px-2.5 py-1 rounded-md text-[11px] font-bold shadow-md whitespace-nowrap flex items-center gap-1"
+                    >
+                      <span class="material-symbols-outlined text-[12px]"
+                        >person_pin_circle</span
+                      >
+                      <span>📍 YOU (Vendor Position)</span>
+                    </div>
+                    <div class="w-2 h-2 bg-sky-700 rotate-45 -mt-1"></div>
+                  </div>
+                  <!-- Distance Floating Pill Overlay -->
+                  <div
+                    class="absolute bottom-space-sm right-space-sm bg-surface-container-lowest/95 backdrop-blur-md px-space-md py-space-xs rounded-xl shadow-md flex items-center gap-2"
+                  >
+                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                    <div class="flex flex-col">
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                        >Current Proximity</span
+                      >
+                      <span
+                        class="font-headline-sm text-headline-sm text-on-surface leading-tight font-extrabold"
+                        >8m distance</span
+                      >
+                    </div>
+                  </div>
+                  <!-- Mini Legend inside Map -->
+                  <div
+                    class="absolute bottom-space-sm left-space-sm bg-surface-container-lowest/85 backdrop-blur-sm p-2 rounded-lg flex items-center gap-3 font-label-sm text-label-sm text-on-surface-variant"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-primary"></span>
+                      <span>Target Center</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                      <span>Vendor</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="w-3 h-0.5 bg-primary border-t border-dashed"
+                      ></span>
+                      <span>100m Allowed Zone</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- STEP 2: SPOT DEMAND SUMMARY -->
+          <section class="mb-space-lg">
+            <div class="flex items-center justify-between mb-space-sm">
+              <div class="flex items-center gap-2">
+                <span
+                  class="font-label-caps text-label-caps text-primary bg-primary/10 px-2 py-0.5 rounded uppercase"
+                  >Step 02</span
+                >
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">
+                  SPOT DEMAND SUMMARY
+                </h2>
+              </div>
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >Synthesized Spatial Rush Index</span
+              >
+            </div>
+            <div
+              class="bg-surface-container-lowest rounded-2xl shadow-sm p-space-md md:p-space-xl"
+            >
+              <!-- High Priority Demand Card Header -->
+              <div
+                class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-md border-b border-surface-container"
+              >
+                <div>
+                  <div class="flex items-center gap-space-sm mb-1">
+                    <!-- Requirement 1: Strictly use CUSTOMER RUSH · 91 / 100 · 🔥 VERY BUSY -->
+                    <div
+                      class="px-space-md py-1.5 rounded-full bg-red-50 text-red-700 font-label-caps text-label-caps font-bold tracking-wider flex items-center gap-2"
+                    >
+                      <span
+                        class="w-2 h-2 rounded-full bg-red-600 animate-ping"
+                      ></span>
+                      <span>🔥 VERY BUSY</span>
+                    </div>
+                    <span
+                      class="font-label-caps text-label-caps text-on-surface-variant tracking-wider uppercase"
+                      >Live Demand Intelligence</span
+                    >
+                  </div>
+                  <div
+                    class="font-display-mobile md:font-display text-display-mobile md:text-display text-on-surface tracking-tight"
+                  >
+                    CUSTOMER RUSH
+                    <span class="text-primary font-extrabold">91 / 100</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-space-md flex-wrap">
+                  <!-- Surge Telemetry -->
+                  <div
+                    class="bg-surface-container p-space-sm md:p-space-md rounded-xl flex items-center gap-space-sm"
+                  >
+                    <div
+                      class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center"
+                    >
+                      <span class="material-symbols-outlined text-[24px]"
+                        >trending_up</span
+                      >
+                    </div>
+                    <div>
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase block"
+                        >Surge Telemetry</span
+                      >
+                      <span
+                        class="font-headline-sm text-headline-sm text-emerald-700 font-bold"
+                        >↑ 22% customer activity</span
+                      >
+                      <span
+                        class="font-body-sm text-body-sm text-on-surface-variant block"
+                        >vs 1 hour ago</span
+                      >
+                    </div>
+                  </div>
+                  <!-- Recommended Duration -->
+                  <div
+                    class="bg-surface-container p-space-sm md:p-space-md rounded-xl flex items-center gap-space-sm"
+                  >
+                    <div
+                      class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center"
+                    >
+                      <span class="material-symbols-outlined text-[24px]"
+                        >timelapse</span
+                      >
+                    </div>
+                    <div>
+                      <span
+                        class="font-label-caps text-label-caps text-on-surface-variant uppercase block"
+                        >Recommended Window</span
+                      >
+                      <span
+                        class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                        >🕐 45–60 minutes</span
+                      >
+                      <span
+                        class="font-body-sm text-body-sm text-on-surface-variant block"
+                        >Optimal peak turnover</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Micro Insights & Surge Timeline Visualizer -->
+              <div
+                class="grid grid-cols-1 md:grid-cols-12 gap-space-md pt-space-md items-center"
+              >
+                <div class="md:col-span-7 flex items-start gap-space-sm">
+                  <div
+                    class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 mt-0.5"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >lightbulb</span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      class="font-label-caps text-label-caps text-tertiary uppercase"
+                      >Real-Time Tactical Insight</span
+                    >
+                    <p
+                      class="font-body-lg text-body-lg text-on-surface font-medium mt-0.5"
+                    >
+                      Evening transit interchange rush is accelerating. High
+                      impulse snacking traffic active around auto queues and
+                      shared taxi bays.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="md:col-span-5 bg-surface-container-low p-space-sm rounded-xl"
+                >
+                  <div
+                    class="flex items-center justify-between text-xs font-semibold text-on-surface-variant mb-2"
+                  >
+                    <span>Peak Forecast</span>
+                    <span class="text-primary font-bold"
+                      >Expected Peak: 6:45 PM – 7:45 PM</span
+                    >
+                  </div>
+                  <!-- Sparkline representation of footfall -->
+                  <div class="h-10 flex items-end gap-1.5 pt-1">
+                    <div
+                      class="flex-1 bg-surface-container-highest rounded-t h-[40%]"
+                      title="5:00 PM - Moderate"
+                    ></div>
+                    <div
+                      class="flex-1 bg-surface-container-highest rounded-t h-[55%]"
+                      title="5:30 PM - Moderate"
+                    ></div>
+                    <div
+                      class="flex-1 bg-primary/70 rounded-t h-[75%]"
+                      title="6:00 PM - Busy"
+                    ></div>
+                    <div
+                      class="flex-1 bg-primary rounded-t h-[100%]"
+                      title="6:30 PM - 91 Customer Rush"
+                    ></div>
+                    <div
+                      class="flex-1 bg-primary rounded-t h-[95%]"
+                      title="7:00 PM - Surge"
+                    ></div>
+                    <div
+                      class="flex-1 bg-primary/80 rounded-t h-[80%]"
+                      title="7:30 PM - Busy"
+                    ></div>
+                    <div
+                      class="flex-1 bg-surface-container-highest rounded-t h-[50%]"
+                      title="8:00 PM - Normal"
+                    ></div>
+                    <div
+                      class="flex-1 bg-surface-container-highest rounded-t h-[30%]"
+                      title="8:30 PM - Lower"
+                    ></div>
+                  </div>
+                  <div
+                    class="flex justify-between font-label-caps text-label-caps text-on-surface-variant mt-1.5"
+                  >
+                    <span>5:00 PM</span>
+                    <span class="font-bold text-primary">NOW (6:30 PM)</span>
+                    <span>8:30 PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- STEP 3: SESSION SETUP (OPTIONAL) -->
+          <section class="mb-space-lg">
+            <div class="flex items-center justify-between mb-space-sm">
+              <div class="flex items-center gap-2">
+                <span
+                  class="font-label-caps text-label-caps text-primary bg-primary/10 px-2 py-0.5 rounded uppercase"
+                  >Step 03</span
+                >
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">
+                  SESSION SETUP
+                  <span
+                    class="font-body-md text-body-md text-on-surface-variant font-normal"
+                    >(OPTIONAL)</span
+                  >
+                </h2>
+              </div>
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >Customize telemetry triggers</span
+              >
+            </div>
+            <div
+              class="bg-surface-container-lowest rounded-2xl shadow-sm p-space-md md:p-space-xl"
+            >
+              <form
+                class="space-y-space-md"
+                id="sessionSetupForm"
+                onsubmit="return false;"
+              >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+                  <!-- Expected Duration Select -->
+                  <div class="flex flex-col">
+                    <label
+                      class="font-label-md text-label-md text-on-surface font-semibold mb-2 flex items-center justify-between"
+                      for="expectedDuration"
+                    >
+                      <span>Expected Duration</span>
+                      <span class="text-xs text-primary font-bold"
+                        >Suggested: 45 Mins</span
+                      >
+                    </label>
+                    <div class="relative">
+                      <select
+                        class="w-full h-12 pl-space-md pr-10 rounded-xl bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest transition-colors appearance-none cursor-pointer outline-none"
+                        id="expectedDuration"
+                      >
+                        <option selected="" value="45">
+                          45 Mins (Recommended based on rush window)
+                        </option>
+                        <option value="30">30 Mins</option>
+                        <option value="60">60 Mins (Full peak hour)</option>
+                        <option value="90">90 Mins</option>
+                        <option value="120">2 Hours</option>
+                      </select>
+                      <span
+                        class="material-symbols-outlined text-on-surface-variant absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[20px]"
+                      >
+                        expand_more
+                      </span>
+                    </div>
+                    <p
+                      class="font-body-sm text-body-sm text-on-surface-variant mt-1.5"
+                    >
+                      Vyapar monitors micro-shifts in footfall to suggest the
+                      optimal wrap-up time.
+                    </p>
+                  </div>
+                  <!-- Product Focus Select -->
+                  <div class="flex flex-col">
+                    <label
+                      class="font-label-md text-label-md text-on-surface font-semibold mb-2"
+                      for="productFocus"
+                    >
+                      Product Focus for This Session
+                    </label>
+                    <div class="relative">
+                      <select
+                        class="w-full h-12 pl-space-md pr-10 rounded-xl bg-surface-container text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest transition-colors appearance-none cursor-pointer outline-none"
+                        id="productFocus"
+                      >
+                        <option selected="" value="food_beverage">
+                          Food / Beverage (Vada Pav, Chai, Snacks)
+                        </option>
+                        <option value="fresh_produce">
+                          Fresh Produce &amp; Fruits
+                        </option>
+                        <option value="quick_snacks">
+                          Quick Snacks / Packaged
+                        </option>
+                        <option value="clothing_apparel">
+                          Clothing &amp; Apparel
+                        </option>
+                        <option value="mobile_accessories">
+                          Mobile Accessories
+                        </option>
+                        <option value="other_street_goods">
+                          Other Street Goods
+                        </option>
+                      </select>
+                      <span
+                        class="material-symbols-outlined text-on-surface-variant absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[20px]"
+                      >
+                        fastfood
+                      </span>
+                    </div>
+                    <p
+                      class="font-body-sm text-body-sm text-on-surface-variant mt-1.5"
+                    >
+                      Fine-tunes impulse demand alerts and competitor density
+                      for your category.
+                    </p>
+                  </div>
+                </div>
+                <!-- Informational Note Banner -->
+                <div
+                  class="p-space-sm md:p-space-md rounded-xl bg-surface-container-low flex items-start gap-space-sm text-on-surface-variant"
+                >
+                  <span
+                    class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5"
+                    >info</span
+                  >
+                  <p class="font-body-sm text-body-sm">
+                    <strong class="font-semibold text-on-surface"
+                      >Tactical Merchant Notice:</strong
+                    >
+                    Setting duration helps Vyapar notify you before demand drops
+                    or local shifts change. You can stop or extend your selling
+                    session at any moment.
+                  </p>
+                </div>
+              </form>
+            </div>
+          </section>
+          <!-- PRIMARY ACTION: CONFIRM LOCATION & START SELLING SESSION -->
+          <section class="mt-space-sm">
+            <div
+              class="bg-surface-container-lowest rounded-2xl shadow-md p-space-md md:p-space-xl flex flex-col items-center text-center"
+            >
+              <button
+                class="w-full max-w-2xl py-4 px-space-xl bg-primary hover:bg-primary-container text-on-primary rounded-xl font-headline-md text-headline-md tracking-tight shadow-lg transition-all duration-200 flex items-center justify-center gap-space-sm active:scale-[0.99] group"
+                id="startSessionPrimaryBtn"
+                type="button"
+              >
+                <span
+                  class="material-symbols-outlined text-[26px] group-hover:translate-x-1 transition-transform"
+                  >rocket_launch</span
+                >
+                <span>CONFIRM LOCATION &amp; START SELLING SESSION</span>
+              </button>
+              <p
+                class="font-body-md text-body-md text-on-surface-variant mt-3 flex items-center justify-center gap-1.5"
+              >
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span
+                  >Location verified · Ready to record your active street
+                  selling telemetry</span
+                >
+              </p>
+              <!-- Sub-action helper toggle for UI demo testing -->
+              <div
+                class="mt-space-md pt-space-sm border-t border-surface-container w-full flex items-center justify-center gap-space-md text-xs text-on-surface-variant"
+              >
+                <span>Quick Simulation Toggle:</span>
+                <button
+                  class="text-primary underline hover:text-primary-container font-semibold"
+                  id="mockToggleStateBtn"
+                  type="button"
+                >
+                  Preview Active Selling Session Banner
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- Fixed Mobile Bottom Navigation -->
+        <nav class="mobile-bottom-nav md:hidden" data-bottom-nav>
+          <a href="index.html" data-nav-key="dashboard" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">grid_view</span>
+            <span>Home</span>
+          </a>
+          <a href="recommendations.html" data-nav-key="places" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">near_me</span>
+            <span>Places</span>
+          </a>
+          <a href="alerts.html" data-nav-key="alerts" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">notifications_active</span>
+            <span>Alerts</span>
+          </a>
+          <a href="discover.html" data-nav-key="discover-vendors" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">storefront</span>
+            <span>Discover</span>
+          </a>
+          <a href="#profile" data-path="profile" data-nav-key="profile" class="mobile-bottom-nav-item">
+            <span class="material-symbols-outlined text-[22px]">person</span>
+            <span>Profile</span>
+          </a>
+        </nav>
+
+        <!-- Application Scripts -->
+        <script src="js/api.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/pages/checkin.js"></script>
+      </main>
+    </div>
+  </body>
+</html>

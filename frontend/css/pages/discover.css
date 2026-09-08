@@ -1,0 +1,6 @@
+/**
+ * pages/discover.css - Discover Vendors Specific Styles
+ */
+.vendor-card {
+  transition: all 0.2s ease-in-out;
+}
