@@ -20,6 +20,8 @@ try:
     from backend.routes.vendors import router as vendors_router
     from backend.routes.checkins import router as checkins_router
     from backend.routes.demand import router as demand_router
+    from backend.routes.spots import router as spots_router
+    from backend.routes.recommendations import router as recommendations_router
 except ImportError:
     from db import init_db_indexes, ping_database, close_db_connection
     from models.response import error_response
@@ -27,6 +29,8 @@ except ImportError:
     from routes.vendors import router as vendors_router
     from routes.checkins import router as checkins_router
     from routes.demand import router as demand_router
+    from routes.spots import router as spots_router
+    from routes.recommendations import router as recommendations_router
 
 # Configure basic logging
 logging.basicConfig(
@@ -97,6 +101,8 @@ app.include_router(health_router)
 app.include_router(vendors_router)
 app.include_router(checkins_router)
 app.include_router(demand_router)
+app.include_router(spots_router)
+app.include_router(recommendations_router)
 
 
 if __name__ == "__main__":

@@ -8,6 +8,11 @@ from .checkins import (
     create_checkin,
     get_checkin_history,
 )
+from .spots import (
+    create_spot,
+    get_spot_by_id,
+    get_nearby_spots,
+)
 
 __all__ = [
     "create_vendor",
@@ -16,4 +21,7 @@ __all__ = [
     "update_vendor_location",
     "create_checkin",
     "get_checkin_history",
+    "create_spot",
+    "get_spot_by_id",
+    "get_nearby_spots",
 ]
