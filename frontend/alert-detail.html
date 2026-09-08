@@ -1,0 +1,1113 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @layer base {
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          overscroll-behavior: none;
+        }
+        main > :first-child {
+          margin-top: 0 !important;
+        }
+        main > :last-child {
+          margin-bottom: 0 !important;
+        }
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#fff8f5",
+              "on-secondary-container": "#676160",
+              "surface-dim": "#e2d8d2",
+              "inverse-primary": "#ffb59f",
+              "surface-container-high": "#f0e6e0",
+              secondary: "#635d5c",
+              "on-tertiary-container": "#fffbff",
+              tertiary: "#825100",
+              "on-tertiary-fixed-variant": "#653e00",
+              "tertiary-fixed": "#ffddb8",
+              "on-secondary-fixed": "#1e1b1a",
+              "on-surface-variant": "#5a4139",
+              "primary-fixed": "#ffdbd0",
+              surface: "#fff8f5",
+              outline: "#8e7068",
+              "on-error": "#ffffff",
+              "tertiary-container": "#a36700",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed": "#2a1700",
+              "inverse-on-surface": "#f9efe8",
+              background: "#fff8f5",
+              error: "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "surface-container-low": "#fcf2eb",
+              "on-secondary-fixed-variant": "#4b4644",
+              "inverse-surface": "#342f2b",
+              "surface-tint": "#ae3100",
+              "surface-container-highest": "#eae1da",
+              "surface-container": "#f6ece6",
+              "on-primary-container": "#fffbff",
+              "primary-fixed-dim": "#ffb59f",
+              "on-primary-fixed-variant": "#852400",
+              "on-error-container": "#93000a",
+              "on-primary-fixed": "#3a0a00",
+              primary: "#aa3000",
+              "secondary-fixed-dim": "#cdc5c3",
+              "secondary-fixed": "#e9e1df",
+              "tertiary-fixed-dim": "#ffb95f",
+              "on-surface": "#1f1b17",
+              "secondary-container": "#e6dedc",
+              "primary-container": "#d04411",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#eae1da",
+              "on-primary": "#ffffff",
+              "on-background": "#1f1b17",
+              "outline-variant": "#e2bfb5",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "space-2xl": "2rem",
+              "space-lg": "1.25rem",
+              "space-3xl": "2.5rem",
+              "space-4xl": "3rem",
+              "space-xs": "0.5rem",
+              "gutter-mobile": "1rem",
+              "gutter-desktop": "1.5rem",
+              "margin-mobile": "1rem",
+              "space-sm": "0.75rem",
+              "margin-desktop": "2rem",
+              "space-md": "1rem",
+              "space-2xs": "0.25rem",
+              "space-xl": "1.5rem",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "display-mobile": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "label-caps": ["Plus Jakarta Sans"],
+              "body-sm": ["Inter"],
+              "body-md": ["Inter"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-lg": ["Inter"],
+              display: ["Plus Jakarta Sans"],
+              "headline-sm": ["Plus Jakarta Sans"],
+              "label-numeric-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-mobile": [
+                "34px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.025em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "26px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.015em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.08em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-sm": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0em",
+                  fontWeight: "400",
+                },
+              ],
+              "body-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0em",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-md": [
+                "22px",
+                {
+                  lineHeight: "28px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "16px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "400",
+                },
+              ],
+              display: [
+                "44px",
+                {
+                  lineHeight: "52px",
+                  letterSpacing: "-0.03em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-sm": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "0em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-numeric-lg": [
+                "28px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface font-body-md text-on-surface antialiased">
+    <aside
+      class="fixed left-0 top-0 h-full w-[76px] bg-surface-container-low z-50 flex flex-col items-center py-space-md shadow-[0_1px_8px_rgba(41,37,36,0.04)]"
+    >
+      <div class="flex items-center justify-center mb-space-xl">
+        <img
+          alt="VYAPAR Brand Mark"
+          class="h-8 w-auto object-contain"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
+        />
+      </div>
+      <nav
+        class="flex-1 flex flex-col items-center gap-space-xs w-full px-space-2xs"
+        data-active-classes="bg-primary-container text-on-primary-container font-headline-sm"
+      >
+        <a
+          aria-current="page"
+          class="w-12 h-12 rounded-xl flex items-center justify-center transition-all bg-primary-container text-on-primary-container font-headline-sm"
+          data-path="dashboard"
+          href="#"
+          title="Dashboard"
+          ><span class="material-symbols-outlined text-[22px]"
+            >grid_view</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="places"
+          href="#"
+          title="Places"
+          ><span class="material-symbols-outlined text-[22px]">near_me</span></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="check-in"
+          href="#"
+          title="Check-in"
+          ><span class="material-symbols-outlined text-[22px]"
+            >pin_drop</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="alerts"
+          href="#"
+          title="Alerts"
+          ><span class="material-symbols-outlined text-[22px]"
+            >notifications_active</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="discover-vendors"
+          href="#"
+          title="Discover Vendors"
+          ><span class="material-symbols-outlined text-[22px]"
+            >storefront</span
+          ></a
+        >
+      </nav>
+      <div
+        class="flex flex-col items-center gap-space-xs w-full px-space-2xs pt-space-xs"
+      >
+        <a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="profile"
+          href="#"
+          title="Profile"
+          ><span class="material-symbols-outlined text-[22px]">person</span></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="settings"
+          href="#"
+          title="Settings"
+          ><span class="material-symbols-outlined text-[22px]"
+            >settings</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="logout"
+          href="#"
+          title="Logout"
+          ><span class="material-symbols-outlined text-[22px]">logout</span></a
+        >
+      </div>
+    </aside>
+    <div class="pl-[76px]">
+      <header
+        class="fixed top-0 left-[76px] right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(41,37,36,0.03)] px-space-md lg:px-space-xl flex items-center justify-between"
+      >
+        <div class="flex flex-col justify-center min-w-0 pr-space-md">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate"
+              >Good evening, Vendor</span
+            ><span class="text-[18px] leading-none select-none">👋</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+            Here's what's happening around you right now.
+          </p>
+        </div>
+        <div class="flex items-center gap-space-sm sm:gap-space-md shrink-0">
+          <button
+            class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-2xs rounded-full shadow-[0_2px_4px_rgba(41,37,36,0.02)] hover:bg-surface-container transition-colors"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-primary text-[18px]"
+              >location_on</span
+            ><span
+              class="font-label-md text-label-md text-on-surface font-semibold"
+              >Mumbai</span
+            ><span
+              class="flex items-center gap-1.5 font-label-caps text-label-caps text-tertiary"
+              ><span class="relative flex h-2 w-2"
+                ><span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                ></span
+                ><span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+                ></span></span
+              >Live</span
+            ><span
+              class="material-symbols-outlined text-on-surface-variant text-[18px]"
+              >arrow_drop_down</span
+            ></button
+          ><button
+            class="relative w-9 h-9 rounded-full flex items-center justify-center bg-surface-container-lowest hover:bg-surface-container transition-colors text-on-surface-variant shadow-[0_2px_4px_rgba(41,37,36,0.02)]"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >notifications</span
+            ><span
+              class="absolute top-1 right-1 w-2.5 h-2.5 bg-primary rounded-full ring-2 ring-surface-container-lowest"
+            ></span>
+          </button>
+          <div class="flex items-center pl-space-2xs">
+            <img
+              alt="Profile"
+              class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(41,37,36,0.1)]"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvisN5NJL57RB3l5qnYVbpLkreiLabrf4G-i9Ozx6mw-lzAf4ylG4CA9xB1CjpobMFzk_lfGOKdw-hGH_Dj7r1_82mAW-JpLz148pU9mBSt_ISeHiRMTFNWrtZUhDYDOIxoUQ2nSZpZdjSvfJl2GA63buxQhw8LTYqW8WyYseJzWILnnjW9my6Qdn7G2qqM7kyXV0kM8K8PKrX0NI3GFhp2f9DDjBXeEbroqXd010JkHLA895TnrmK"
+            />
+          </div>
+        </div>
+      </header>
+      <main
+        class="relative pt-16 w-full px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto py-space-lg min-h-[calc(100vh-4rem)]"
+      >
+        <div class="flex flex-col w-full pb-32">
+          <!-- Top Breadcrumb & Live Heartbeat Header -->
+          <div
+            class="flex flex-wrap items-center justify-between gap-space-sm mb-space-lg"
+          >
+            <a
+              class="inline-flex items-center gap-space-xs text-on-surface-variant hover:text-primary font-headline-sm text-headline-sm transition-colors group"
+              href="alerts.html"
+            >
+              <span
+                class="material-symbols-outlined text-[20px] transition-transform group-hover:-translate-x-1"
+                >arrow_back</span
+              >
+              <span class="font-label-md text-label-md"
+                >Back to Live Alerts</span
+              >
+            </a>
+            <div
+              class="flex items-center gap-space-xs bg-surface-container-lowest px-space-md py-space-xs rounded-full shadow-sm"
+            >
+              <span class="relative flex h-2 w-2">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+                ></span>
+              </span>
+              <span
+                class="font-label-caps text-label-caps tracking-wider text-on-surface-variant uppercase"
+                >Telemetry: Live • Updated 2m ago</span
+              >
+              <span class="material-symbols-outlined text-primary text-[16px]"
+                >sensors</span
+              >
+            </div>
+          </div>
+          <!-- Hero Operational Alert Header -->
+          <div
+            class="relative bg-surface-container-lowest rounded-2xl p-space-lg md:p-space-xl shadow-sm mb-space-xl overflow-hidden"
+          >
+            <div
+              class="absolute -right-12 -top-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"
+            ></div>
+            <div class="relative z-10 flex flex-col gap-space-xs">
+              <div class="flex flex-wrap items-center gap-space-xs">
+                <span
+                  class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-error-container text-on-error-container font-label-caps text-label-caps tracking-wider uppercase"
+                >
+                  <span class="material-symbols-outlined text-[14px]"
+                    >bolt</span
+                  >
+                  High Urgency Alert
+                </span>
+                <span
+                  class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps"
+                >
+                  <span class="material-symbols-outlined text-[14px]"
+                    >schedule</span
+                  >
+                  Batch #KL-882
+                </span>
+              </div>
+              <div
+                class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mt-space-2xs"
+              >
+                <div class="max-w-3xl">
+                  <h1
+                    class="font-display text-headline-lg md:text-display tracking-tight text-on-surface uppercase"
+                  >
+                    Demand Spike: Kurla Station (West Exit)
+                  </h1>
+                  <p
+                    class="font-body-lg text-body-lg text-on-surface-variant mt-space-2xs"
+                  >
+                    Sudden evening commuter flux surge creating high impulse
+                    demand for hot snacks, chai, and quick beverages.
+                  </p>
+                </div>
+                <div
+                  class="flex items-center gap-space-xs shrink-0 self-start lg:self-auto bg-surface-container-low px-space-md py-space-sm rounded-xl"
+                >
+                  <span
+                    class="material-symbols-outlined text-tertiary text-[20px]"
+                    >timer</span
+                  >
+                  <div>
+                    <div
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                    >
+                      Estimated Rush Peak
+                    </div>
+                    <div
+                      class="font-headline-sm text-headline-sm text-on-surface"
+                    >
+                      18:45 – 19:30 IST
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Main Dual-Column Command Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+            <!-- LEFT COLUMN (7 Cols): Tactical Intelligence & Metrics -->
+            <div class="lg:col-span-7 flex flex-col gap-space-xl">
+              <!-- Customer Rush Gauge Card -->
+              <div
+                class="bg-surface-container-lowest rounded-2xl p-space-lg md:p-space-xl shadow-sm flex flex-col"
+              >
+                <div
+                  class="flex items-center justify-between gap-space-xs pb-space-md"
+                >
+                  <div class="flex items-center gap-space-xs">
+                    <span
+                      class="material-symbols-outlined text-primary text-[20px]"
+                      >speed</span
+                    >
+                    <span
+                      class="font-label-caps text-label-caps text-on-surface-variant tracking-wider uppercase"
+                      >Current Customer Rush</span
+                    >
+                  </div>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-error-container text-on-error-container font-label-caps text-label-caps uppercase font-bold"
+                  >
+                    <span class="w-2 h-2 rounded-full bg-error"></span>
+                    Very Busy
+                  </span>
+                </div>
+                <!-- Metric Big Numbers & Trajectory -->
+                <div
+                  class="flex flex-wrap items-baseline justify-between gap-space-md py-space-sm"
+                >
+                  <div class="flex items-baseline gap-space-2xs">
+                    <span
+                      class="font-display text-display text-on-surface leading-none"
+                      >91</span
+                    >
+                    <span
+                      class="font-headline-md text-headline-md text-on-surface-variant"
+                      >/ 100</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-full"
+                  >
+                    <span
+                      class="material-symbols-outlined text-primary text-[18px]"
+                      >trending_up</span
+                    >
+                    <span
+                      class="font-label-md text-label-md text-primary font-bold"
+                      >↑ +20%</span
+                    >
+                    <span
+                      class="font-body-sm text-body-sm text-on-surface-variant"
+                      >vs 1h ago • Jumped from 76 → 91</span
+                    >
+                  </div>
+                </div>
+                <!-- Custom Telemetry Progress Bar with Multi-Segment Fill -->
+                <div
+                  class="w-full bg-surface-container-high h-3.5 rounded-full overflow-hidden my-space-sm p-0.5"
+                >
+                  <div
+                    class="h-full rounded-full bg-gradient-to-r from-primary-container via-primary to-error transition-all duration-1000 ease-out"
+                    style="width: 91%"
+                  ></div>
+                </div>
+                <!-- Rush Scale Semantic Legend -->
+                <div
+                  class="grid grid-cols-4 gap-space-2xs text-center pt-space-xs"
+                >
+                  <div
+                    class="flex flex-col items-center bg-surface-container-low p-space-xs rounded-lg"
+                  >
+                    <span
+                      class="font-label-caps text-label-caps text-on-surface-variant"
+                      >0 - 25</span
+                    >
+                    <span class="font-label-sm text-label-sm text-on-surface"
+                      >QUIET</span
+                    >
+                  </div>
+                  <div
+                    class="flex flex-col items-center bg-surface-container-low p-space-xs rounded-lg"
+                  >
+                    <span
+                      class="font-label-caps text-label-caps text-on-surface-variant"
+                      >26 - 50</span
+                    >
+                    <span class="font-label-sm text-label-sm text-on-surface"
+                      >MODERATE</span
+                    >
+                  </div>
+                  <div
+                    class="flex flex-col items-center bg-surface-container-low p-space-xs rounded-lg"
+                  >
+                    <span
+                      class="font-label-caps text-label-caps text-on-surface-variant"
+                      >51 - 75</span
+                    >
+                    <span class="font-label-sm text-label-sm text-on-surface"
+                      >BUSY</span
+                    >
+                  </div>
+                  <div
+                    class="flex flex-col items-center bg-error-container p-space-xs rounded-lg shadow-sm"
+                  >
+                    <span
+                      class="font-label-caps text-label-caps text-on-error-container font-bold"
+                      >76 - 100</span
+                    >
+                    <span
+                      class="font-label-sm text-label-sm text-on-error-container font-extrabold"
+                      >VERY BUSY</span
+                    >
+                  </div>
+                </div>
+                <!-- Footfall Density Trend Sparkline (Compact inline visualization) -->
+                <div
+                  class="mt-space-lg pt-space-md bg-surface-container-low/50 rounded-xl p-space-md"
+                >
+                  <div class="flex items-center justify-between mb-space-xs">
+                    <span
+                      class="font-label-sm text-label-sm text-on-surface-variant uppercase"
+                      >Rush Pulse (Last 60 Minutes)</span
+                    >
+                    <span class="font-label-caps text-label-caps text-primary"
+                      >Peak Reached Now</span
+                    >
+                  </div>
+                  <svg
+                    class="w-full h-12 text-primary"
+                    fill="none"
+                    preserveaspectratio="none"
+                    viewbox="0 0 300 48"
+                  >
+                    <path
+                      d="M0,40 Q25,38 50,35 T100,32 T150,26 T200,18 T250,8 T300,4 L300,48 L0,48 Z"
+                      fill="currentColor"
+                      fill-opacity="0.12"
+                    ></path>
+                    <path
+                      d="M0,40 Q25,38 50,35 T100,32 T150,26 T200,18 T250,8 T300,4"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-width="2.5"
+                    ></path>
+                    <circle cx="300" cy="4" fill="currentColor" r="4"></circle>
+                  </svg>
+                </div>
+              </div>
+              <!-- Impact Analysis: Why It's Spiking Now -->
+              <div
+                class="bg-surface-container-lowest rounded-2xl p-space-lg md:p-space-xl shadow-sm flex flex-col"
+              >
+                <div class="flex items-center justify-between pb-space-md">
+                  <div class="flex items-center gap-space-xs">
+                    <span
+                      class="material-symbols-outlined text-tertiary text-[20px]"
+                      >lightbulb</span
+                    >
+                    <h2
+                      class="font-label-caps text-label-caps text-on-surface-variant tracking-wider uppercase"
+                    >
+                      Why It's Spiking Now • Live Intelligence
+                    </h2>
+                  </div>
+                  <span
+                    class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-space-xs py-0.5 rounded"
+                    >3 Corroborated Factors</span
+                  >
+                </div>
+                <div class="flex flex-col gap-space-md">
+                  <!-- Signal 1 -->
+                  <div
+                    class="flex items-start gap-space-md bg-surface-container-low p-space-md rounded-xl hover:bg-surface-container transition-colors"
+                  >
+                    <div
+                      class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shrink-0"
+                    >
+                      <span class="material-symbols-outlined text-[22px]"
+                        >train</span
+                      >
+                    </div>
+                    <div class="flex flex-col flex-1 min-w-0">
+                      <div
+                        class="flex items-center justify-between gap-space-xs flex-wrap"
+                      >
+                        <span
+                          class="font-headline-sm text-headline-sm text-on-surface"
+                          >Transit Arrival Confluence</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-primary font-bold bg-primary-fixed/50 px-2 py-0.5 rounded-full"
+                          >+4 Central Trains</span
+                        >
+                      </div>
+                      <p
+                        class="font-body-md text-body-md text-on-surface-variant mt-1"
+                      >
+                        4 suburban local trains converging on Platform 1 &amp; 2
+                        within the next 15 minutes. Exit stairs discharging
+                        immediately onto West Gate Concourse.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- Signal 2 -->
+                  <div
+                    class="flex items-start gap-space-md bg-surface-container-low p-space-md rounded-xl hover:bg-surface-container transition-colors"
+                  >
+                    <div
+                      class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0"
+                    >
+                      <span class="material-symbols-outlined text-[22px]"
+                        >groups</span
+                      >
+                    </div>
+                    <div class="flex flex-col flex-1 min-w-0">
+                      <div
+                        class="flex items-center justify-between gap-space-xs flex-wrap"
+                      >
+                        <span
+                          class="font-headline-sm text-headline-sm text-on-surface"
+                          >Commuter Volume Trajectory</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-tertiary font-bold bg-tertiary-fixed/50 px-2 py-0.5 rounded-full"
+                          >~1,500 Exiters / 10m</span
+                        >
+                      </div>
+                      <p
+                        class="font-body-md text-body-md text-on-surface-variant mt-1"
+                      >
+                        Substantial evening pedestrian rush moving from ticket
+                        turnstiles straight toward auto-rickshaw bays and market
+                        alleyways. High appetite for fast parcelled street food.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- Signal 3 -->
+                  <div
+                    class="flex items-start gap-space-md bg-surface-container-low p-space-md rounded-xl hover:bg-surface-container transition-colors"
+                  >
+                    <div
+                      class="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary shrink-0"
+                    >
+                      <span class="material-symbols-outlined text-[22px]"
+                        >hourglass_top</span
+                      >
+                    </div>
+                    <div class="flex flex-col flex-1 min-w-0">
+                      <div
+                        class="flex items-center justify-between gap-space-xs flex-wrap"
+                      >
+                        <span
+                          class="font-headline-sm text-headline-sm text-on-surface"
+                          >Optimal Selling Window</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-on-surface font-bold bg-surface-container-highest px-2 py-0.5 rounded-full"
+                          >Next 45 Minutes</span
+                        >
+                      </div>
+                      <p
+                        class="font-body-md text-body-md text-on-surface-variant mt-1"
+                      >
+                        Peak demand will persist continuously until 19:40 before
+                        stabilizing to moderate. Stalls with ready inventory
+                        will experience shortest turnover times.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- RIGHT COLUMN (5 Cols): Live Spatial Heatmap & Dispatch Action -->
+            <div class="lg:col-span-5 flex flex-col gap-space-xl">
+              <!-- Map Visual Card Container -->
+              <div
+                class="bg-surface-container-lowest rounded-2xl p-space-lg md:p-space-xl shadow-sm flex flex-col"
+              >
+                <div class="flex items-center justify-between pb-space-md">
+                  <div class="flex items-center gap-space-xs">
+                    <span
+                      class="material-symbols-outlined text-primary text-[20px]"
+                      >explore</span
+                    >
+                    <h2
+                      class="font-label-caps text-label-caps text-on-surface-variant tracking-wider uppercase"
+                    >
+                      Live Spatial Heatmap
+                    </h2>
+                  </div>
+                  <span
+                    class="font-label-sm text-label-sm text-primary font-bold bg-primary-fixed/40 px-2 py-0.5 rounded-full"
+                    >0.8 km • ~3m arrival</span
+                  >
+                </div>
+                <!-- Visual Map Area with Data Location -->
+                <div
+                  class="relative w-full h-80 rounded-xl overflow-hidden bg-surface-container-high flex flex-col justify-between p-space-md shadow-inner"
+                  data-location="Kurla Railway Station West, Mumbai"
+                  id="alert-map"
+                  style=""
+                >
+                  <!-- Tactical Map SVG Overlay Representation with Hotspot Nodes -->
+                  <div class="absolute inset-0 opacity-40 pointer-events-none">
+                    <svg
+                      class="w-full h-full"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <defs>
+                        <pattern
+                          height="30"
+                          id="grid"
+                          patternunits="userSpaceOnUse"
+                          width="30"
+                        >
+                          <path
+                            d="M 30 0 L 0 0 0 30"
+                            fill="none"
+                            stroke="#8e7068"
+                            stroke-opacity="0.3"
+                            stroke-width="0.5"
+                          ></path>
+                        </pattern>
+                        <radialgradient
+                          cx="65%"
+                          cy="35%"
+                          id="hotspot-core"
+                          r="45%"
+                        >
+                          <stop
+                            offset="0%"
+                            stop-color="#ba1a1a"
+                            stop-opacity="0.6"
+                          ></stop>
+                          <stop
+                            offset="50%"
+                            stop-color="#aa3000"
+                            stop-opacity="0.3"
+                          ></stop>
+                          <stop
+                            offset="100%"
+                            stop-color="#aa3000"
+                            stop-opacity="0"
+                          ></stop>
+                        </radialgradient>
+                      </defs>
+                      <rect fill="url(#grid)" height="100%" width="100%"></rect>
+                      <rect
+                        fill="url(#hotspot-core)"
+                        height="100%"
+                        width="100%"
+                      ></rect>
+                      <!-- Concentric Range Rings from User to Kurla West -->
+                      <circle
+                        class="animate-pulse"
+                        cx="65%"
+                        cy="38%"
+                        fill="none"
+                        r="40"
+                        stroke="#aa3000"
+                        stroke-dasharray="4,4"
+                        stroke-width="1.5"
+                      ></circle>
+                      <circle
+                        cx="65%"
+                        cy="38%"
+                        fill="none"
+                        r="80"
+                        stroke="#aa3000"
+                        stroke-opacity="0.3"
+                        stroke-width="1"
+                      ></circle>
+                      <!-- Direct vector path -->
+                      <path
+                        d="M 80 240 Q 140 180, 220 125"
+                        fill="none"
+                        stroke="#aa3000"
+                        stroke-dasharray="6,4"
+                        stroke-width="2.5"
+                      ></path>
+                    </svg>
+                  </div>
+                  <!-- Top Overlay: Live Status Bar in Map -->
+                  <div class="relative z-10 flex items-center justify-between">
+                    <span
+                      class="bg-surface/90 backdrop-blur-md px-space-sm py-1 rounded-lg font-label-caps text-label-caps text-on-surface shadow-sm flex items-center gap-1.5"
+                    >
+                      <span
+                        class="material-symbols-outlined text-primary text-[14px]"
+                        >my_location</span
+                      >
+                      Kurla Station Perimeter
+                    </span>
+                    <span
+                      class="bg-primary text-on-primary text-label-sm font-label-sm font-bold px-space-sm py-0.5 rounded-full shadow-sm"
+                    >
+                      Live Flow
+                    </span>
+                  </div>
+                  <!-- Map Interactive Hotspot Markers -->
+                  <div class="relative z-10 w-full h-full pointer-events-none">
+                    <!-- Target Hotspot: West Exit (Peak 91) -->
+                    <div
+                      class="absolute top-[28%] right-[24%] pointer-events-auto flex flex-col items-center group cursor-pointer"
+                    >
+                      <span
+                        class="relative flex h-5 w-5 items-center justify-center"
+                      >
+                        <span
+                          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"
+                        ></span>
+                        <span
+                          class="relative inline-flex rounded-full h-3.5 w-3.5 bg-error"
+                        ></span>
+                      </span>
+                      <div
+                        class="mt-1 bg-surface-container-lowest/95 backdrop-blur-sm px-2 py-1 rounded shadow-md text-center"
+                      >
+                        <div
+                          class="font-label-caps text-label-caps font-bold text-error"
+                        >
+                          WEST EXIT • 91
+                        </div>
+                        <div
+                          class="font-body-sm text-[10px] text-on-surface leading-tight"
+                        >
+                          Peak Rush Area
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Auto Stand Hotspot (84) -->
+                    <div
+                      class="absolute bottom-[35%] right-[10%] pointer-events-auto flex flex-col items-center"
+                    >
+                      <span
+                        class="w-3 h-3 rounded-full bg-primary ring-4 ring-primary/20"
+                      ></span>
+                      <div
+                        class="mt-0.5 bg-surface-container-lowest/95 px-1.5 py-0.5 rounded shadow-sm text-[10px] font-label-caps text-on-surface"
+                      >
+                        Auto Stand • 84
+                      </div>
+                    </div>
+                    <!-- Skywalk Hotspot (68) -->
+                    <div
+                      class="absolute top-[18%] left-[45%] pointer-events-auto flex flex-col items-center"
+                    >
+                      <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+                      <div
+                        class="mt-0.5 bg-surface-container-lowest/95 px-1.5 py-0.5 rounded shadow-sm text-[10px] font-label-caps text-on-surface"
+                      >
+                        Skywalk • 68
+                      </div>
+                    </div>
+                    <!-- Vendor Origin: YOU ARE HERE -->
+                    <div
+                      class="absolute bottom-[10%] left-[12%] pointer-events-auto flex flex-col items-center"
+                    >
+                      <div
+                        class="w-8 h-8 rounded-full bg-on-surface text-surface flex items-center justify-center shadow-lg"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >person_pin_circle</span
+                        >
+                      </div>
+                      <div
+                        class="mt-1 bg-surface-container-lowest/95 px-2 py-0.5 rounded shadow-md text-center"
+                      >
+                        <div
+                          class="font-label-caps text-label-caps font-bold text-on-surface"
+                        >
+                          YOU ARE HERE
+                        </div>
+                        <div
+                          class="font-body-sm text-[10px] text-on-surface-variant leading-tight"
+                        >
+                          0.8 km (~3m away)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Bottom Micro Map Legend -->
+                  <div
+                    class="relative z-10 bg-surface-container-lowest/90 backdrop-blur-md p-space-xs rounded-lg flex items-center justify-around text-center"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-error"></span>
+                      <span class="font-label-caps text-[10px] text-on-surface"
+                        >West Exit (91)</span
+                      >
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-primary"></span>
+                      <span class="font-label-caps text-[10px] text-on-surface"
+                        >Auto Stand (84)</span
+                      >
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                      <span class="font-label-caps text-[10px] text-on-surface"
+                        >Skywalk (68)</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- Hotspot Zone Context Breakdown -->
+                <div class="mt-space-md pt-space-sm flex flex-col gap-space-xs">
+                  <div
+                    class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                  >
+                    Recommended Stall Positioning
+                  </div>
+                  <div
+                    class="p-space-sm bg-surface-container-low rounded-xl flex items-center justify-between"
+                  >
+                    <div class="flex items-center gap-space-xs">
+                      <span
+                        class="material-symbols-outlined text-primary text-[20px]"
+                        >storefront</span
+                      >
+                      <span class="font-body-md text-body-md text-on-surface"
+                        >Adjacent to Auto Bay Entrance #3</span
+                      >
+                    </div>
+                    <span
+                      class="font-label-sm text-label-sm text-primary font-semibold"
+                      >High Visibility</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Tactical Decision Actions Panel -->
+              <div
+                class="bg-surface-container-lowest rounded-2xl p-space-lg md:p-space-xl shadow-sm flex flex-col gap-space-md"
+                id="alert-actions"
+              >
+                <div class="flex items-center gap-space-xs">
+                  <span
+                    class="material-symbols-outlined text-primary text-[20px]"
+                    >directions_run</span
+                  >
+                  <span
+                    class="font-label-caps text-label-caps text-on-surface-variant tracking-wider uppercase"
+                    >Take Action</span
+                  >
+                </div>
+                <!-- Primary Navigate Action Button -->
+                <button
+                  class="w-full bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm py-space-md px-space-lg rounded-xl shadow-md flex items-center justify-center gap-space-xs transition-all active:scale-[0.98]"
+                  id="navigate-button"
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-[22px]"
+                    >navigation</span
+                  >
+                  <span>NAVIGATE TO SPOT (0.8 km)</span>
+                  <span class="material-symbols-outlined text-[20px]"
+                    >arrow_forward</span
+                  >
+                </button>
+                <!-- Secondary Check-in Action Button -->
+                <a
+                  class="w-full bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-headline-sm py-space-md px-space-lg rounded-xl flex items-center justify-center gap-space-xs transition-all text-center"
+                  href="checkin.html?id=kurla-station-west"
+                  id="checkin-button"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-[22px]"
+                    >check_circle</span
+                  >
+                  <span>I'M ALREADY HERE • CHECK IN</span>
+                </a>
+                <!-- Operational Advisory Footnote -->
+                <div
+                  class="flex items-center gap-space-xs pt-space-xs text-on-surface-variant"
+                >
+                  <span
+                    class="material-symbols-outlined text-[16px] text-tertiary"
+                    >info</span
+                  >
+                  <p class="font-body-sm text-body-sm leading-tight">
+                    Checking in locks your spot telemetry and broadcasts active
+                    vendor presence to nearby commuters.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Interactive Feedback Script -->
+          <script>
+            document.addEventListener("DOMContentLoaded", () => {
+              const navBtn = document.getElementById("navigate-button");
+              if (navBtn) {
+                navBtn.addEventListener("click", () => {
+                  // Tactical navigation redirect or maps launcher fallback
+                  const destLat = 19.0657;
+                  const destLng = 72.8793;
+                  const mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${destLat},${destLng}&travelmode=walking`;
+
+                  navBtn.innerHTML = `
+            <span class="material-symbols-outlined animate-spin text-[22px]">sync</span>
+            <span>OPENING MAP ROUTE...</span>
+          `;
+
+                  setTimeout(() => {
+                    window.open(mapUrl, "_blank");
+                    navBtn.innerHTML = `
+              <span class="material-symbols-outlined text-[22px]">navigation</span>
+              <span>NAVIGATE TO SPOT (0.8 km)</span>
+              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            `;
+                  }, 450);
+                });
+              }
+            });
+          </script>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

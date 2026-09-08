@@ -1,0 +1,1501 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @layer base {
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          overscroll-behavior: none;
+        }
+        main > :first-child {
+          margin-top: 0 !important;
+        }
+        main > :last-child {
+          margin-bottom: 0 !important;
+        }
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#fff8f5",
+              "on-secondary-container": "#676160",
+              "surface-dim": "#e2d8d2",
+              "inverse-primary": "#ffb59f",
+              "surface-container-high": "#f0e6e0",
+              secondary: "#635d5c",
+              "on-tertiary-container": "#fffbff",
+              tertiary: "#825100",
+              "on-tertiary-fixed-variant": "#653e00",
+              "tertiary-fixed": "#ffddb8",
+              "on-secondary-fixed": "#1e1b1a",
+              "on-surface-variant": "#5a4139",
+              "primary-fixed": "#ffdbd0",
+              surface: "#fff8f5",
+              outline: "#8e7068",
+              "on-error": "#ffffff",
+              "tertiary-container": "#a36700",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed": "#2a1700",
+              "inverse-on-surface": "#f9efe8",
+              background: "#fff8f5",
+              error: "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "surface-container-low": "#fcf2eb",
+              "on-secondary-fixed-variant": "#4b4644",
+              "inverse-surface": "#342f2b",
+              "surface-tint": "#ae3100",
+              "surface-container-highest": "#eae1da",
+              "surface-container": "#f6ece6",
+              "on-primary-container": "#fffbff",
+              "primary-fixed-dim": "#ffb59f",
+              "on-primary-fixed-variant": "#852400",
+              "on-error-container": "#93000a",
+              "on-primary-fixed": "#3a0a00",
+              primary: "#aa3000",
+              "secondary-fixed-dim": "#cdc5c3",
+              "secondary-fixed": "#e9e1df",
+              "tertiary-fixed-dim": "#ffb95f",
+              "on-surface": "#1f1b17",
+              "secondary-container": "#e6dedc",
+              "primary-container": "#d04411",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#eae1da",
+              "on-primary": "#ffffff",
+              "on-background": "#1f1b17",
+              "outline-variant": "#e2bfb5",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "space-2xl": "2rem",
+              "space-lg": "1.25rem",
+              "space-3xl": "2.5rem",
+              "space-4xl": "3rem",
+              "space-xs": "0.5rem",
+              "gutter-mobile": "1rem",
+              "gutter-desktop": "1.5rem",
+              "margin-mobile": "1rem",
+              "space-sm": "0.75rem",
+              "margin-desktop": "2rem",
+              "space-md": "1rem",
+              "space-2xs": "0.25rem",
+              "space-xl": "1.5rem",
+            },
+            fontFamily: {
+              "label-md": ["Plus Jakarta Sans"],
+              "display-mobile": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "label-caps": ["Plus Jakarta Sans"],
+              "body-sm": ["Inter"],
+              "body-md": ["Inter"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-lg": ["Inter"],
+              display: ["Plus Jakarta Sans"],
+              "headline-sm": ["Plus Jakarta Sans"],
+              "label-numeric-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-mobile": [
+                "34px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.025em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "26px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.015em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.08em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-sm": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0em",
+                  fontWeight: "400",
+                },
+              ],
+              "body-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0em",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-md": [
+                "22px",
+                {
+                  lineHeight: "28px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "16px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "400",
+                },
+              ],
+              display: [
+                "44px",
+                {
+                  lineHeight: "52px",
+                  letterSpacing: "-0.03em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-sm": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "0em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-numeric-lg": [
+                "28px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface font-body-md text-on-surface antialiased">
+    <aside
+      class="fixed left-0 top-0 h-full w-[76px] bg-surface-container-low z-50 flex flex-col items-center py-space-md shadow-[0_1px_8px_rgba(41,37,36,0.04)]"
+    >
+      <div class="flex items-center justify-center mb-space-xl">
+        <img
+          alt="VYAPAR Brand Mark"
+          class="h-8 w-auto object-contain"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
+        />
+      </div>
+      <nav
+        class="flex-1 flex flex-col items-center gap-space-xs w-full px-space-2xs"
+        data-active-classes="bg-primary-container text-on-primary-container font-headline-sm"
+      >
+        <a
+          aria-current="page"
+          class="w-12 h-12 rounded-xl flex items-center justify-center transition-all bg-primary-container text-on-primary-container font-headline-sm"
+          data-path="dashboard"
+          href="#"
+          title="Dashboard"
+          ><span class="material-symbols-outlined text-[22px]"
+            >grid_view</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="places"
+          href="#"
+          title="Places"
+          ><span class="material-symbols-outlined text-[22px]">near_me</span></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="check-in"
+          href="#"
+          title="Check-in"
+          ><span class="material-symbols-outlined text-[22px]"
+            >pin_drop</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="alerts"
+          href="#"
+          title="Alerts"
+          ><span class="material-symbols-outlined text-[22px]"
+            >notifications_active</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="discover-vendors"
+          href="#"
+          title="Discover Vendors"
+          ><span class="material-symbols-outlined text-[22px]"
+            >storefront</span
+          ></a
+        >
+      </nav>
+      <div
+        class="flex flex-col items-center gap-space-xs w-full px-space-2xs pt-space-xs"
+      >
+        <a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="profile"
+          href="#"
+          title="Profile"
+          ><span class="material-symbols-outlined text-[22px]">person</span></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="settings"
+          href="#"
+          title="Settings"
+          ><span class="material-symbols-outlined text-[22px]"
+            >settings</span
+          ></a
+        ><a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+          data-path="logout"
+          href="#"
+          title="Logout"
+          ><span class="material-symbols-outlined text-[22px]">logout</span></a
+        >
+      </div>
+    </aside>
+    <div class="pl-[76px]">
+      <header
+        class="fixed top-0 left-[76px] right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(41,37,36,0.03)] px-space-md lg:px-space-xl flex items-center justify-between"
+      >
+        <div class="flex flex-col justify-center min-w-0 pr-space-md">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate"
+              >Good evening, Vendor</span
+            ><span class="text-[18px] leading-none select-none">👋</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+            Here's what's happening around you right now.
+          </p>
+        </div>
+        <div class="flex items-center gap-space-sm sm:gap-space-md shrink-0">
+          <button
+            class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-2xs rounded-full shadow-[0_2px_4px_rgba(41,37,36,0.02)] hover:bg-surface-container transition-colors"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-primary text-[18px]"
+              >location_on</span
+            ><span
+              class="font-label-md text-label-md text-on-surface font-semibold"
+              >Mumbai</span
+            ><span
+              class="flex items-center gap-1.5 font-label-caps text-label-caps text-tertiary"
+              ><span class="relative flex h-2 w-2"
+                ><span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                ></span
+                ><span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+                ></span></span
+              >Live</span
+            ><span
+              class="material-symbols-outlined text-on-surface-variant text-[18px]"
+              >arrow_drop_down</span
+            ></button
+          ><button
+            class="relative w-9 h-9 rounded-full flex items-center justify-center bg-surface-container-lowest hover:bg-surface-container transition-colors text-on-surface-variant shadow-[0_2px_4px_rgba(41,37,36,0.02)]"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >notifications</span
+            ><span
+              class="absolute top-1 right-1 w-2.5 h-2.5 bg-primary rounded-full ring-2 ring-surface-container-lowest"
+            ></span>
+          </button>
+          <div class="flex items-center pl-space-2xs">
+            <img
+              alt="Profile"
+              class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(41,37,36,0.1)]"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvisN5NJL57RB3l5qnYVbpLkreiLabrf4G-i9Ozx6mw-lzAf4ylG4CA9xB1CjpobMFzk_lfGOKdw-hGH_Dj7r1_82mAW-JpLz148pU9mBSt_ISeHiRMTFNWrtZUhDYDOIxoUQ2nSZpZdjSvfJl2GA63buxQhw8LTYqW8WyYseJzWILnnjW9my6Qdn7G2qqM7kyXV0kM8K8PKrX0NI3GFhp2f9DDjBXeEbroqXd010JkHLA895TnrmK"
+            />
+          </div>
+        </div>
+      </header>
+      <main
+        class="relative pt-16 w-full px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto py-space-lg min-h-[calc(100vh-4rem)]"
+      >
+        <div class="flex flex-col w-full pb-32">
+          <!-- Top Operational Metadata Bar -->
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl"
+          >
+            <div>
+              <div class="flex items-center gap-space-xs mb-space-2xs">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider"
+                >
+                  <span class="relative flex h-2 w-2">
+                    <span
+                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                    ></span>
+                    <span
+                      class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+                    ></span>
+                  </span>
+                  Spatial Intelligence
+                </span>
+                <span class="text-on-surface-variant font-body-sm">•</span>
+                <span class="font-body-sm text-on-surface-variant"
+                  >Kurla West Operational Grid</span
+                >
+              </div>
+              <h1
+                class="font-display text-headline-lg md:text-display text-on-surface tracking-tight font-extrabold uppercase"
+              >
+                Discover Nearby Vendors
+              </h1>
+              <p class="font-body-md text-on-surface-variant max-w-2xl mt-1">
+                Explore local merchants, gauge hyper-local customer rush scores,
+                and coordinate shared stall footfall zones in real time.
+              </p>
+            </div>
+            <!-- Live Telemetry State Pill -->
+            <div
+              class="flex items-center gap-space-sm bg-surface-container-lowest p-space-sm rounded-xl shadow-sm self-start md:self-auto"
+            >
+              <div
+                class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"
+              ></div>
+              <div class="flex flex-col">
+                <div
+                  class="flex items-center gap-1.5 font-label-md text-label-md text-on-surface"
+                >
+                  <span
+                    class="material-symbols-outlined text-[16px] text-primary"
+                    >near_me</span
+                  >
+                  <span>Mumbai • Live</span>
+                </div>
+                <span
+                  class="font-body-sm text-[11px] text-on-surface-variant leading-none"
+                  id="telemetry-time"
+                  >Updated just now</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Search and View Controls Rail -->
+          <div
+            class="bg-surface-container-lowest rounded-2xl p-space-md md:p-space-lg shadow-sm mb-space-xl"
+          >
+            <div
+              class="flex flex-col lg:flex-row gap-space-md lg:items-center justify-between"
+            >
+              <!-- Instant Search Filter Input -->
+              <div class="relative flex-1">
+                <div
+                  class="absolute inset-y-0 left-0 pl-space-md flex items-center pointer-events-none text-on-surface-variant"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >search</span
+                  >
+                </div>
+                <input
+                  class="w-full pl-11 pr-space-md py-3 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:bg-surface-container-lowest focus:shadow-md transition-all"
+                  id="vendor-search-input"
+                  placeholder="Search vendors, products (e.g., Tea, Samosas, Vegetables, T-Shirts)..."
+                  type="text"
+                />
+                <button
+                  class="hidden absolute inset-y-0 right-0 pr-space-md flex items-center text-on-surface-variant hover:text-on-surface"
+                  id="clear-search-btn"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >cancel</span
+                  >
+                </button>
+              </div>
+              <!-- Quick Controls: Filter pills & View Toggles -->
+              <div class="flex flex-wrap items-center gap-space-sm">
+                <!-- Category Filter Pills -->
+                <div
+                  class="flex flex-wrap items-center gap-1.5 p-1 bg-surface-container-low rounded-xl"
+                  id="category-filter-group"
+                >
+                  <button
+                    class="filter-pill active-pill px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all flex items-center gap-1 bg-primary text-on-primary shadow-sm font-semibold"
+                    data-category="ALL"
+                  >
+                    <span>ALL</span>
+                    <span
+                      class="category-count opacity-90 text-[11px] px-1.5 py-0.2 bg-black/15 rounded-full"
+                      >4</span
+                    >
+                  </button>
+                  <button
+                    class="filter-pill px-3 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all flex items-center gap-1"
+                    data-category="FOOD"
+                  >
+                    <span>🍔 FOOD</span>
+                    <span
+                      class="category-count opacity-75 text-[11px] px-1.5 py-0.2 bg-surface-container-high rounded-full"
+                      >2</span
+                    >
+                  </button>
+                  <button
+                    class="filter-pill px-3 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all flex items-center gap-1"
+                    data-category="PRODUCE"
+                  >
+                    <span>🥬 PRODUCE</span>
+                    <span
+                      class="category-count opacity-75 text-[11px] px-1.5 py-0.2 bg-surface-container-high rounded-full"
+                      >1</span
+                    >
+                  </button>
+                  <button
+                    class="filter-pill px-3 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all flex items-center gap-1"
+                    data-category="CLOTHING"
+                  >
+                    <span>👕 CLOTHING</span>
+                    <span
+                      class="category-count opacity-75 text-[11px] px-1.5 py-0.2 bg-surface-container-high rounded-full"
+                      >1</span
+                    >
+                  </button>
+                </div>
+                <!-- View Switcher -->
+                <div
+                  class="flex items-center p-1 bg-surface-container-low rounded-xl shrink-0"
+                >
+                  <button
+                    class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all bg-surface-container-lowest text-primary shadow-sm font-semibold"
+                    id="view-list-btn"
+                    title="Grid / List View"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >format_list_bulleted</span
+                    >
+                    <span class="hidden sm:inline">LIST</span>
+                  </button>
+                  <button
+                    class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all"
+                    id="view-map-btn"
+                    title="Map Canvas View"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >map</span
+                    >
+                    <span class="hidden sm:inline">MAP</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Primary Content Grid & Interactive Canvas -->
+          <div class="flex flex-col lg:flex-row gap-space-lg">
+            <!-- Vendor Directory Container -->
+            <div
+              class="w-full lg:w-7/12 flex flex-col gap-space-md transition-all"
+              id="vendor-directory-pane"
+            >
+              <!-- Section Header with Meta -->
+              <div class="flex items-center justify-between px-space-xs">
+                <div class="flex items-center gap-2">
+                  <h2
+                    class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-tight"
+                  >
+                    Nearby Vendors
+                  </h2>
+                  <span
+                    class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps font-bold tracking-wider"
+                    id="active-summary-badge"
+                  >
+                    4 ACTIVE WITHIN 1.5 KM
+                  </span>
+                </div>
+                <span
+                  class="font-body-sm text-body-sm text-on-surface-variant"
+                  id="result-status-text"
+                  >Showing all active</span
+                >
+              </div>
+              <!-- Live Cards Container -->
+              <div
+                class="flex flex-col gap-space-md"
+                id="vendors-list-container"
+              >
+                <!-- Injected via JavaScript from getVendors() data source -->
+              </div>
+              <!-- Empty State Container -->
+              <div
+                class="hidden flex-col items-center justify-center py-space-3xl px-space-xl bg-surface-container-lowest rounded-2xl text-center shadow-sm"
+                id="empty-state-view"
+              >
+                <div
+                  class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-space-sm"
+                >
+                  <span class="material-symbols-outlined text-[32px]"
+                    >article_shortcut</span
+                  >
+                </div>
+                <h3
+                  class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                >
+                  No Matching Vendors
+                </h3>
+                <p
+                  class="font-body-md text-body-md text-on-surface-variant max-w-md mt-1 mb-space-md"
+                >
+                  We couldn't find any local stalls or merchandise matching your
+                  current search or category filters.
+                </p>
+                <button
+                  class="px-space-md py-2.5 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold hover:bg-primary-container transition-all shadow-sm"
+                  id="reset-filters-btn"
+                >
+                  Reset All Filters
+                </button>
+              </div>
+            </div>
+            <!-- Spatial Vendor Radar & Map Pane -->
+            <div
+              class="w-full lg:w-5/12 flex flex-col gap-space-sm"
+              id="vendor-map-pane"
+            >
+              <div
+                class="bg-surface-container-lowest rounded-2xl p-space-md md:p-space-lg shadow-sm flex flex-col sticky top-20"
+              >
+                <div
+                  class="flex items-center justify-between pb-space-sm border-b border-surface-container"
+                >
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="material-symbols-outlined text-primary text-[20px]"
+                      >explore</span
+                    >
+                    <h3
+                      class="font-headline-sm text-headline-sm text-on-surface"
+                    >
+                      Spatial Radar
+                    </h3>
+                  </div>
+                  <span
+                    class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant"
+                  >
+                    R = 1.5 KM
+                  </span>
+                </div>
+                <!-- Synthesized SVG Map Canvas -->
+                <div
+                  class="relative w-full h-[360px] md:h-[420px] rounded-xl overflow-hidden bg-surface-container mt-space-sm flex items-center justify-center"
+                >
+                  <!-- Ambient Map Background Grid -->
+                  <div
+                    class="absolute inset-0 w-full h-full opacity-65 bg-cover bg-center"
+                    data-location="Kurla West, Mumbai, India"
+                    style=""
+                  >
+                    <svg
+                      class="w-full h-full opacity-35"
+                      fill="none"
+                      viewbox="0 0 400 400"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <defs>
+                        <pattern
+                          height="40"
+                          id="street-grid"
+                          patternunits="userSpaceOnUse"
+                          width="40"
+                        >
+                          <path
+                            d="M 40 0 L 0 0 0 40"
+                            fill="none"
+                            stroke="#8e7068"
+                            stroke-dasharray="2 3"
+                            stroke-width="0.75"
+                          ></path>
+                        </pattern>
+                        <radialgradient
+                          cx="50%"
+                          cy="50%"
+                          id="radar-glow"
+                          r="50%"
+                        >
+                          <stop
+                            offset="0%"
+                            stop-color="#f05a28"
+                            stop-opacity="0.25"
+                          ></stop>
+                          <stop
+                            offset="60%"
+                            stop-color="#f05a28"
+                            stop-opacity="0.05"
+                          ></stop>
+                          <stop
+                            offset="100%"
+                            stop-color="#f05a28"
+                            stop-opacity="0"
+                          ></stop>
+                        </radialgradient>
+                      </defs>
+                      <rect
+                        fill="url(#street-grid)"
+                        height="100%"
+                        width="100%"
+                      ></rect>
+                      <!-- Road Curvatures -->
+                      <path
+                        d="M 20 380 Q 140 290 200 200 T 380 30"
+                        fill="none"
+                        stroke="#eae1da"
+                        stroke-linecap="round"
+                        stroke-width="8"
+                      ></path>
+                      <path
+                        d="M 10 120 Q 180 160 390 190"
+                        fill="none"
+                        stroke="#eae1da"
+                        stroke-linecap="round"
+                        stroke-width="6"
+                      ></path>
+                      <path
+                        d="M 200 10 L 200 390"
+                        fill="none"
+                        stroke="#e2bfb5"
+                        stroke-dasharray="4 4"
+                        stroke-width="4"
+                      ></path>
+                      <!-- Radar Circles -->
+                      <circle
+                        cx="200"
+                        cy="200"
+                        fill="none"
+                        r="60"
+                        stroke="#d04411"
+                        stroke-opacity="0.3"
+                        stroke-width="1"
+                      ></circle>
+                      <circle
+                        cx="200"
+                        cy="200"
+                        fill="none"
+                        r="120"
+                        stroke="#d04411"
+                        stroke-dasharray="4 4"
+                        stroke-opacity="0.2"
+                        stroke-width="1"
+                      ></circle>
+                      <circle
+                        cx="200"
+                        cy="200"
+                        fill="none"
+                        r="170"
+                        stroke="#d04411"
+                        stroke-opacity="0.1"
+                        stroke-width="1"
+                      ></circle>
+                      <circle
+                        cx="200"
+                        cy="200"
+                        fill="url(#radar-glow)"
+                        r="170"
+                      ></circle>
+                    </svg>
+                  </div>
+                  <!-- Radar Center Point (Current User) -->
+                  <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center pointer-events-none"
+                  >
+                    <div class="relative flex h-5 w-5">
+                      <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60"
+                      ></span>
+                      <span
+                        class="relative inline-flex rounded-full h-5 w-5 bg-primary border-2 border-surface-container-lowest shadow-md items-center justify-center text-on-primary"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 bg-surface-container-lowest rounded-full"
+                        ></span>
+                      </span>
+                    </div>
+                    <span
+                      class="mt-1 px-2 py-0.5 bg-inverse-surface/85 backdrop-blur text-inverse-on-surface rounded font-label-caps text-[9px] shadow-sm tracking-wider"
+                    >
+                      YOU ARE HERE
+                    </span>
+                  </div>
+                  <!-- Dynamic Map Vendor Markers -->
+                  <div
+                    class="absolute inset-0 z-20 pointer-events-auto"
+                    id="map-markers-layer"
+                  >
+                    <!-- Markers injected dynamically to synchronize with active items -->
+                  </div>
+                  <!-- Map Footnote / Legend -->
+                  <div
+                    class="absolute bottom-3 left-3 right-3 bg-surface-container-lowest/90 backdrop-blur-md rounded-lg p-2 flex items-center justify-between z-30 shadow-sm text-on-surface"
+                  >
+                    <div
+                      class="flex items-center gap-2 font-label-sm text-label-sm"
+                    >
+                      <span
+                        class="w-2.5 h-2.5 rounded-full bg-emerald-600"
+                      ></span>
+                      <span>Selling Now</span>
+                    </div>
+                    <div
+                      class="flex items-center gap-2 font-label-sm text-label-sm"
+                    >
+                      <span
+                        class="w-2.5 h-2.5 rounded-full bg-amber-500"
+                      ></span>
+                      <span>Starting Soon</span>
+                    </div>
+                    <div
+                      class="flex items-center gap-1 font-label-caps text-[10px] text-on-surface-variant uppercase"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >tune</span
+                      >
+                      <span>GPS: 19.0728° N</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Spatial Telemetry Quick Summary Card -->
+                <div class="mt-space-md grid grid-cols-2 gap-space-sm">
+                  <div class="p-space-sm bg-surface-container-low rounded-xl">
+                    <span
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block"
+                      >Peak Surge Spot</span
+                    >
+                    <span
+                      class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5 block truncate"
+                      >Kurla Stn. West</span
+                    >
+                    <span
+                      class="font-body-sm text-body-sm text-primary font-medium flex items-center gap-0.5 mt-0.5"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >trending_up</span
+                      >
+                      88/100 Rush
+                    </span>
+                  </div>
+                  <div class="p-space-sm bg-surface-container-low rounded-xl">
+                    <span
+                      class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block"
+                      >Co-locate Slots</span
+                    >
+                    <span
+                      class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5 block"
+                      >3 Available</span
+                    >
+                    <span
+                      class="font-body-sm text-body-sm text-on-surface-variant font-medium flex items-center gap-0.5 mt-0.5"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >hub</span
+                      >
+                      Verified spots
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Micro-Interaction Toast Notification Container -->
+          <div
+            class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none max-w-sm"
+            id="toast-notification"
+          >
+            <div
+              class="bg-inverse-surface text-inverse-on-surface p-space-md rounded-2xl shadow-xl flex items-start gap-space-sm border-l-4 border-primary"
+            >
+              <span
+                class="material-symbols-outlined text-primary text-[24px] shrink-0 mt-0.5"
+                >handshake</span
+              >
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-label-md text-label-md font-bold text-inverse-on-surface"
+                  >Connection Queued</span
+                >
+                <p
+                  class="font-body-sm text-body-sm text-inverse-on-surface/85 mt-0.5"
+                  id="toast-message"
+                >
+                  Request ready for vendor. Collaboration invite queued.
+                </p>
+              </div>
+              <button
+                class="text-inverse-on-surface/60 hover:text-inverse-on-surface ml-auto -mr-1 -mt-1 p-1"
+                onclick="dismissToast()"
+              >
+                <span class="material-symbols-outlined text-[18px]">close</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <script>
+          /**
+           * VYAPAR - DISCOVER NEARBY VENDORS ENGINE
+           * Robust, client-side data telemetry, filtering, and co-location pipeline.
+           */
+          (function () {
+            // 1. Highlight active navigation icon in the app shell
+            try {
+              const navItems = document.querySelectorAll("aside nav a");
+              navItems.forEach((item) => {
+                const path = item.getAttribute("data-path") || "";
+                if (
+                  path === "discover-vendors" ||
+                  item.getAttribute("title") === "Discover Vendors"
+                ) {
+                  item.classList.add(
+                    "bg-primary-container",
+                    "text-on-primary-container",
+                  );
+                  item.classList.remove("text-on-surface-variant");
+                } else {
+                  item.classList.remove(
+                    "bg-primary-container",
+                    "text-on-primary-container",
+                  );
+                }
+              });
+            } catch (e) {
+              console.warn("Shell nav synchronization skipped:", e);
+            }
+
+            // 2. Mock API Layer
+            function getVendors() {
+              return [
+                {
+                  id: "vendor-001",
+                  name: "RAJ'S TEA STALL",
+                  categoryKey: "FOOD",
+                  categoryName: "☕ Food & Beverage",
+                  distanceKm: 0.4,
+                  area: "Kurla West",
+                  spot: "Kurla Station West Exit",
+                  products: ["Tea", "Samosas", "Bun Maska"],
+                  status: {
+                    code: "SELLING_NOW",
+                    label: "SELLING NOW",
+                    pillClass:
+                      "bg-emerald-100 text-emerald-900 border border-emerald-300",
+                    dotColor: "bg-emerald-600",
+                  },
+                  customerRush: {
+                    score: 88,
+                    statusLabel: "High Customer Activity",
+                    colorClass: "bg-primary text-on-primary",
+                    barColor: "bg-primary",
+                  },
+                  avatarImage:
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuDvisN5NJL57RB3l5qnYVbpLkreiLabrf4G-i9Ozx6mw-lzAf4ylG4CA9xB1CjpobMFzk_lfGOKdw-hGH_Dj7r1_82mAW-JpLz148pU9mBSt_ISeHiRMTFNWrtZUhDYDOIxoUQ2nSZpZdjSvfJl2GA63buxQhw8LTYqW8WyYseJzWILnnjW9my6Qdn7G2qqM7kyXV0kM8K8PKrX0NI3GFhp2f9DDjBXeEbroqXd010JkHLA895TnrmK",
+                  mapCoords: { x: "42%", y: "48%" },
+                },
+                {
+                  id: "vendor-002",
+                  name: "FRESH BASKET",
+                  categoryKey: "PRODUCE",
+                  categoryName: "🥬 Fresh Produce",
+                  distanceKm: 0.7,
+                  area: "Kurla West",
+                  spot: "Market Road Concourse",
+                  products: ["Seasonal Fruits", "Leafy Greens"],
+                  status: {
+                    code: "SELLING_NOW",
+                    label: "SELLING NOW",
+                    pillClass:
+                      "bg-emerald-100 text-emerald-900 border border-emerald-300",
+                    dotColor: "bg-emerald-600",
+                  },
+                  customerRush: {
+                    score: 82,
+                    statusLabel: "High Demand Zone",
+                    colorClass: "bg-primary text-on-primary",
+                    barColor: "bg-primary",
+                  },
+                  avatarImage:
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuDvisN5NJL57RB3l5qnYVbpLkreiLabrf4G-i9Ozx6mw-lzAf4ylG4CA9xB1CjpobMFzk_lfGOKdw-hGH_Dj7r1_82mAW-JpLz148pU9mBSt_ISeHiRMTFNWrtZUhDYDOIxoUQ2nSZpZdjSvfJl2GA63buxQhw8LTYqW8WyYseJzWILnnjW9my6Qdn7G2qqM7kyXV0kM8K8PKrX0NI3GFhp2f9DDjBXeEbroqXd010JkHLA895TnrmK",
+                  mapCoords: { x: "64%", y: "36%" },
+                },
+                {
+                  id: "vendor-003",
+                  name: "STYLE STREET CART",
+                  categoryKey: "CLOTHING",
+                  categoryName: "👕 Clothing",
+                  distanceKm: 1.1,
+                  area: "Phoenix Marketcity",
+                  spot: "Near Gate 2 Footway",
+                  products: ["Cotton T-Shirts", "Accessories"],
+                  status: {
+                    code: "STARTING_SOON",
+                    label: "STARTING SOON (10m)",
+                    pillClass:
+                      "bg-amber-100 text-amber-900 border border-amber-300",
+                    dotColor: "bg-amber-500",
+                    note: "⏳ Setting up stall",
+                  },
+                  customerRush: {
+                    score: 64,
+                    statusLabel: "Moderate Activity",
+                    colorClass:
+                      "bg-tertiary-container text-on-tertiary-container",
+                    barColor: "bg-amber-500",
+                  },
+                  avatarImage:
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuDvisN5NJL57RB3l5qnYVbpLkreiLabrf4G-i9Ozx6mw-lzAf4ylG4CA9xB1CjpobMFzk_lfGOKdw-hGH_Dj7r1_82mAW-JpLz148pU9mBSt_ISeHiRMTFNWrtZUhDYDOIxoUQ2nSZpZdjSvfJl2GA63buxQhw8LTYqW8WyYseJzWILnnjW9my6Qdn7G2qqM7kyXV0kM8K8PKrX0NI3GFhp2f9DDjBXeEbroqXd010JkHLA895TnrmK",
+                  mapCoords: { x: "72%", y: "68%" },
+                },
+                {
+                  id: "vendor-004",
+                  name: "MUMBAI SNACKS CORNER",
+                  categoryKey: "FOOD",
+                  categoryName: "🍔 Food & Snacks",
+                  distanceKm: 1.2,
+                  area: "Kurla Central",
+                  spot: "Station Approach Road",
+                  products: ["Vada Pav", "Pav Bhaji", "Bhelpuri"],
+                  status: {
+                    code: "SELLING_NOW",
+                    label: "SELLING NOW",
+                    pillClass:
+                      "bg-emerald-100 text-emerald-900 border border-emerald-300",
+                    dotColor: "bg-emerald-600",
+                  },
+                  customerRush: {
+                    score: 79,
+                    statusLabel: "Busy Rush",
+                    colorClass: "bg-primary text-on-primary",
+                    barColor: "bg-primary",
+                  },
+                  avatarImage:
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuDvisN5NJL57RB3l5qnYVbpLkreiLabrf4G-i9Ozx6mw-lzAf4ylG4CA9xB1CjpobMFzk_lfGOKdw-hGH_Dj7r1_82mAW-JpLz148pU9mBSt_ISeHiRMTFNWrtZUhDYDOIxoUQ2nSZpZdjSvfJl2GA63buxQhw8LTYqW8WyYseJzWILnnjW9my6Qdn7G2qqM7kyXV0kM8K8PKrX0NI3GFhp2f9DDjBXeEbroqXd010JkHLA895TnrmK",
+                  mapCoords: { x: "28%", y: "62%" },
+                },
+              ];
+            }
+
+            // State
+            let allVendors = getVendors();
+            let currentCategory = "ALL";
+            let searchQuery = "";
+            let currentViewMode = "LIST"; // 'LIST' or 'MAP'
+
+            // DOM Elements
+            const container = document.getElementById("vendors-list-container");
+            const markersContainer =
+              document.getElementById("map-markers-layer");
+            const emptyState = document.getElementById("empty-state-view");
+            const searchInput = document.getElementById("vendor-search-input");
+            const clearSearchBtn = document.getElementById("clear-search-btn");
+            const categoryPills = document.querySelectorAll(".filter-pill");
+            const activeSummaryBadge = document.getElementById(
+              "active-summary-badge",
+            );
+            const resultStatusText =
+              document.getElementById("result-status-text");
+            const resetFiltersBtn =
+              document.getElementById("reset-filters-btn");
+            const viewListBtn = document.getElementById("view-list-btn");
+            const viewMapBtn = document.getElementById("view-map-btn");
+            const vendorDirectoryPane = document.getElementById(
+              "vendor-directory-pane",
+            );
+            const vendorMapPane = document.getElementById("vendor-map-pane");
+
+            // Render Vendor Card HTML
+            function renderVendorCard(vendor) {
+              const productsHtml = (vendor.products || [])
+                .map(
+                  (p) =>
+                    `<span class="px-2 py-0.5 rounded-md bg-surface-container text-on-surface font-body-sm text-[12px]">${p}</span>`,
+                )
+                .join(" ");
+
+              const setupNotice = vendor.status.note
+                ? `<span class="inline-flex items-center gap-1 font-body-sm text-[11px] text-tertiary font-semibold bg-tertiary-fixed px-2 py-0.5 rounded-full">${vendor.status.note}</span>`
+                : "";
+
+              return `
+      <article data-vendor-id="${vendor.id}" class="vendor-card group relative bg-surface-container-lowest rounded-2xl p-space-md md:p-space-lg shadow-sm hover:shadow-md transition-all duration-200">
+        <div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md">
+          
+          <!-- Vendor Identity & Meta -->
+          <div class="flex items-start gap-space-sm flex-1 min-w-0">
+            <div class="relative shrink-0">
+              <div class="w-14 h-14 rounded-2xl bg-surface-container-high overflow-hidden shadow-inner flex items-center justify-center font-headline-sm text-primary font-bold">
+                ${vendor.name.substring(0, 2)}
+              </div>
+              <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full ${vendor.status.dotColor} border-2 border-surface-container-lowest"></span>
+            </div>
+
+            <div class="flex flex-col min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight group-hover:text-primary transition-colors truncate">
+                  ${vendor.name}
+                </h3>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold ${vendor.status.pillClass}">
+                  <span class="w-1.5 h-1.5 rounded-full ${vendor.status.dotColor} animate-pulse"></span>
+                  ${vendor.status.label}
+                </span>
+                ${setupNotice}
+              </div>
+
+              <!-- Category & Distance Strip -->
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+                <span class="font-medium text-on-surface">${vendor.categoryName}</span>
+                <span>•</span>
+                <span class="flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-[15px] text-primary">location_on</span>
+                  <strong>${vendor.distanceKm} km</strong> away (${vendor.area})
+                </span>
+              </div>
+
+              <!-- Spot Association -->
+              <div class="flex items-center gap-1.5 mt-2 text-on-surface-variant font-body-sm text-[12px]">
+                <span class="material-symbols-outlined text-[15px] text-tertiary">storefront</span>
+                <span>Spot: <strong class="text-on-surface">${vendor.spot}</strong></span>
+              </div>
+
+              <!-- Product Chips -->
+              <div class="flex flex-wrap items-center gap-1.5 mt-3">
+                <span class="text-[11px] font-label-caps text-on-surface-variant uppercase mr-1">OFFERS:</span>
+                ${productsHtml}
+              </div>
+            </div>
+          </div>
+
+          <!-- Customer Rush Score Gauge Module -->
+          <div class="bg-surface-container-low rounded-xl p-3 md:w-56 shrink-0 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="font-label-caps text-label-caps uppercase text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px] text-primary">local_fire_department</span>
+                Customer Rush
+              </span>
+              <span class="font-label-numeric-lg text-[18px] font-extrabold text-on-surface">
+                ${vendor.customerRush.score}<span class="text-[11px] font-normal text-on-surface-variant">/100</span>
+              </span>
+            </div>
+
+            <!-- Rush Bar -->
+            <div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden my-2">
+              <div class="h-full rounded-full ${vendor.customerRush.barColor}" style="width: ${vendor.customerRush.score}%;"></div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] font-body-sm text-on-surface-variant">
+              <span class="font-semibold text-primary">${vendor.customerRush.statusLabel}</span>
+              <span class="material-symbols-outlined text-[14px]">insights</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Foot Action Bar -->
+        <div class="mt-space-md pt-space-sm border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+          <div class="flex items-center gap-2 text-on-surface-variant text-[11px] font-body-sm self-start sm:self-auto">
+            <span class="material-symbols-outlined text-[16px] text-emerald-700">verified</span>
+            <span>Verified merchant coordinates</span>
+          </div>
+
+          <div class="flex items-center gap-2.5 w-full sm:w-auto">
+            <button 
+              type="button"
+              data-action="connect" 
+              data-vendor-id="${vendor.id}" 
+              data-vendor-name="${vendor.name.replace(/"/g, "&quot;")}"
+              class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all font-semibold"
+            >
+              <span class="material-symbols-outlined text-[18px] text-primary">handshake</span>
+              <span>CO-LOCATE / CONNECT</span>
+            </button>
+
+            <a 
+              href="vendor.html?id=${vendor.id}"
+              class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md transition-all font-semibold shadow-sm"
+            >
+              <span>VIEW PROFILE</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    `;
+            }
+
+            // Render Map Radar Markers
+            function renderMapMarkers(vendors) {
+              if (!markersContainer) return;
+              markersContainer.innerHTML = vendors
+                .map((v) => {
+                  const isOnline = v.status.code === "SELLING_NOW";
+                  const markerColor = isOnline
+                    ? "bg-emerald-600"
+                    : "bg-amber-500";
+                  return `
+        <div 
+          style="left: ${v.mapCoords.x}; top: ${v.mapCoords.y};" 
+          class="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer"
+          data-marker-id="${v.id}"
+        >
+          <div class="relative flex items-center justify-center">
+            <span class="w-7 h-7 rounded-full ${markerColor} text-white shadow-lg flex items-center justify-center text-[10px] font-bold ring-2 ring-surface-container-lowest transform group-hover:scale-125 transition-transform">
+              ${v.name.substring(0, 1)}
+            </span>
+          </div>
+          <!-- Tooltip on hover -->
+          <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:flex flex-col items-center pointer-events-none z-40 whitespace-nowrap">
+            <div class="bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded-md shadow-lg text-[10px] font-semibold">
+              ${v.name} (${v.distanceKm}km)
+            </div>
+            <div class="w-1.5 h-1.5 bg-inverse-surface rotate-45 -mt-1"></div>
+          </div>
+        </div>
+      `;
+                })
+                .join("");
+
+              // Marker click event to highlight cards
+              markersContainer
+                .querySelectorAll("[data-marker-id]")
+                .forEach((marker) => {
+                  marker.addEventListener("click", () => {
+                    const id = marker.getAttribute("data-marker-id");
+                    const card = document.querySelector(
+                      `[data-vendor-id="${id}"]`,
+                    );
+                    if (card) {
+                      card.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                      });
+                      card.classList.add("ring-2", "ring-primary");
+                      setTimeout(
+                        () => card.classList.remove("ring-2", "ring-primary"),
+                        2000,
+                      );
+                    }
+                  });
+                });
+            }
+
+            // Filter & Search Engine
+            function applyFilters() {
+              const query = searchQuery.trim().toLowerCase();
+
+              const filtered = allVendors.filter((vendor) => {
+                // Category Match
+                const matchesCat =
+                  currentCategory === "ALL" ||
+                  vendor.categoryKey === currentCategory;
+                if (!matchesCat) return false;
+
+                // Search Text Match (Name, Products, Spot, Area)
+                if (!query) return true;
+                const nameMatch = vendor.name.toLowerCase().includes(query);
+                const spotMatch = vendor.spot.toLowerCase().includes(query);
+                const areaMatch = vendor.area.toLowerCase().includes(query);
+                const prodMatch = (vendor.products || []).some((p) =>
+                  p.toLowerCase().includes(query),
+                );
+
+                return nameMatch || spotMatch || areaMatch || prodMatch;
+              });
+
+              // Update Counts & Badges
+              if (filtered.length === 0) {
+                container.innerHTML = "";
+                emptyState.classList.remove("hidden");
+                emptyState.classList.add("flex");
+              } else {
+                emptyState.classList.add("hidden");
+                emptyState.classList.remove("flex");
+                container.innerHTML = filtered.map(renderVendorCard).join("");
+              }
+
+              renderMapMarkers(filtered);
+
+              // Update summary text
+              if (activeSummaryBadge) {
+                activeSummaryBadge.textContent = `${filtered.length} ACTIVE WITHIN 1.5 KM`;
+              }
+              if (resultStatusText) {
+                if (searchQuery) {
+                  resultStatusText.textContent = `Matching "${searchQuery}" (${filtered.length})`;
+                } else if (currentCategory !== "ALL") {
+                  resultStatusText.textContent = `Filtered by ${currentCategory} (${filtered.length})`;
+                } else {
+                  resultStatusText.textContent = `Showing all active`;
+                }
+              }
+
+              bindCardActions();
+            }
+
+            // Bind Dynamic Events on Vendor Cards
+            function bindCardActions() {
+              const connectButtons = document.querySelectorAll(
+                '[data-action="connect"]',
+              );
+              connectButtons.forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  const vendorName =
+                    btn.getAttribute("data-vendor-name") || "Selected Vendor";
+                  showToast(
+                    `Connect request ready for ${vendorName}. Collaboration invite queued.`,
+                  );
+                });
+              });
+            }
+
+            // Toast Notification Trigger
+            let toastTimer = null;
+            function showToast(message) {
+              const toast = document.getElementById("toast-notification");
+              const toastMsg = document.getElementById("toast-message");
+              if (!toast || !toastMsg) return;
+
+              toastMsg.textContent = message;
+              toast.classList.remove(
+                "translate-y-24",
+                "opacity-0",
+                "pointer-events-none",
+              );
+              toast.classList.add("translate-y-0", "opacity-100");
+
+              if (toastTimer) clearTimeout(toastTimer);
+              toastTimer = setTimeout(() => {
+                dismissToast();
+              }, 4500);
+            }
+
+            window.dismissToast = function () {
+              const toast = document.getElementById("toast-notification");
+              if (toast) {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add(
+                  "translate-y-24",
+                  "opacity-0",
+                  "pointer-events-none",
+                );
+              }
+            };
+
+            // Search Input Handlers
+            if (searchInput) {
+              searchInput.addEventListener("input", (e) => {
+                searchQuery = e.target.value;
+                if (searchQuery.length > 0) {
+                  clearSearchBtn?.classList.remove("hidden");
+                } else {
+                  clearSearchBtn?.classList.add("hidden");
+                }
+                applyFilters();
+              });
+            }
+
+            if (clearSearchBtn) {
+              clearSearchBtn.addEventListener("click", () => {
+                if (searchInput) {
+                  searchInput.value = "";
+                  searchQuery = "";
+                  clearSearchBtn.classList.add("hidden");
+                  applyFilters();
+                  searchInput.focus();
+                }
+              });
+            }
+
+            // Category Pill Selection
+            categoryPills.forEach((pill) => {
+              pill.addEventListener("click", () => {
+                categoryPills.forEach((p) => {
+                  p.classList.remove(
+                    "bg-primary",
+                    "text-on-primary",
+                    "shadow-sm",
+                    "font-semibold",
+                  );
+                  p.classList.add("text-on-surface-variant");
+                });
+                pill.classList.add(
+                  "bg-primary",
+                  "text-on-primary",
+                  "shadow-sm",
+                  "font-semibold",
+                );
+                pill.classList.remove("text-on-surface-variant");
+
+                currentCategory = pill.getAttribute("data-category") || "ALL";
+                applyFilters();
+              });
+            });
+
+            // Reset Filters Button
+            if (resetFiltersBtn) {
+              resetFiltersBtn.addEventListener("click", () => {
+                currentCategory = "ALL";
+                searchQuery = "";
+                if (searchInput) searchInput.value = "";
+                clearSearchBtn?.classList.add("hidden");
+
+                // Reset pills styling
+                categoryPills.forEach((p) => {
+                  if (p.getAttribute("data-category") === "ALL") {
+                    p.classList.add(
+                      "bg-primary",
+                      "text-on-primary",
+                      "shadow-sm",
+                      "font-semibold",
+                    );
+                    p.classList.remove("text-on-surface-variant");
+                  } else {
+                    p.classList.remove(
+                      "bg-primary",
+                      "text-on-primary",
+                      "shadow-sm",
+                      "font-semibold",
+                    );
+                    p.classList.add("text-on-surface-variant");
+                  }
+                });
+
+                applyFilters();
+              });
+            }
+
+            // View Switcher (List vs Map Mode for mobile/tablets)
+            function setViewMode(mode) {
+              currentViewMode = mode;
+              if (mode === "MAP") {
+                viewMapBtn.classList.add(
+                  "bg-surface-container-lowest",
+                  "text-primary",
+                  "shadow-sm",
+                  "font-semibold",
+                );
+                viewMapBtn.classList.remove("text-on-surface-variant");
+                viewListBtn.classList.remove(
+                  "bg-surface-container-lowest",
+                  "text-primary",
+                  "shadow-sm",
+                  "font-semibold",
+                );
+                viewListBtn.classList.add("text-on-surface-variant");
+
+                // Expand map pane on smaller devices
+                vendorMapPane.classList.remove("hidden");
+                vendorDirectoryPane.classList.add("hidden", "lg:flex");
+              } else {
+                viewListBtn.classList.add(
+                  "bg-surface-container-lowest",
+                  "text-primary",
+                  "shadow-sm",
+                  "font-semibold",
+                );
+                viewListBtn.classList.remove("text-on-surface-variant");
+                viewMapBtn.classList.remove(
+                  "bg-surface-container-lowest",
+                  "text-primary",
+                  "shadow-sm",
+                  "font-semibold",
+                );
+                viewMapBtn.classList.add("text-on-surface-variant");
+
+                vendorDirectoryPane.classList.remove("hidden");
+                vendorMapPane.classList.remove("hidden"); // remains visible on large screens
+              }
+            }
+
+            if (viewListBtn)
+              viewListBtn.addEventListener("click", () => setViewMode("LIST"));
+            if (viewMapBtn)
+              viewMapBtn.addEventListener("click", () => setViewMode("MAP"));
+
+            // Initial Run
+            applyFilters();
+
+            // Periodic Telemetry Clock Update
+            const telemetryTime = document.getElementById("telemetry-time");
+            if (telemetryTime) {
+              let secondsAgo = 10;
+              setInterval(() => {
+                secondsAgo += 15;
+                if (secondsAgo < 60) {
+                  telemetryTime.textContent = `Updated ${secondsAgo}s ago`;
+                } else {
+                  const mins = Math.floor(secondsAgo / 60);
+                  telemetryTime.textContent = `Updated ${mins}m ago`;
+                }
+              }, 15000);
+            }
+          })();
+        </script>
+      </main>
+    </div>
+  </body>
+</html>

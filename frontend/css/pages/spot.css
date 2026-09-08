@@ -1,0 +1,6 @@
+/**
+ * pages/spot.css - Spot Details Specific Styles
+ */
+#spotMap .group {
+  cursor: pointer;
+}

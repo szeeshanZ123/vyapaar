@@ -1,0 +1,6 @@
+/**
+ * pages/alert-detail.css - Alert Details Specific Styles
+ */
+#alert-actions {
+  transition: box-shadow 0.2s ease;
+}
