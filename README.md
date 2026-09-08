@@ -15,7 +15,7 @@ Vyapar helps street vendors and micro-businesses decide **where to set up their 
 - 🔎 **Vendors Near Me** — Customers can discover active vendors nearby
 - 🧭 **Get Directions** — Open vendor or spot location in Google Maps
 
-## 🧠 Core Engines
+## 🧠 vyapaar Core Engines
 
 ### 1. Demand Engine
 
