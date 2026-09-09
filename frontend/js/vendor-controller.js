@@ -178,6 +178,7 @@
   async function loadRealDemandHeatmap(lat, lng) {
     const timestampEl = document.getElementById("map-refresh-timestamp");
     const container = document.getElementById("map-viewport");
+    const listContainer = document.getElementById("hotspots-list-container");
 
     try {
       const url = `/api/demand/heatmap?lat=${lat}&lng=${lng}&radius=5000`;
@@ -188,39 +189,99 @@
         timestampEl.textContent = `Telemetry synced (${hotspots.length} live hotspots)`;
       }
 
-      // Render Dynamic Pins on Map Viewport
-      if (container && hotspots.length > 0) {
-        // Clear any old dynamic pins
+      // 1. Render Dynamic Pins on Map Viewport
+      if (container) {
         container.querySelectorAll(".dynamic-hotspot-pin").forEach((p) => p.remove());
 
-        hotspots.slice(0, 4).forEach((spot, idx) => {
-          const score = Math.round(spot.demand_score || 70);
-          const name = spot.name || `Hotspot #${idx + 1}`;
-          const isHigh = score >= 75;
-          const bgClass = isHigh ? "bg-error text-white" : "bg-primary-container text-on-primary-container";
+        if (hotspots.length > 0) {
+          hotspots.slice(0, 4).forEach((spot, idx) => {
+            const score = Math.round(spot.demand_score || 70);
+            const name = spot.name || `Hotspot #${idx + 1}`;
+            const isHigh = score >= 75;
+            const bgClass = isHigh ? "bg-error text-white" : "bg-primary-container text-on-primary-container";
 
-          // Calculate offset position
-          const topPercent = 25 + (idx * 18);
-          const leftPercent = 20 + (idx * 22);
+            const topPercent = 25 + (idx * 18);
+            const leftPercent = 20 + (idx * 22);
 
-          const pin = document.createElement("div");
-          pin.className = `dynamic-hotspot-pin absolute top-[${topPercent}%] left-[${leftPercent}%] transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20`;
-          pin.innerHTML = `
-            <div class="relative flex items-center justify-center">
-              <span class="animate-ping absolute h-12 w-12 rounded-full ${isHigh ? 'bg-error' : 'bg-primary'} opacity-30"></span>
-              <div class="w-9 h-9 rounded-full ${bgClass} flex items-center justify-center shadow-lg font-bold text-xs">
-                ${score}
+            const pin = document.createElement("div");
+            pin.className = "dynamic-hotspot-pin absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20";
+            pin.style.top = `${topPercent}%`;
+            pin.style.left = `${leftPercent}%`;
+            pin.innerHTML = `
+              <div class="relative flex items-center justify-center">
+                <span class="animate-ping absolute h-12 w-12 rounded-full ${isHigh ? 'bg-error' : 'bg-primary'} opacity-30"></span>
+                <div class="w-9 h-9 rounded-full ${bgClass} flex items-center justify-center shadow-lg font-bold text-xs">
+                  ${score}
+                </div>
+                <div class="absolute top-10 whitespace-nowrap bg-white text-[#1f1b17] px-2 py-0.5 rounded shadow text-xs font-bold border border-[#e8dfd8]">
+                  ${name}
+                </div>
               </div>
-              <div class="absolute top-10 whitespace-nowrap bg-white text-[#1f1b17] px-2 py-0.5 rounded shadow text-xs font-bold border border-[#e8dfd8]">
-                ${name}
-              </div>
+            `;
+            container.appendChild(pin);
+          });
+        }
+      }
+
+      // 2. Render Ranked Hotspots List
+      if (listContainer) {
+        if (hotspots.length === 0) {
+          listContainer.innerHTML = `
+            <div class="p-4 rounded-xl bg-surface-container-low text-center text-on-surface-variant text-sm font-medium">
+              No live hotspots detected in your current radius. Try checking in or updating GPS.
             </div>
           `;
-          container.appendChild(pin);
-        });
+        } else {
+          listContainer.innerHTML = hotspots.slice(0, 5).map((spot, idx) => {
+            const score = Math.round(spot.demand_score || 70);
+            const name = spot.name || `Hotspot #${idx + 1}`;
+            const isHigh = score >= 75;
+            const badgeClass = isHigh ? "bg-error-container text-error" : "bg-primary-fixed text-on-primary-fixed";
+            const badgeText = isHigh ? "🔥 VERY BUSY" : "🟠 BUSY";
+            const distMeters = spot.distance_meters;
+            const distStr = distMeters != null ? (distMeters < 1000 ? `${Math.round(distMeters)} m away` : `${(distMeters / 1000).toFixed(1)} km away`) : "Nearby";
+
+            return `
+              <div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer flex items-center justify-between gap-space-sm group">
+                <div class="flex items-center gap-space-md min-w-0">
+                  <span class="font-label-numeric-lg text-label-numeric-lg font-extrabold text-on-surface-variant group-hover:text-primary transition-colors">
+                    0${idx + 1}
+                  </span>
+                  <div class="min-w-0">
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">
+                        ${name}
+                      </h4>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-caps ${badgeClass} font-bold">
+                        ${badgeText}
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-3 font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                      <span>${distStr}</span>
+                      <span>•</span>
+                      <span class="text-primary font-semibold">${spot.crowd_level || "Active"}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-right shrink-0">
+                  <div class="font-headline-md text-headline-md font-extrabold text-on-surface">
+                    ${score}<span class="font-body-sm text-body-sm text-on-surface-variant font-normal">/100</span>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join("");
+        }
       }
     } catch (err) {
       console.warn("Real heatmap load failed:", err);
+      if (listContainer) {
+        listContainer.innerHTML = `
+          <div class="p-4 rounded-xl bg-surface-container-low text-center text-on-surface-variant text-sm font-medium">
+            No live data available. Check your internet connection or check in again.
+          </div>
+        `;
+      }
     }
   }
 

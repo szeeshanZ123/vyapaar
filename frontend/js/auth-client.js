@@ -113,9 +113,13 @@
       headers["Authorization"] = `Bearer ${token}`;
     }
 
+    const baseUrl = (window.VYAPAR_CONFIG && window.VYAPAR_CONFIG.API_BASE_URL)
+      ? window.VYAPAR_CONFIG.API_BASE_URL
+      : (config.API_BASE_URL || "http://localhost:8000");
+
     const url = endpoint.startsWith("http") 
       ? endpoint 
-      : `${config.API_BASE_URL}${endpoint.startsWith("/") ? "" : "/"}${endpoint}`;
+      : `${baseUrl}${endpoint.startsWith("/") ? "" : "/"}${endpoint}`;
 
     const response = await fetch(url, {
       ...options,
