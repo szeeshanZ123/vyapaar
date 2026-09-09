@@ -17,6 +17,7 @@ try:
     from backend.db import init_db_indexes, ping_database, close_db_connection
     from backend.models.response import error_response
     from backend.routes.health import router as health_router
+    from backend.routes.users import router as users_router
     from backend.routes.vendors import router as vendors_router
     from backend.routes.checkins import router as checkins_router
     from backend.routes.demand import router as demand_router
@@ -26,6 +27,7 @@ except ImportError:
     from db import init_db_indexes, ping_database, close_db_connection
     from models.response import error_response
     from routes.health import router as health_router
+    from routes.users import router as users_router
     from routes.vendors import router as vendors_router
     from routes.checkins import router as checkins_router
     from routes.demand import router as demand_router
@@ -98,6 +100,7 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 # Include Route Handlers
 app.include_router(health_router)
+app.include_router(users_router)
 app.include_router(vendors_router)
 app.include_router(checkins_router)
 app.include_router(demand_router)

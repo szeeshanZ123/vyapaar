@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/frontend/landing.html"
+    },
+    {
+      "source": "/(css|js)/(.*)",
+      "destination": "/frontend/$1/$2"
+    },
+    {
+      "source": "/:page.html",
+      "destination": "/frontend/:page.html"
+    },
+    {
+      "source": "/:page",
+      "destination": "/frontend/:page.html"
+    }
+  ]
+}

@@ -89,19 +89,26 @@ def init_db_indexes(db: Optional[Database] = None) -> Dict[str, Any]:
     try:
         # 1. Vendors collection
         # - Unique vendor identifier
+        # - Unique user_id (sparse to allow legacy vendors without user_id)
         # - 2dsphere index on current_location for spatial proximity
         target_db.vendors.create_index([("vendor_id", ASCENDING)], unique=True)
+        target_db.vendors.create_index([("user_id", ASCENDING)], unique=True, sparse=True)
         target_db.vendors.create_index([("current_location", GEOSPHERE)])
-        results["vendors"] = ["vendor_id (unique)", "current_location (2dsphere)"]
+        results["vendors"] = ["vendor_id (unique)", "user_id (unique, sparse)", "current_location (2dsphere)"]
 
-        # 2. Check-ins collection
+        # 2. Users collection (Phase 5)
+        # - Unique user_id (Supabase authenticated user ID)
+        target_db.users.create_index([("user_id", ASCENDING)], unique=True)
+        results["users"] = ["user_id (unique)"]
+
+        # 3. Check-ins collection
         # - 2dsphere index on location
         # - Compound index on category + checked_in_at for time-filtered category queries
         target_db.check_ins.create_index([("location", GEOSPHERE)])
         target_db.check_ins.create_index([("category", ASCENDING), ("checked_in_at", DESCENDING)])
         results["check_ins"] = ["location (2dsphere)", "category + checked_in_at"]
 
-        # 3. Alerts collection
+        # 4. Alerts collection
         # - 2dsphere index on location
         # - Alert expiration index on expires_at
         # - Alert type index on alert_type
@@ -110,7 +117,7 @@ def init_db_indexes(db: Optional[Database] = None) -> Dict[str, Any]:
         target_db.alerts.create_index([("alert_type", ASCENDING)])
         results["alerts"] = ["location (2dsphere)", "expires_at", "alert_type"]
 
-        # 4. Alert Confirmations collection
+        # 5. Alert Confirmations collection
         # - Unique compound index on (alert_id, vendor_id) to prevent duplicate confirmations
         target_db.alert_confirmations.create_index(
             [("alert_id", ASCENDING), ("vendor_id", ASCENDING)],
@@ -118,17 +125,17 @@ def init_db_indexes(db: Optional[Database] = None) -> Dict[str, Any]:
         )
         results["alert_confirmations"] = ["(alert_id, vendor_id) (unique compound)"]
 
-        # 5. Spots collection
+        # 6. Spots collection
         # - 2dsphere index on location
         target_db.spots.create_index([("location", GEOSPHERE)])
         results["spots"] = ["location (2dsphere)"]
 
-        # 6. Events collection
+        # 7. Events collection
         # - 2dsphere index on location
         target_db.events.create_index([("location", GEOSPHERE)])
         results["events"] = ["location (2dsphere)"]
 
-        # 7. Sales logs collection (ready for future phase logs)
+        # 8. Sales logs collection (ready for future phase logs)
         results["sales_logs"] = ["collection initialized"]
 
         logger.info("MongoDB indexes successfully created/verified.")
