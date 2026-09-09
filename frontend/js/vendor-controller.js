@@ -175,74 +175,209 @@
     }
   }
 
+  let vendorMapInstance = null;
+  let vendorGpsMarker = null;
+  let heatmapLayerGroup = null;
+  let peerVendorsLayerGroup = null;
+  let isHeatmapVisible = true;
+
+  function initVendorLeafletMap(lat, lng) {
+    if (typeof L === "undefined") {
+      console.warn("Leaflet library (L) not loaded yet.");
+      return;
+    }
+    const mapEl = document.getElementById("vendor-leaflet-map");
+    if (!mapEl) return;
+
+    if (!vendorMapInstance) {
+      vendorMapInstance = L.map("vendor-leaflet-map", {
+        zoomControl: false,
+        attributionControl: false
+      }).setView([lat, lng], 14);
+
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; OSM',
+        maxZoom: 19
+      }).addTo(vendorMapInstance);
+
+      heatmapLayerGroup = L.layerGroup().addTo(vendorMapInstance);
+      peerVendorsLayerGroup = L.layerGroup().addTo(vendorMapInstance);
+    } else {
+      vendorMapInstance.setView([lat, lng], vendorMapInstance.getZoom());
+    }
+
+    // Render or update Vendor GPS Location Marker
+    if (vendorGpsMarker) {
+      vendorGpsMarker.setLatLng([lat, lng]);
+    } else {
+      const vendorIcon = L.divIcon({
+        className: "custom-vendor-gps-marker",
+        html: `
+          <div class="relative flex items-center justify-center">
+            <span class="animate-ping absolute h-8 w-8 rounded-full bg-[#aa3000] opacity-70"></span>
+            <div class="w-6 h-6 rounded-full bg-[#aa3000] border-2 border-white shadow-xl flex items-center justify-center text-white text-[11px] font-black">
+              ★
+            </div>
+          </div>
+        `,
+        iconSize: [26, 26],
+        iconAnchor: [13, 13]
+      });
+
+      vendorGpsMarker = L.marker([lat, lng], { icon: vendorIcon })
+        .addTo(vendorMapInstance)
+        .bindPopup(`
+          <div class="p-1 font-sans">
+            <div class="font-bold text-[#aa3000] text-xs">📍 You (Current Location)</div>
+            <div class="text-[11px] text-gray-600 mt-0.5">${lat.toFixed(4)}, ${lng.toFixed(4)}</div>
+          </div>
+        `);
+    }
+
+    // Invalidate size in case container rendered while hidden
+    setTimeout(() => {
+      if (vendorMapInstance) vendorMapInstance.invalidateSize();
+    }, 200);
+  }
+
+  // Global Map Controls for Vendor Dashboard
+  window.zoomVendorMap = function (delta) {
+    if (vendorMapInstance) {
+      vendorMapInstance.setZoom(vendorMapInstance.getZoom() + delta);
+    }
+  };
+
+  window.centerVendorMap = function () {
+    if (vendorMapInstance && currentCoords) {
+      vendorMapInstance.setView([currentCoords.lat, currentCoords.lng], 15, { animate: true });
+      if (typeof window.showToast === "function") {
+        window.showToast("Map re-centered to your location.");
+      }
+    }
+  };
+
+  window.toggleVendorHeatmap = function () {
+    if (!vendorMapInstance || !heatmapLayerGroup) return;
+    if (isHeatmapVisible) {
+      vendorMapInstance.removeLayer(heatmapLayerGroup);
+      isHeatmapVisible = false;
+      if (typeof window.showToast === "function") {
+        window.showToast("Heatmap layer hidden.");
+      }
+    } else {
+      vendorMapInstance.addLayer(heatmapLayerGroup);
+      isHeatmapVisible = true;
+      if (typeof window.showToast === "function") {
+        window.showToast("Heatmap layer visible.");
+      }
+    }
+  };
+
   async function loadRealDemandHeatmap(lat, lng) {
     const timestampEl = document.getElementById("map-refresh-timestamp");
-    const container = document.getElementById("map-viewport");
     const listContainer = document.getElementById("hotspots-list-container");
+
+    // Ensure Leaflet Map initialized
+    initVendorLeafletMap(lat, lng);
 
     try {
       const url = `/api/demand/heatmap?lat=${lat}&lng=${lng}&radius=5000`;
       const res = await window.VyaparAuth.callBackendAPI(url);
-      const hotspots = res?.data || [];
+      const heatmapData = res?.data;
+      const points = heatmapData?.points || [];
 
       if (timestampEl) {
-        timestampEl.textContent = `Telemetry synced (${hotspots.length} live hotspots)`;
+        timestampEl.textContent = `Telemetry synced (${points.length} live hotspots)`;
       }
 
-      // 1. Render Dynamic Pins on Map Viewport
-      if (container) {
-        container.querySelectorAll(".dynamic-hotspot-pin").forEach((p) => p.remove());
+      // 1. Render Real Heatmap Circles & Pins on Leaflet Map
+      if (heatmapLayerGroup) {
+        heatmapLayerGroup.clearLayers();
 
-        if (hotspots.length > 0) {
-          hotspots.slice(0, 4).forEach((spot, idx) => {
-            const score = Math.round(spot.demand_score || 70);
-            const name = spot.name || `Hotspot #${idx + 1}`;
-            const isHigh = score >= 75;
-            const bgClass = isHigh ? "bg-error text-white" : "bg-primary-container text-on-primary-container";
+        points.forEach((spot, idx) => {
+          const spotLat = spot.lat || (spot.coordinates ? spot.coordinates[1] : null);
+          const spotLng = spot.lng || (spot.coordinates ? spot.coordinates[0] : null);
+          if (spotLat == null || spotLng == null) return;
 
-            const topPercent = 25 + (idx * 18);
-            const leftPercent = 20 + (idx * 22);
+          const score = Math.round(spot.score || spot.demand_score || 65);
+          const name = spot.name || `Hotspot #${idx + 1}`;
+          const isHot = score >= 75;
+          const circleColor = isHot ? "#dc2626" : score >= 50 ? "#ea580c" : "#16a34a";
+          const fillColor = isHot ? "#ef4444" : score >= 50 ? "#f97316" : "#22c55e";
 
-            const pin = document.createElement("div");
-            pin.className = "dynamic-hotspot-pin absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20";
-            pin.style.top = `${topPercent}%`;
-            pin.style.left = `${leftPercent}%`;
-            pin.innerHTML = `
-              <div class="relative flex items-center justify-center">
-                <span class="animate-ping absolute h-12 w-12 rounded-full ${isHigh ? 'bg-error' : 'bg-primary'} opacity-30"></span>
-                <div class="w-9 h-9 rounded-full ${bgClass} flex items-center justify-center shadow-lg font-bold text-xs">
+          // Add Demand Intensity Circle
+          const circle = L.circle([spotLat, spotLng], {
+            radius: Math.max(120, Math.min(450, (spot.checkin_count || 1) * 90)),
+            color: circleColor,
+            fillColor: fillColor,
+            fillOpacity: 0.28,
+            weight: 1.5
+          }).addTo(heatmapLayerGroup);
+
+          // Add Score Badge Marker Pin
+          const pinIcon = L.divIcon({
+            className: "custom-hotspot-badge-marker",
+            html: `
+              <div class="relative flex items-center justify-center cursor-pointer group">
+                <span class="animate-ping absolute h-8 w-8 rounded-full ${isHot ? 'bg-red-500' : 'bg-amber-500'} opacity-30"></span>
+                <div class="w-8 h-8 rounded-full ${isHot ? 'bg-red-600 text-white' : 'bg-[#aa3000] text-white'} flex items-center justify-center shadow-lg font-bold text-xs border-2 border-white">
                   ${score}
                 </div>
-                <div class="absolute top-10 whitespace-nowrap bg-white text-[#1f1b17] px-2 py-0.5 rounded shadow text-xs font-bold border border-[#e8dfd8]">
-                  ${name}
+              </div>
+            `,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16]
+          });
+
+          const marker = L.marker([spotLat, spotLng], { icon: pinIcon })
+            .addTo(heatmapLayerGroup)
+            .bindPopup(`
+              <div class="p-2 font-sans min-w-[180px]">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-xs font-extrabold text-[#1f1b17]">${name}</span>
+                  <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${isHot ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'}">
+                    ${score}/100
+                  </span>
+                </div>
+                <p class="text-[11px] text-[#635d5c] mt-1">
+                  Demand Index: <strong>${score}</strong> (${spot.checkin_count || 1} recent vendor signals)
+                </p>
+                <div class="mt-2 pt-2 border-t border-gray-100 flex items-center justify-between">
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=${spotLat},${spotLng}&travelmode=walking"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-[11px] font-bold text-[#aa3000] hover:underline flex items-center gap-1"
+                  >
+                    <span>Get Directions</span>
+                    <span>&rarr;</span>
+                  </a>
                 </div>
               </div>
-            `;
-            container.appendChild(pin);
-          });
-        }
+            `);
+        });
       }
 
-      // 2. Render Ranked Hotspots List
+      // 2. Render Ranked Hotspots List Below Map
       if (listContainer) {
-        if (hotspots.length === 0) {
+        if (points.length === 0) {
           listContainer.innerHTML = `
             <div class="p-4 rounded-xl bg-surface-container-low text-center text-on-surface-variant text-sm font-medium">
               No live hotspots detected in your current radius. Try checking in or updating GPS.
             </div>
           `;
         } else {
-          listContainer.innerHTML = hotspots.slice(0, 5).map((spot, idx) => {
-            const score = Math.round(spot.demand_score || 70);
+          listContainer.innerHTML = points.slice(0, 5).map((spot, idx) => {
+            const score = Math.round(spot.score || spot.demand_score || 70);
             const name = spot.name || `Hotspot #${idx + 1}`;
             const isHigh = score >= 75;
             const badgeClass = isHigh ? "bg-error-container text-error" : "bg-primary-fixed text-on-primary-fixed";
             const badgeText = isHigh ? "🔥 VERY BUSY" : "🟠 BUSY";
             const distMeters = spot.distance_meters;
-            const distStr = distMeters != null ? (distMeters < 1000 ? `${Math.round(distMeters)} m away` : `${(distMeters / 1000).toFixed(1)} km away`) : "Nearby";
+            const distStr = distMeters != null ? (distMeters < 1000 ? `${Math.round(distMeters)} m away` : `${(distMeters / 1000).toFixed(1)} km away`) : `${spot.checkin_count || 1} vendor signals`;
 
             return `
-              <div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer flex items-center justify-between gap-space-sm group">
+              <div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer flex items-center justify-between gap-space-sm group" onclick="if(window.centerVendorMap) { if(${spot.lat != null}) { window.vendorMapInstance?.setView([${spot.lat}, ${spot.lng}], 16); } }">
                 <div class="flex items-center gap-space-md min-w-0">
                   <span class="font-label-numeric-lg text-label-numeric-lg font-extrabold text-on-surface-variant group-hover:text-primary transition-colors">
                     0${idx + 1}
@@ -259,7 +394,7 @@
                     <div class="flex items-center gap-3 font-body-sm text-body-sm text-on-surface-variant mt-0.5">
                       <span>${distStr}</span>
                       <span>•</span>
-                      <span class="text-primary font-semibold">${spot.crowd_level || "Active"}</span>
+                      <span class="text-primary font-semibold">${spot.checkin_count || 1} Check-ins</span>
                     </div>
                   </div>
                 </div>
@@ -341,6 +476,43 @@
         } else {
           compStatusEl.textContent = "High Density";
         }
+      }
+
+      // Plot active peer vendors on Leaflet map
+      if (peerVendorsLayerGroup) {
+        peerVendorsLayerGroup.clearLayers();
+
+        vendors.forEach((v) => {
+          const coords = v.current_location?.coordinates;
+          if (!coords || coords.length < 2) return;
+          const vLng = coords[0];
+          const vLat = coords[1];
+
+          // Don't duplicate self if coordinates match exactly
+          if (currentCoords && Math.abs(vLat - currentCoords.lat) < 0.0001 && Math.abs(vLng - currentCoords.lng) < 0.0001) {
+            return;
+          }
+
+          const vIcon = L.divIcon({
+            className: "peer-vendor-marker",
+            html: `
+              <div class="w-7 h-7 rounded-full bg-white border-2 border-[#635d5c] text-[#1f1b17] shadow-md flex items-center justify-center font-bold text-xs cursor-pointer hover:border-[#aa3000] hover:scale-110 transition-transform">
+                🏪
+              </div>
+            `,
+            iconSize: [28, 28],
+            iconAnchor: [14, 14]
+          });
+
+          L.marker([vLat, vLng], { icon: vIcon })
+            .addTo(peerVendorsLayerGroup)
+            .bindPopup(`
+              <div class="p-1 font-sans">
+                <div class="font-bold text-xs text-[#1f1b17]">${v.business_name || v.display_name || "Vendor Stall"}</div>
+                <div class="text-[11px] text-gray-500 capitalize">${v.category || "General"} Category</div>
+              </div>
+            `);
+        });
       }
     } catch (err) {
       console.warn("Real nearby vendors load failed:", err);

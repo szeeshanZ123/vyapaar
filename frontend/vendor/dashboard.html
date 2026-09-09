@@ -21,8 +21,21 @@
     <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
     <link rel="stylesheet" href="../css/pages/home.css" />
+    <!-- Leaflet Map CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Leaflet Map JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth-client.js"></script>
     <script id="tailwind-config">
@@ -694,135 +707,45 @@
                   </div>
                 </div>
               </div>
-              <!-- Vector-styled Interactive Map Canvas Wrapper -->
-              <div
-                class="relative w-full h-[320px] lg:h-full rounded-xl bg-surface-container overflow-hidden transition-transform duration-300 ease-out cursor-grab active:cursor-grabbing flex items-center justify-center"
-                id="map-viewport"
-              >
-                <!-- Abstract Urban Grid lines (Vector Streets) -->
-                <svg
-                  class="absolute inset-0 w-full h-full text-surface-container-high pointer-events-none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <pattern
-                      height="70"
-                      id="street-grid"
-                      patternUnits="userSpaceOnUse"
-                      width="70"
-                    >
-                      <path
-                        d="M 70 0 L 0 0 0 70"
-                        fill="none"
-                        opacity="0.6"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                      ></path>
-                      <path
-                        d="M 35 0 L 35 70 M 0 35 L 70 35"
-                        fill="none"
-                        opacity="0.4"
-                        stroke="currentColor"
-                        stroke-dasharray="2,3"
-                        stroke-width="0.75"
-                      ></path>
-                    </pattern>
-                  </defs>
-                  <rect
-                    fill="url(#street-grid)"
-                    height="100%"
-                    width="100%"
-                  ></rect>
-                  <!-- Arterial Highway / Railway Trunk Line -->
-                  <path
-                    d="M-20 220 C 180 200, 320 140, 780 40"
-                    fill="none"
-                    stroke="#e2d8d2"
-                    stroke-linecap="round"
-                    stroke-width="6"
-                  ></path>
-                  <path
-                    d="M-20 220 C 180 200, 320 140, 780 40"
-                    fill="none"
-                    stroke="#fff8f5"
-                    stroke-dasharray="6,6"
-                    stroke-width="2"
-                  ></path>
-                  <path
-                    d="M 120 340 L 440 -40"
-                    fill="none"
-                    stroke="#eae1da"
-                    stroke-width="5"
-                  ></path>
-                  <path
-                    d="M 280 340 C 350 200, 480 180, 680 160"
-                    fill="none"
-                    stroke="#eae1da"
-                    stroke-width="4"
-                  ></path>
-                </svg>
-                <!-- Dynamic Hotspot Overlays rendered via vendor-controller.js -->
-                <div id="dynamic-pins-layer"></div>
-                <!-- USER'S CURRENT POSITION MARKER -->
-                <div
-                  class="absolute top-[38%] left-[32%] transform -translate-x-1/2 -translate-y-1/2 z-30"
-                >
-                  <div class="relative flex flex-col items-center">
-                    <div class="relative flex items-center justify-center">
-                      <span
-                        class="animate-ping absolute h-8 w-8 rounded-full bg-primary opacity-60"
-                      ></span>
-                      <div
-                        class="w-4 h-4 rounded-full bg-primary ring-2 ring-white shadow-md"
-                      ></div>
-                    </div>
-                    <div
-                      class="mt-1 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-bold px-2 py-0.5 rounded-full shadow border-transparent flex items-center gap-1"
-                    >
-                      <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                      You (Kurla W Market)
-                    </div>
-                  </div>
-                </div>
+              <!-- Real Interactive Leaflet Demand Map Canvas Wrapper -->
+              <div class="relative w-full h-[360px] lg:h-full rounded-xl overflow-hidden shadow-inner border border-[#e8dfd8] bg-[#f5efe9]" id="map-viewport">
+                <div id="vendor-leaflet-map" class="w-full h-full z-0 min-h-[340px]"></div>
+
                 <!-- Floating Map Control Dock -->
                 <div
-                  class="absolute right-3 bottom-3 flex flex-col gap-1.5 z-40 bg-surface-container-lowest/95 backdrop-blur-md p-1 rounded-xl shadow-md"
+                  class="absolute right-3 top-3 flex flex-col gap-1.5 z-[500] bg-white/95 backdrop-blur-md p-1.5 rounded-xl shadow-lg border border-[#e8dfd8]"
                 >
                   <button
-                    class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors"
-                    onclick="zoomMap(1)"
+                    type="button"
+                    class="w-8 h-8 rounded-lg flex items-center justify-center text-[#1f1b17] hover:bg-[#f6ece6] transition-colors cursor-pointer"
+                    onclick="window.zoomVendorMap(1)"
                     title="Zoom In"
                   >
-                    <span class="material-symbols-outlined text-[18px]"
-                      >add</span
-                    >
+                    <span class="material-symbols-outlined text-[18px]">add</span>
                   </button>
                   <button
-                    class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors"
-                    onclick="zoomMap(-1)"
+                    type="button"
+                    class="w-8 h-8 rounded-lg flex items-center justify-center text-[#1f1b17] hover:bg-[#f6ece6] transition-colors cursor-pointer"
+                    onclick="window.zoomVendorMap(-1)"
                     title="Zoom Out"
                   >
-                    <span class="material-symbols-outlined text-[18px]"
-                      >remove</span
-                    >
+                    <span class="material-symbols-outlined text-[18px]">remove</span>
                   </button>
                   <button
-                    class="w-8 h-8 rounded-lg flex items-center justify-center text-primary hover:bg-surface-container transition-colors"
-                    onclick="centerMap()"
-                    title="Center My Spot"
+                    type="button"
+                    class="w-8 h-8 rounded-lg flex items-center justify-center text-[#aa3000] hover:bg-[#f6ece6] transition-colors cursor-pointer"
+                    onclick="window.centerVendorMap()"
+                    title="Center My Location"
                   >
-                    <span class="material-symbols-outlined text-[18px]"
-                      >my_location</span
-                    >
+                    <span class="material-symbols-outlined text-[18px]">my_location</span>
                   </button>
                   <button
-                    class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
-                    onclick="toggleHeatmap()"
-                    title="Toggle Heat Layer"
+                    type="button"
+                    class="w-8 h-8 rounded-lg flex items-center justify-center text-[#635d5c] hover:text-[#aa3000] hover:bg-[#f6ece6] transition-colors cursor-pointer"
+                    onclick="window.toggleVendorHeatmap()"
+                    title="Toggle Hotspots Heatmap"
                   >
-                    <span class="material-symbols-outlined text-[18px]"
-                      >layers</span
-                    >
+                    <span class="material-symbols-outlined text-[18px]">layers</span>
                   </button>
                 </div>
               </div>
