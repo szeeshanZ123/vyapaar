@@ -2,17 +2,13 @@
  * config.js - Supabase & Backend API Configuration for Vyapar
  */
 (function() {
-  const storedUrl = window.localStorage.getItem("VYAPAR_SUPABASE_URL");
-  const storedKey = window.localStorage.getItem("VYAPAR_SUPABASE_ANON_KEY");
-  
-  // Check if credentials are set
-  const supabaseUrl = window.NEXT_PUBLIC_SUPABASE_URL || storedUrl || "";
-  const supabaseKey = window.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || storedKey || "";
+  const SUPABASE_URL = "https://zbnquxvjdkmtjthcuhop.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpibnF1eHZqZGttdGp0aGN1aG9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NjIyMzAsImV4cCI6MjEwNDUzODIzMH0.5dI5tLh6hDwo6XQQnX5MFY0A7pXB-y4T95RFgNqo7NU";
 
   window.VYAPAR_CONFIG = {
     // Supabase Project Credentials
-    SUPABASE_URL: supabaseUrl,
-    SUPABASE_ANON_KEY: supabaseKey,
+    SUPABASE_URL: window.NEXT_PUBLIC_SUPABASE_URL || SUPABASE_URL,
+    SUPABASE_ANON_KEY: window.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || SUPABASE_ANON_KEY,
 
     // FastAPI Backend Base URL
     API_BASE_URL: (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
@@ -31,4 +27,8 @@
       }
     }
   };
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { SUPABASE_URL, SUPABASE_ANON_KEY };
+  }
 })();
