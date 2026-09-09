@@ -55,6 +55,16 @@
           <span class="text-sm font-semibold text-[#1f1b17] hidden sm:inline-block" id="nav-user-name">Loading...</span>
         </div>
 
+        <!-- Alerts Link -->
+        <a
+          href="../alerts.html"
+          class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#ffdbd0] text-[#852400] text-xs font-bold hover:bg-[#ffb59f] transition-all shadow-sm"
+          title="Community Alerts"
+        >
+          <span class="material-symbols-outlined text-[16px]">notifications_active</span>
+          <span class="hidden sm:inline">Alerts</span>
+        </a>
+
         <!-- Logout Button -->
         <button
           id="logout-btn"
@@ -399,7 +409,7 @@
         }
       }
 
-      function updateMapMarkers() {
+      async function updateMapMarkers() {
         if (!map || typeof L === "undefined") return;
 
         // Remove old markers
@@ -452,6 +462,57 @@
 
           vendorMarkers.push(marker);
         });
+
+        // Also fetch and display live nearby alerts on map
+        try {
+          const alertRes = await window.VyaparAuth.callBackendAPI(`/api/alerts/nearby?lat=${userCoords.lat}&lng=${userCoords.lng}&radius=5000`);
+          const liveAlerts = alertRes?.data || [];
+          
+          liveAlerts.forEach(a => {
+            const aCoords = a.location?.coordinates;
+            if (!aCoords || aCoords.length < 2) return;
+            const aLat = aCoords[1];
+            const aLng = aCoords[0];
+
+            const alertIcons = {
+              crowd: { icon: "👥", bg: "#dc2626", label: "Crowd Gathering" },
+              spot_free: { icon: "🟢", bg: "#059669", label: "Free Spot" },
+              road_blocked: { icon: "🚧", bg: "#d97706", label: "Road Blocked" },
+              municipal_check: { icon: "👮", bg: "#7c3aed", label: "Municipal Check" }
+            };
+            const meta = alertIcons[a.alert_type] || { icon: "⚠️", bg: "#dc2626", label: "Alert" };
+
+            const alertIcon = L.divIcon({
+              className: "alert-marker-pin",
+              html: `<div style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${meta.bg};color:white;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,0.3);border:2px solid white;cursor:pointer;">
+                       ${meta.icon}
+                     </div>`,
+              iconSize: [28, 28],
+              iconAnchor: [14, 14]
+            });
+
+            const alertPopup = `
+              <div style="font-family:sans-serif;min-width:160px;padding:2px;">
+                <span style="display:inline-block;font-size:10px;font-weight:bold;background:${meta.bg};color:white;padding:2px 6px;border-radius:6px;text-transform:uppercase;">
+                  ${meta.label}
+                </span>
+                <p style="font-size:12px;font-weight:600;margin:6px 0 4px 0;color:#1f1b17;">${a.message || meta.label}</p>
+                <p style="font-size:10px;color:#635d5c;margin:0 0 6px 0;">${a.confirmations || 1} Confirmations</p>
+                <a href="../alerts.html" style="display:block;background:#f0e6e0;color:#1f1b17;font-size:10px;font-weight:bold;padding:3px 6px;border-radius:4px;text-align:center;text-decoration:none;">
+                  View in Alerts Feed
+                </a>
+              </div>
+            `;
+
+            const aMarker = L.marker([aLat, aLng], { icon: alertIcon })
+              .addTo(map)
+              .bindPopup(alertPopup);
+
+            vendorMarkers.push(aMarker);
+          });
+        } catch (e) {
+          console.warn("Failed fetching alert markers for map:", e);
+        }
 
         // Fit map bounds if markers exist
         if (vendorMarkers.length > 0 && map) {

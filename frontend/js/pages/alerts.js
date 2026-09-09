@@ -1,235 +1,303 @@
 /**
- * alerts.js - Live Alerts List Page Controller
- * Page: alerts.html (body data-page="alerts")
+ * alerts.js - Real-time Crowdsourced & Municipal Alerts Controller (Phase 7A)
+ * Page: alerts.html
  * 
- * Responsibilities:
- * - Load live alerts from VyaparAPI.getAlerts()
- * - Category filter pills ("all", "demand", "high-priority")
- * - Text search filtering
- * - Dismiss alert via VyaparAPI.dismissAlert()
- * - Navigate to alert-detail.html?id={alertId}
- * - Direct links to spot.html?id={spotId}
- * - Maintain active alert count & empty states
+ * Powered directly by FastAPI & MongoDB:
+ * - Real GPS geolocation
+ * - POST /api/alerts (Create with 100m/5min deduplication & 60min expiry)
+ * - GET /api/alerts/nearby (Nearby active alerts, respecting 2-confirmation municipal rule)
+ * - POST /api/alerts/{id}/confirm (Single confirmation per authenticated user)
+ * - POST /api/alerts/{id}/flag (Single flag per authenticated user)
+ * - 8-10 second live polling interval
  */
 
 (function () {
   "use strict";
 
+  let currentCoords = { lat: 19.0760, lng: 72.8777 }; // Default Mumbai center
+  let activeAlerts = [];
   let currentFilter = "all";
   let searchQuery = "";
-  let alertsList = [];
+  let pollTimer = null;
+  let hasGps = false;
 
-  function initAlerts() {
-    if (typeof VyaparAPI === "undefined") {
-      console.error("[alerts.js] VyaparAPI not loaded.");
+  const ALERT_TYPE_LABELS = {
+    crowd: { name: "Crowd Gathering", icon: "groups", color: "bg-error-container text-error", border: "border-error" },
+    spot_free: { name: "Free Spot Available", icon: "storefront", color: "bg-emerald-100 text-emerald-800", border: "border-emerald-500" },
+    road_blocked: { name: "Road / Street Blocked", icon: "block", color: "bg-amber-100 text-amber-800", border: "border-amber-500" },
+    municipal_check: { name: "Municipal Van / Inspection", icon: "local_police", color: "bg-purple-100 text-purple-900", border: "border-purple-600" }
+  };
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    // 1. Check/Init Auth session
+    if (window.VyaparAuth) {
+      const session = await window.VyaparAuth.getSession();
+      updateAuthUI(session);
+    }
+
+    // 2. Request Real GPS
+    initGeolocation();
+
+    // 3. Bind UI Controls (Filters, Search, Create Modal)
+    setupEventListeners();
+
+    // 4. Start 8-second Polling
+    startPolling();
+  });
+
+  function updateAuthUI(session) {
+    const user = session?.user;
+    const name = user?.user_metadata?.name || user?.email?.split("@")[0] || "User";
+    const headerGreeting = document.getElementById("header-user-greeting");
+    if (headerGreeting) {
+      headerGreeting.textContent = `Hello, ${name}`;
+    }
+  }
+
+  function initGeolocation() {
+    const locationChip = document.getElementById("geo-location-chip-text");
+    if (locationChip) locationChip.textContent = "Acquiring GPS...";
+
+    if (!navigator.geolocation) {
+      if (locationChip) locationChip.textContent = "GPS not supported";
+      loadRealAlerts();
       return;
     }
 
-    loadAlerts();
-    setupEventListeners();
-    setupTicker();
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        hasGps = true;
+        currentCoords = {
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude
+        };
+        if (locationChip) {
+          locationChip.textContent = `GPS: ${currentCoords.lat.toFixed(3)}, ${currentCoords.lng.toFixed(3)}`;
+        }
+        loadRealAlerts();
+      },
+      (err) => {
+        console.warn("GPS permission not granted, using active zone:", err);
+        if (locationChip) locationChip.textContent = "Mumbai Zone";
+        loadRealAlerts();
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
+    );
   }
 
-  function loadAlerts() {
-    VyaparAPI.getAlerts(currentFilter, searchQuery).then((alerts) => {
-      alertsList = alerts;
+  async function loadRealAlerts() {
+    const streamContainer = document.getElementById("alerts-stream-container");
+    const counterDisplay = document.getElementById("active-count-num");
+    const pillCount = document.getElementById("pill-count-all");
+    const timerElem = document.getElementById("update-timer");
+
+    try {
+      const url = `/api/alerts/nearby?lat=${currentCoords.lat}&lng=${currentCoords.lng}&radius=10000`;
+      const res = await window.VyaparAuth.callBackendAPI(url);
+      activeAlerts = res?.data || [];
+
+      if (counterDisplay) counterDisplay.textContent = activeAlerts.length;
+      if (pillCount) pillCount.textContent = activeAlerts.length;
+      if (timerElem) timerElem.textContent = "Updated just now";
+
       renderAlertsList();
-      updateCounterDisplay();
-    });
+    } catch (err) {
+      console.warn("Failed loading live alerts:", err);
+    }
   }
 
   function renderAlertsList() {
-    const container = document.getElementById("alerts-stream-container");
+    const streamContainer = document.getElementById("alerts-stream-container");
     const noResults = document.getElementById("no-search-results");
-    const caughtUpCard = document.getElementById("all-caught-up-card");
     const fullEmptyState = document.getElementById("all-clear-full-empty-state");
 
-    if (!container) return;
+    if (!streamContainer) return;
 
-    if (alertsList.length === 0) {
-      container.innerHTML = "";
+    // Filter and Search logic
+    let filtered = activeAlerts.filter((alert) => {
+      // Type Filter
+      if (currentFilter !== "all" && alert.alert_type !== currentFilter) {
+        return false;
+      }
+      // Text Search Query
       if (searchQuery.trim() !== "") {
-        if (noResults) {
-          noResults.classList.remove("hidden");
-          noResults.classList.add("flex");
-        }
+        const q = searchQuery.toLowerCase();
+        const msg = (alert.message || "").toLowerCase();
+        const type = (alert.alert_type || "").toLowerCase();
+        return msg.includes(q) || type.includes(q);
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      streamContainer.innerHTML = "";
+      if (searchQuery.trim() !== "") {
+        if (noResults) noResults.classList.remove("hidden");
         if (fullEmptyState) fullEmptyState.classList.add("hidden");
-        if (caughtUpCard) caughtUpCard.classList.add("hidden");
       } else {
         if (noResults) noResults.classList.add("hidden");
-        if (fullEmptyState) {
-          fullEmptyState.classList.remove("hidden");
-          fullEmptyState.classList.add("flex");
-        }
-        if (caughtUpCard) caughtUpCard.classList.add("hidden");
+        if (fullEmptyState) fullEmptyState.classList.remove("hidden");
       }
       return;
     }
 
     if (noResults) noResults.classList.add("hidden");
     if (fullEmptyState) fullEmptyState.classList.add("hidden");
-    if (caughtUpCard) caughtUpCard.classList.remove("hidden");
 
-    container.innerHTML = alertsList
-      .map((alert) => {
-        const isHigh =
-          alert.priority === "high" ||
-          (alert.categories && alert.categories.includes("high-priority"));
+    streamContainer.innerHTML = filtered.map((alert) => {
+      const meta = ALERT_TYPE_LABELS[alert.alert_type] || ALERT_TYPE_LABELS.crowd;
+      const isMunicipal = alert.alert_type === "municipal_check";
+      const confirmations = alert.confirmations || 1;
+      const distMeters = alert.distance_meters;
+      const distStr = distMeters != null 
+        ? (distMeters < 1000 ? `${Math.round(distMeters)} m away` : `${(distMeters / 1000).toFixed(1)} km away`)
+        : "Nearby";
 
-        const badgeBg = isHigh ? "bg-error-container text-error" : "bg-primary-fixed text-primary";
-        const urgencyLabel = isHigh ? "High Urgency Alert" : "Live Opportunity";
-        const rushScore = alert.customerRush ? alert.customerRush.score : 91;
-        const rushTrend = alert.customerRush ? alert.customerRush.trendLabel : "+22%";
+      const timeStr = formatTimeAgo(alert.created_at);
+      const confBadge = isMunicipal 
+        ? (confirmations >= 2 ? "✅ Verified (2/2 Confirmations)" : `⚠️ Pending Verification (${confirmations}/2 Confirmations)`)
+        : `${confirmations} Confirmation${confirmations > 1 ? "s" : ""}`;
 
-        return `
+      return `
         <article
-          id="alert-card-${alert.id}"
-          class="alert-card relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col p-space-lg sm:p-space-xl cursor-pointer"
-          data-alert-id="${alert.id}"
-          data-categories="${alert.categoriesString || alert.categories.join(' ')}"
-          data-keywords="${alert.keywords || alert.title}"
+          id="alert-card-${alert.alert_id}"
+          class="alert-card relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col p-space-lg sm:p-space-xl border border-outline-variant/30"
+          data-alert-id="${alert.alert_id}"
         >
-          <!-- Left border accent -->
-          <div class="absolute left-0 top-0 bottom-0 w-1.5 ${isHigh ? 'bg-primary' : 'bg-primary-container'}"></div>
+          <!-- Left accent strip -->
+          <div class="absolute left-0 top-0 bottom-0 w-2 ${meta.color.split(' ')[0]}"></div>
 
-          <!-- Top Row -->
-          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-md">
+          <!-- Header -->
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-sm">
             <div class="flex flex-wrap items-center gap-space-xs">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${badgeBg} font-label-caps text-label-caps font-bold">
-                <span class="w-2 h-2 rounded-full ${isHigh ? 'bg-primary animate-ping' : 'bg-primary'}"></span>
-                ⚡ ${alert.type.toUpperCase().replace('_', ' ')} • ${urgencyLabel.toUpperCase()}
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${meta.color} font-label-caps text-label-caps font-bold">
+                <span class="material-symbols-outlined text-[16px]">${meta.icon}</span>
+                ${meta.name.toUpperCase()}
               </span>
               <span class="text-outline-variant font-body-sm select-none">•</span>
               <div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
                 <span class="material-symbols-outlined text-[15px]">schedule</span>
-                <span>${alert.time}</span>
+                <span>${timeStr}</span>
               </div>
             </div>
 
-            <button 
-              type="button" 
-              onclick="event.stopPropagation(); window.dismissAlert('${alert.id}')" 
-              class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-lg transition-colors"
-              title="Dismiss Alert"
-            >
-              <span class="material-symbols-outlined text-[18px]">close</span>
-            </button>
+            <!-- Confirmation Pill -->
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant">
+              <span class="material-symbols-outlined text-[14px]">thumb_up</span>
+              ${confBadge}
+            </span>
           </div>
 
-          <!-- Title -->
-          <h2 class="font-headline-md text-headline-md text-on-surface tracking-tight leading-snug mb-space-md hover:text-primary transition-colors">
-            ${alert.headline || alert.title}
+          <!-- Alert Message -->
+          <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-snug mb-space-md">
+            ${escapeHtml(alert.message || meta.name)}
           </h2>
 
-          <!-- Metrics Strip -->
-          <div class="flex flex-wrap items-center gap-space-sm mb-space-lg">
-            <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-orange-100 text-orange-900 font-label-md text-label-md font-bold">
-              <span class="w-2.5 h-2.5 rounded-full bg-orange-600"></span>
-              <span>CUSTOMER RUSH: ${rushScore} / 100</span>
+          <!-- Geo and Status Metrics -->
+          <div class="flex flex-wrap items-center gap-space-sm mb-space-md text-xs text-on-surface-variant">
+            <div class="flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-xl font-medium">
+              <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
+              <span>${distStr}</span>
             </div>
-            <div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface">
-              <span class="material-symbols-outlined text-primary text-[18px]">trending_up</span>
-              <span>${rushTrend} surge</span>
+            <div class="flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-xl font-medium">
+              <span class="material-symbols-outlined text-[16px]">timer</span>
+              <span>Expires in 60m</span>
             </div>
-            <div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface-variant">
-              <span class="material-symbols-outlined text-[18px]">distance</span>
-              <span>${alert.distanceKm} km away</span>
-            </div>
+            ${alert.flags > 0 ? `
+              <div class="flex items-center gap-1 bg-red-50 text-red-700 px-2.5 py-1.5 rounded-xl font-medium">
+                <span class="material-symbols-outlined text-[14px]">flag</span>
+                <span>${alert.flags} flags</span>
+              </div>
+            ` : ''}
           </div>
 
-          <!-- Bottom Action Bar -->
-          <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
-            <span class="font-body-sm text-body-sm text-on-surface-variant">
-              ${alert.summary || alert.zoneSubtext || 'Actionable opportunity for street food & beverage deployment.'}
-            </span>
-            <div class="flex items-center gap-2 self-end sm:self-auto shrink-0">
-              <button 
-                type="button" 
-                onclick="event.stopPropagation(); window.dismissAlert('${alert.id}')" 
-                class="px-3 py-2 font-label-md text-label-md text-on-surface-variant hover:text-on-surface rounded-lg"
+          <!-- Action Buttons (Confirm / Flag) -->
+          <div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between gap-space-md mt-auto">
+            <span class="text-xs text-on-surface-variant">Help keep your community updated:</span>
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                onclick="window.confirmAlertAction('${alert.alert_id}')"
+                id="btn-confirm-${alert.alert_id}"
+                class="px-3 py-1.5 rounded-xl text-xs font-bold bg-primary text-white hover:bg-primary-container transition-all flex items-center gap-1 shadow-sm active:scale-95"
               >
-                Dismiss
+                <span class="material-symbols-outlined text-[15px]">check_circle</span>
+                Confirm (${confirmations})
               </button>
-              <a 
-                href="alert-detail.html?id=${alert.id}" 
-                onclick="event.stopPropagation();"
-                class="px-space-md py-2 rounded-xl font-label-md text-label-md bg-primary text-on-primary font-semibold flex items-center gap-1.5 hover:bg-primary-container transition-all shadow-sm"
+              <button
+                type="button"
+                onclick="window.flagAlertAction('${alert.alert_id}')"
+                id="btn-flag-${alert.alert_id}"
+                class="px-2.5 py-1.5 rounded-xl text-xs font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-1"
+                title="Flag false alert"
               >
-                <span>VIEW DETAILS</span>
-                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </a>
+                <span class="material-symbols-outlined text-[15px]">flag</span>
+              </button>
             </div>
           </div>
         </article>
       `;
-      })
-      .join("");
+    }).join("");
+  }
 
-    // Click card navigates to alert detail
-    container.querySelectorAll(".alert-card").forEach((card) => {
-      card.addEventListener("click", () => {
-        const id = card.getAttribute("data-alert-id");
-        if (id) {
-          window.location.href = `alert-detail.html?id=${id}`;
-        }
+  window.confirmAlertAction = async function (alertId) {
+    const btn = document.getElementById(`btn-confirm-${alertId}`);
+    if (btn) btn.disabled = true;
+
+    try {
+      const res = await window.VyaparAuth.callBackendAPI(`/api/alerts/${alertId}/confirm`, {
+        method: "POST"
       });
-    });
-  }
-
-  function updateCounterDisplay() {
-    const counterDisplay = document.getElementById("active-count-num");
-    const pillCount = document.getElementById("pill-count-all");
-    const feedback = document.getElementById("filtered-label-feedback");
-
-    if (counterDisplay) counterDisplay.textContent = alertsList.length;
-    if (pillCount) pillCount.textContent = alertsList.length;
-
-    if (feedback) {
-      if (searchQuery) {
-        feedback.textContent = `Matching "${searchQuery}" (${alertsList.length})`;
-      } else if (currentFilter !== "all") {
-        feedback.textContent = `Filtered by ${currentFilter.toUpperCase()} (${alertsList.length})`;
-      } else {
-        feedback.textContent = "Showing all actionable live signals";
-      }
-    }
-  }
-
-  window.dismissAlert = function (alertId) {
-    const card = document.getElementById(`alert-card-${alertId}`);
-    if (card) {
-      card.style.transition = "all 0.3s ease-out";
-      card.style.opacity = "0";
-      card.style.transform = "translateY(-12px) scale(0.98)";
-    }
-
-    VyaparAPI.dismissAlert(alertId).then(() => {
-      setTimeout(() => {
-        loadAlerts();
+      if (res?.data) {
         if (typeof window.showToast === "function") {
-          window.showToast("Alert dismissed.");
+          window.showToast("Alert confirmed successfully!");
+        } else {
+          alert("Alert confirmed!");
         }
-      }, 300);
-    });
+        await loadRealAlerts();
+      }
+    } catch (err) {
+      if (err.status === 409) {
+        alert("You have already confirmed this alert.");
+      } else if (err.status === 401) {
+        alert("Please log in to confirm alerts.");
+      } else {
+        alert(`Confirmation failed: ${err.message || "Please try again"}`);
+      }
+    } finally {
+      if (btn) btn.disabled = false;
+    }
   };
 
-  window.restoreAllAlerts = function () {
-    VyaparAPI.restoreAllAlerts().then(() => {
-      loadAlerts();
-      if (typeof window.showToast === "function") {
-        window.showToast("All telemetry alerts restored.");
+  window.flagAlertAction = async function (alertId) {
+    if (!confirm("Are you sure you want to flag this alert as inaccurate or false?")) return;
+
+    try {
+      const res = await window.VyaparAuth.callBackendAPI(`/api/alerts/${alertId}/flag`, {
+        method: "POST"
+      });
+      if (res?.data) {
+        if (typeof window.showToast === "function") {
+          window.showToast("Alert flagged for moderation.");
+        } else {
+          alert("Alert flagged.");
+        }
+        await loadRealAlerts();
       }
-    });
+    } catch (err) {
+      if (err.status === 409) {
+        alert("You have already flagged this alert.");
+      } else if (err.status === 401) {
+        alert("Please log in to flag alerts.");
+      } else {
+        alert(`Flag failed: ${err.message || "Please try again"}`);
+      }
+    }
   };
 
   function setupEventListeners() {
-    const searchInput = document.getElementById("alert-search-input");
-    const searchClearBtn = document.getElementById("search-clear-btn");
+    // 1. Filter Pills
     const filterPills = document.querySelectorAll(".filter-pill");
-    const resetSearchBtn = document.getElementById("reset-search-filters-btn");
-    const restoreBtn = document.getElementById("restore-alerts-btn");
-
-    // Filter Pills
     filterPills.forEach((pill) => {
       pill.addEventListener("click", () => {
         filterPills.forEach((p) => {
@@ -240,87 +308,158 @@
         pill.classList.add("bg-primary", "text-on-primary", "active-pill");
 
         currentFilter = pill.getAttribute("data-filter") || "all";
-        loadAlerts();
+        renderAlertsList();
       });
     });
 
-    // Search Input
+    // 2. Search Input
+    const searchInput = document.getElementById("alert-search-input");
+    const searchClearBtn = document.getElementById("search-clear-btn");
     if (searchInput) {
       searchInput.addEventListener("input", (e) => {
         searchQuery = e.target.value;
         if (searchClearBtn) {
-          if (searchQuery.length > 0) {
-            searchClearBtn.classList.remove("hidden");
-            searchClearBtn.classList.add("flex");
-          } else {
-            searchClearBtn.classList.add("hidden");
-            searchClearBtn.classList.remove("flex");
-          }
+          searchClearBtn.classList.toggle("hidden", searchQuery.length === 0);
         }
-        loadAlerts();
+        renderAlertsList();
       });
     }
-
     if (searchClearBtn) {
       searchClearBtn.addEventListener("click", () => {
         if (searchInput) searchInput.value = "";
         searchQuery = "";
         searchClearBtn.classList.add("hidden");
-        searchClearBtn.classList.remove("flex");
-        loadAlerts();
+        renderAlertsList();
       });
     }
 
-    if (resetSearchBtn) {
-      resetSearchBtn.addEventListener("click", () => {
-        if (searchInput) searchInput.value = "";
-        searchQuery = "";
-        currentFilter = "all";
-        filterPills.forEach((p) => {
-          if (p.getAttribute("data-filter") === "all") {
-            p.classList.add("bg-primary", "text-on-primary", "active-pill");
-            p.classList.remove("bg-surface-container-lowest", "text-on-surface");
-          } else {
-            p.classList.remove("bg-primary", "text-on-primary", "active-pill");
-            p.classList.add("bg-surface-container-lowest", "text-on-surface");
-          }
-        });
-        loadAlerts();
+    // 3. Sync Telemetry Button
+    const refreshBtn = document.getElementById("refresh-pulse");
+    if (refreshBtn) {
+      refreshBtn.addEventListener("click", () => {
+        loadRealAlerts();
       });
     }
 
-    if (restoreBtn) {
-      restoreBtn.addEventListener("click", window.restoreAllAlerts);
+    // 4. Report Alert Modal Handlers
+    const openModalBtn = document.getElementById("btn-open-create-alert");
+    const modal = document.getElementById("create-alert-modal");
+    const closeModalBtn = document.getElementById("btn-close-alert-modal");
+    const createForm = document.getElementById("create-alert-form");
+    const submitBtn = document.getElementById("btn-submit-alert");
+
+    if (openModalBtn && modal) {
+      openModalBtn.addEventListener("click", async () => {
+        const session = await window.VyaparAuth.getSession();
+        if (!session) {
+          alert("Please log in first to report an alert.");
+          window.location.href = "login.html";
+          return;
+        }
+        modal.classList.remove("hidden");
+      });
+    }
+
+    if (closeModalBtn && modal) {
+      closeModalBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+      });
+    }
+
+    if (createForm) {
+      createForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const alertType = document.getElementById("alert-type-select").value;
+        const message = document.getElementById("alert-message-input").value.trim();
+
+        if (!alertType) {
+          alert("Please select an alert type.");
+          return;
+        }
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Acquiring GPS & Posting...";
+        }
+
+        navigator.geolocation.getCurrentPosition(
+          async (pos) => {
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+
+            try {
+              const res = await window.VyaparAuth.callBackendAPI("/api/alerts", {
+                method: "POST",
+                body: JSON.stringify({
+                  alert_type: alertType,
+                  lat: lat,
+                  lng: lng,
+                  message: message || undefined
+                })
+              });
+
+              if (modal) modal.classList.add("hidden");
+              createForm.reset();
+
+              if (typeof window.showToast === "function") {
+                window.showToast("Alert posted successfully!");
+              } else {
+                alert("Alert posted successfully!");
+              }
+
+              // Refresh list immediately
+              await loadRealAlerts();
+            } catch (err) {
+              if (err.status === 409) {
+                alert(`Duplicate Alert: A similar ${alertType.replace('_', ' ')} alert was already reported at this location in the last 5 minutes.`);
+              } else {
+                alert(`Failed to post alert: ${err.message || "Please try again."}`);
+              }
+            } finally {
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Broadcast Alert";
+              }
+            }
+          },
+          (geoErr) => {
+            alert("Location access is required to broadcast an alert at your current spot.");
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Broadcast Alert";
+            }
+          },
+          { enableHighAccuracy: true, timeout: 10000 }
+        );
+      });
     }
   }
 
-  function setupTicker() {
-    let seconds = 30;
-    setInterval(() => {
-      seconds += 1;
-      const timerElem = document.getElementById("update-timer");
-      if (timerElem) {
-        timerElem.textContent = `Updated ${seconds}s ago`;
-      }
-    }, 1000);
-
-    const refreshPulse = document.getElementById("refresh-pulse");
-    if (refreshPulse) {
-      refreshPulse.addEventListener("click", () => {
-        seconds = 1;
-        const timerElem = document.getElementById("update-timer");
-        if (timerElem) timerElem.textContent = "Updated just now";
-        loadAlerts();
-      });
-    }
+  function startPolling() {
+    if (pollTimer) clearInterval(pollTimer);
+    // Poll every 8-10 seconds per PRD
+    pollTimer = setInterval(() => {
+      loadRealAlerts();
+    }, 8000);
   }
 
-  // Self-initialize if on Alerts page
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      if (document.body.dataset.page === "alerts") initAlerts();
-    });
-  } else {
-    if (document.body.dataset.page === "alerts") initAlerts();
+  function formatTimeAgo(isoString) {
+    if (!isoString) return "Just now";
+    const date = new Date(isoString.replace("Z", "+00:00"));
+    const diffSec = Math.floor((new Date() - date) / 1000);
+    if (diffSec < 60) return "Just now";
+    const diffMin = Math.floor(diffSec / 60);
+    if (diffMin < 60) return `${diffMin}m ago`;
+    const diffHr = Math.floor(diffMin / 60);
+    return `${diffHr}h ago`;
+  }
+
+  function escapeHtml(str) {
+    return (str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
 })();

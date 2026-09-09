@@ -1,9 +1,9 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Live Alerts & Signals — Vyapar</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       rel="stylesheet"
@@ -11,11 +11,7 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
@@ -23,1617 +19,261 @@
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/pages/alerts.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "surface-bright": "#fff8f5",
-              "on-secondary-container": "#676160",
-              "surface-dim": "#e2d8d2",
-              "inverse-primary": "#ffb59f",
-              "surface-container-high": "#f0e6e0",
-              secondary: "#635d5c",
-              "on-tertiary-container": "#fffbff",
-              tertiary: "#825100",
-              "on-tertiary-fixed-variant": "#653e00",
-              "tertiary-fixed": "#ffddb8",
-              "on-secondary-fixed": "#1e1b1a",
-              "on-surface-variant": "#5a4139",
-              "primary-fixed": "#ffdbd0",
-              surface: "#fff8f5",
-              outline: "#8e7068",
-              "on-error": "#ffffff",
-              "tertiary-container": "#a36700",
-              "error-container": "#ffdad6",
-              "on-tertiary-fixed": "#2a1700",
-              "inverse-on-surface": "#f9efe8",
-              background: "#fff8f5",
-              error: "#ba1a1a",
-              "on-secondary": "#ffffff",
-              "surface-container-low": "#fcf2eb",
-              "on-secondary-fixed-variant": "#4b4644",
-              "inverse-surface": "#342f2b",
-              "surface-tint": "#ae3100",
-              "surface-container-highest": "#eae1da",
-              "surface-container": "#f6ece6",
-              "on-primary-container": "#fffbff",
-              "primary-fixed-dim": "#ffb59f",
-              "on-primary-fixed-variant": "#852400",
-              "on-error-container": "#93000a",
-              "on-primary-fixed": "#3a0a00",
-              primary: "#aa3000",
-              "secondary-fixed-dim": "#cdc5c3",
-              "secondary-fixed": "#e9e1df",
-              "tertiary-fixed-dim": "#ffb95f",
-              "on-surface": "#1f1b17",
-              "secondary-container": "#e6dedc",
-              "primary-container": "#d04411",
-              "surface-container-lowest": "#ffffff",
-              "on-tertiary": "#ffffff",
-              "surface-variant": "#eae1da",
-              "on-primary": "#ffffff",
-              "on-background": "#1f1b17",
-              "outline-variant": "#e2bfb5",
-            },
-            borderRadius: {
-              DEFAULT: "0.25rem",
-              lg: "0.5rem",
-              xl: "0.75rem",
-              full: "9999px",
-            },
-            spacing: {
-              "space-2xl": "2rem",
-              "space-lg": "1.25rem",
-              "space-3xl": "2.5rem",
-              "space-4xl": "3rem",
-              "space-xs": "0.5rem",
-              "gutter-mobile": "1rem",
-              "gutter-desktop": "1.5rem",
-              "margin-mobile": "1rem",
-              "space-sm": "0.75rem",
-              "margin-desktop": "2rem",
-              "space-md": "1rem",
-              "space-2xs": "0.25rem",
-              "space-xl": "1.5rem",
-            },
-            fontFamily: {
-              "label-md": ["Plus Jakarta Sans"],
-              "display-mobile": ["Plus Jakarta Sans"],
-              "headline-lg": ["Plus Jakarta Sans"],
-              "headline-lg-mobile": ["Plus Jakarta Sans"],
-              "label-caps": ["Plus Jakarta Sans"],
-              "body-sm": ["Inter"],
-              "body-md": ["Inter"],
-              "headline-md": ["Plus Jakarta Sans"],
-              "label-sm": ["Plus Jakarta Sans"],
-              "body-lg": ["Inter"],
-              display: ["Plus Jakarta Sans"],
-              "headline-sm": ["Plus Jakarta Sans"],
-              "label-numeric-lg": ["Plus Jakarta Sans"],
-            },
-            fontSize: {
-              "label-md": [
-                "13px",
-                {
-                  lineHeight: "16px",
-                  letterSpacing: "0.01em",
-                  fontWeight: "600",
-                },
-              ],
-              "display-mobile": [
-                "34px",
-                {
-                  lineHeight: "40px",
-                  letterSpacing: "-0.025em",
-                  fontWeight: "800",
-                },
-              ],
-              "headline-lg": [
-                "32px",
-                {
-                  lineHeight: "40px",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "700",
-                },
-              ],
-              "headline-lg-mobile": [
-                "26px",
-                {
-                  lineHeight: "32px",
-                  letterSpacing: "-0.015em",
-                  fontWeight: "700",
-                },
-              ],
-              "label-caps": [
-                "11px",
-                {
-                  lineHeight: "14px",
-                  letterSpacing: "0.08em",
-                  fontWeight: "700",
-                },
-              ],
-              "body-sm": [
-                "12px",
-                {
-                  lineHeight: "16px",
-                  letterSpacing: "0em",
-                  fontWeight: "400",
-                },
-              ],
-              "body-md": [
-                "14px",
-                {
-                  lineHeight: "20px",
-                  letterSpacing: "0em",
-                  fontWeight: "400",
-                },
-              ],
-              "headline-md": [
-                "22px",
-                {
-                  lineHeight: "28px",
-                  letterSpacing: "-0.01em",
-                  fontWeight: "700",
-                },
-              ],
-              "label-sm": [
-                "11px",
-                {
-                  lineHeight: "14px",
-                  letterSpacing: "0.02em",
-                  fontWeight: "600",
-                },
-              ],
-              "body-lg": [
-                "16px",
-                {
-                  lineHeight: "24px",
-                  letterSpacing: "-0.01em",
-                  fontWeight: "400",
-                },
-              ],
-              display: [
-                "44px",
-                {
-                  lineHeight: "52px",
-                  letterSpacing: "-0.03em",
-                  fontWeight: "800",
-                },
-              ],
-              "headline-sm": [
-                "18px",
-                {
-                  lineHeight: "24px",
-                  letterSpacing: "0em",
-                  fontWeight: "600",
-                },
-              ],
-              "label-numeric-lg": [
-                "28px",
-                {
-                  lineHeight: "32px",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "800",
-                },
-              ],
-            },
-          },
-        },
-      };
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth-client.js"></script>
+    <script src="js/pages/alerts.js" defer></script>
   </head>
   <body
     data-page="alerts"
-    class="bg-surface font-body-md text-on-surface antialiased"
+    class="bg-[#fff8f5] font-['Inter',sans-serif] text-[#1f1b17] antialiased"
   >
     <!-- Desktop Sidebar Shell -->
     <aside
-      class="vyapar-desktop-sidebar fixed left-0 top-0 h-full w-[76px] bg-surface-container-low z-50 flex flex-col items-center py-space-md shadow-[0_1px_8px_rgba(41,37,36,0.04)]"
+      class="vyapar-desktop-sidebar fixed left-0 top-0 h-full w-[76px] bg-[#fcf2eb] z-50 flex flex-col items-center py-4 shadow-[0_1px_8px_rgba(41,37,36,0.04)]"
     >
-      <div class="flex items-center justify-center mb-space-xl">
-        <a href="dashboard.html" class="flex items-center justify-center">
-          <img
-            alt="VYAPAR Brand Mark"
-            class="h-8 w-auto object-contain"
-            src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
-          />
+      <div class="flex items-center justify-center mb-6">
+        <a href="vendor/dashboard.html" class="flex items-center justify-center">
+          <span class="text-2xl font-black text-[#aa3000]">V</span>
         </a>
       </div>
-      <nav
-        class="flex-1 flex flex-col items-center gap-space-xs w-full px-space-2xs"
-        data-active-classes="bg-primary-container text-on-primary-container font-headline-sm"
-      >
+      <nav class="flex-1 flex flex-col items-center gap-2 w-full px-2">
         <a
-          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-          data-path="dashboard"
-          href="dashboard.html"
-          title="Dashboard"
-          ><span class="material-symbols-outlined text-[22px]"
-            >grid_view</span
-          ></a
-        ><a
-          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-          data-path="places"
-          href="recommendations.html"
-          title="Places"
-          ><span class="material-symbols-outlined text-[22px]">near_me</span></a
-        ><a
-          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-          data-path="check-in"
-          href="checkin.html"
-          title="Check-in"
-          ><span class="material-symbols-outlined text-[22px]"
-            >pin_drop</span
-          ></a
-        ><a
-          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-          data-path="alerts"
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-[#635d5c] hover:bg-[#eae1da] hover:text-[#1f1b17] transition-all"
+          href="vendor/dashboard.html"
+          title="Vendor Dashboard"
+        >
+          <span class="material-symbols-outlined text-[22px]">grid_view</span>
+        </a>
+        <a
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-[#635d5c] hover:bg-[#eae1da] hover:text-[#1f1b17] transition-all"
+          href="user/dashboard.html"
+          title="User Discovery"
+        >
+          <span class="material-symbols-outlined text-[22px]">storefront</span>
+        </a>
+        <a
+          class="w-12 h-12 rounded-xl flex items-center justify-center bg-[#d04411] text-white font-bold shadow-sm"
           href="alerts.html"
           title="Alerts"
-          ><span class="material-symbols-outlined text-[22px]"
-            >notifications_active</span
-          ></a
-        ><a
-          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-          data-path="discover-vendors"
-          href="discover.html"
-          title="Discover Vendors"
-          ><span class="material-symbols-outlined text-[22px]"
-            >storefront</span
-          ></a
         >
+          <span class="material-symbols-outlined text-[22px]">notifications_active</span>
+        </a>
       </nav>
-      <div
-        class="flex flex-col items-center gap-space-xs w-full px-space-2xs pt-space-xs"
-      >
+      <div class="flex flex-col items-center gap-2 w-full px-2 pt-2 border-t border-[#e2bfb5]/40">
         <a
-          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-          data-path="profile"
-          href="#profile"
-          title="Profile"
-          ><span class="material-symbols-outlined text-[22px]">person</span></a
-        ><a
-          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-          data-path="settings"
-          href="#settings"
-          title="Settings"
-          ><span class="material-symbols-outlined text-[22px]"
-            >settings</span
-          ></a
-        ><a
-          class="w-12 h-12 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-          data-path="logout"
-          href="#logout"
+          class="w-12 h-12 rounded-xl flex items-center justify-center text-[#635d5c] hover:bg-[#eae1da] hover:text-[#1f1b17] transition-all"
+          href="#"
+          onclick="event.preventDefault(); window.VyaparAuth.logout();"
           title="Logout"
-          ><span class="material-symbols-outlined text-[22px]">logout</span></a
         >
+          <span class="material-symbols-outlined text-[22px]">logout</span>
+        </a>
       </div>
     </aside>
 
-    <!-- Mobile Top Header Bar: VYAPAR ☰ -->
-    <header class="vyapar-mobile-header md:hidden">
-      <a href="dashboard.html" class="flex items-center gap-2">
-        <img
-          alt="VYAPAR Brand Mark"
-          class="h-7 w-auto object-contain"
-          src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
-        />
-        <span class="font-headline-sm font-bold text-primary tracking-tight">VYAPAR</span>
-      </a>
-      <div class="flex items-center gap-2">
-        <button
-          id="vyapar-mobile-hamburger"
-          type="button"
-          class="w-10 h-10 rounded-xl flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"
-          aria-label="Open Navigation Menu"
-        >
-          <span class="material-symbols-outlined text-[26px]">menu</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- Mobile Navigation Drawer -->
-    <div id="mobile-drawer-overlay" class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 hidden md:hidden"></div>
-    <div id="mobile-drawer" class="fixed top-0 left-0 bottom-0 w-72 bg-surface-container-low z-50 transform -translate-x-full md:hidden flex flex-col p-4 shadow-2xl">
-      <div class="flex items-center justify-between pb-4 border-b border-surface-container-high mb-4">
-        <div class="flex items-center gap-2">
-          <img
-            alt="VYAPAR Brand Mark"
-            class="h-7 w-auto object-contain"
-            src="https://lh3.googleusercontent.com/aida/AEtjO1X_Z_0BwnHRNTC7Dpr0DCRfEQCY-iBYg7XB-dZr5FUBsgn974TZmlxfApwStVp-TDuSDArXKdY3M7Xmavh51D5GxAM6OwohE3ciJj1MoB9GrVVTnpN4xazqVAZYBVMNVM_00FxYOoPjo0BxAYQLr1X4qRPSj1tOSVdPBqhXpOOea_tIzstZwQXX7KV4vf9W_6v1qZAAtt74QY9-eTRLCd86aP5X1z4yVOyCTmY1VmGuT7d28VXR5RRe6A"
-          />
-          <span class="font-headline-sm font-bold text-primary">VYAPAR</span>
-        </div>
-        <button id="mobile-drawer-close" type="button" class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface">
-          <span class="material-symbols-outlined text-[22px]">close</span>
-        </button>
-      </div>
-      <nav class="flex-1 flex flex-col gap-1">
-        <a data-path="dashboard" href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
-          <span class="material-symbols-outlined text-[22px]">grid_view</span>
-          <span>Dashboard</span>
-        </a>
-        <a data-path="places" href="recommendations.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
-          <span class="material-symbols-outlined text-[22px]">near_me</span>
-          <span>Places</span>
-        </a>
-        <a data-path="check-in" href="checkin.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
-          <span class="material-symbols-outlined text-[22px]">pin_drop</span>
-          <span>Check-in</span>
-        </a>
-        <a data-path="alerts" href="alerts.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
-          <span class="material-symbols-outlined text-[22px]">notifications_active</span>
-          <span>Alerts</span>
-        </a>
-        <a data-path="discover-vendors" href="discover.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface font-label-md text-label-md transition-colors hover:bg-surface-container-high">
-          <span class="material-symbols-outlined text-[22px]">storefront</span>
-          <span>Discover Vendors</span>
-        </a>
-      </nav>
-      <div class="pt-4 border-t border-surface-container-high flex flex-col gap-1">
-        <a data-path="profile" href="#profile" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high">
-          <span class="material-symbols-outlined text-[22px]">person</span>
-          <span>Vendor Profile</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="pl-[76px] vyapar-main-layout">
+    <!-- Main Content Layout -->
+    <div class="pl-[76px] min-h-screen flex flex-col">
+      <!-- Top Header -->
       <header
-        class="vyapar-top-header fixed top-0 left-[76px] right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(41,37,36,0.03)] px-space-md lg:px-space-xl flex items-center justify-between"
+        class="h-16 bg-[#fff8f5]/90 backdrop-blur-xl border-b border-[#e2bfb5]/30 sticky top-0 z-40 px-6 sm:px-10 flex items-center justify-between"
       >
-        <div class="flex flex-col justify-center min-w-0 pr-space-md">
-          <div class="flex items-center gap-space-xs">
-            <span
-              class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate"
-              >Good evening, Vendor</span
-            ><span class="text-[18px] leading-none select-none">👋</span>
-          </div>
-          <p class="font-body-sm text-body-sm text-on-surface-variant truncate">
-            Here's what's happening around you right now.
-          </p>
+        <div class="flex items-center gap-3">
+          <span class="font-bold text-lg text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">
+            Community Alerts
+          </span>
+          <span id="geo-location-chip-text" class="text-xs bg-[#f0e6e0] text-[#635d5c] px-3 py-1 rounded-full font-medium">
+            Acquiring GPS...
+          </span>
         </div>
-        <div class="flex items-center gap-space-sm sm:gap-space-md shrink-0">
+
+        <div class="flex items-center gap-3">
           <button
-            class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-2xs rounded-full shadow-[0_2px_4px_rgba(41,37,36,0.02)] hover:bg-surface-container transition-colors"
+            id="btn-open-create-alert"
             type="button"
+            class="px-4 py-2 rounded-xl bg-[#aa3000] text-white text-xs font-bold hover:bg-[#852400] transition-all flex items-center gap-1.5 shadow-md active:scale-95"
           >
-            <span class="material-symbols-outlined text-primary text-[18px]"
-              >location_on</span
-            ><span
-              class="font-label-md text-label-md text-on-surface font-semibold"
-              >Mumbai</span
-            ><span
-              class="flex items-center gap-1.5 font-label-caps text-label-caps text-tertiary"
-              ><span class="relative flex h-2 w-2"
-                ><span
-                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
-                ></span
-                ><span
-                  class="relative inline-flex rounded-full h-2 w-2 bg-primary"
-                ></span></span
-              >Live</span
-            ><span
-              class="material-symbols-outlined text-on-surface-variant text-[18px]"
-              >arrow_drop_down</span
-            ></button
-          ><button
-            class="relative w-9 h-9 rounded-full flex items-center justify-center bg-surface-container-lowest hover:bg-surface-container transition-colors text-on-surface-variant shadow-[0_2px_4px_rgba(41,37,36,0.02)]"
-            type="button"
-          >
-            <span class="material-symbols-outlined text-[20px]"
-              >notifications</span
-            ><span
-              class="absolute top-1 right-1 w-2.5 h-2.5 bg-primary rounded-full ring-2 ring-surface-container-lowest"
-            ></span>
+            <span class="material-symbols-outlined text-[16px]">add_alert</span>
+            Report Situation
           </button>
-          <div class="flex items-center pl-space-2xs">
-            <img
-              alt="Profile"
-              class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(41,37,36,0.1)]"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvisN5NJL57RB3l5qnYVbpLkreiLabrf4G-i9Ozx6mw-lzAf4ylG4CA9xB1CjpobMFzk_lfGOKdw-hGH_Dj7r1_82mAW-JpLz148pU9mBSt_ISeHiRMTFNWrtZUhDYDOIxoUQ2nSZpZdjSvfJl2GA63buxQhw8LTYqW8WyYseJzWILnnjW9my6Qdn7G2qqM7kyXV0kM8K8PKrX0NI3GFhp2f9DDjBXeEbroqXd010JkHLA895TnrmK"
-            />
-          </div>
         </div>
       </header>
-      <main
-        class="relative pt-16 w-full px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto py-space-lg min-h-[calc(100vh-4rem)]"
-      >
-        <div class="flex flex-col w-full pb-28">
-          <!-- Top Ambient Glow Aura -->
-          <div
-            class="absolute -top-12 left-1/3 w-96 h-96 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none -z-10"
-          ></div>
-          <!-- Header & Live Telemetry Panel -->
-          <div
-            class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg mb-space-2xl"
-          >
-            <div class="flex flex-col gap-space-2xs">
-              <div class="flex items-center gap-space-xs">
-                <span
-                  class="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-primary-fixed text-primary"
-                >
-                  <span
-                    class="material-symbols-outlined text-[15px]"
-                    style="font-variation-settings: &quot;FILL&quot; 1"
-                    >bolt</span
-                  >
-                </span>
-                <span
-                  class="font-label-caps text-label-caps uppercase tracking-wider text-primary font-bold"
-                  >Telemetry Feed</span
-                >
-              </div>
-              <h1
-                class="font-display text-display text-on-surface tracking-tight"
-              >
-                LIVE ALERTS &amp; SIGNALS
-              </h1>
-              <p
-                class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2"
-                id="alert-counter-sub"
-              >
-                <span
-                  class="font-headline-sm text-headline-sm text-primary font-bold"
-                  id="active-count-num"
-                  >3</span
-                >
-                Active updates affecting your nearby spots
-              </p>
-            </div>
-            <!-- Right Live Telemetry Chip Matrix -->
-            <div
-              class="flex flex-wrap items-center gap-space-xs sm:gap-space-sm bg-surface-container-low p-space-xs rounded-2xl shadow-sm"
-            >
-              <div
-                class="flex items-center gap-2 bg-surface-container-lowest px-space-sm py-2 rounded-xl shadow-[0_2px_4px_rgba(41,37,36,0.02)]"
-              >
-                <span class="material-symbols-outlined text-primary text-[18px]"
-                  >near_me</span
-                >
-                <span
-                  class="font-label-md text-label-md text-on-surface font-semibold"
-                  >Mumbai</span
-                >
-                <span
-                  class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-label-caps text-label-caps"
-                >
-                  <span
-                    class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
-                  ></span>
-                  Live
-                </span>
-              </div>
-              <div
-                class="flex items-center gap-1.5 bg-surface-container-lowest px-space-sm py-2 rounded-xl shadow-[0_2px_4px_rgba(41,37,36,0.02)] text-on-surface-variant"
-              >
-                <span class="material-symbols-outlined text-[16px]"
-                  >update</span
-                >
-                <span
-                  class="font-label-sm text-label-sm font-semibold tracking-tight text-on-surface"
-                  id="update-timer"
-                  >Updated 30s ago</span
-                >
-              </div>
-              <button
-                class="w-9 h-9 flex items-center justify-center rounded-xl bg-surface-container-lowest hover:bg-surface-container-high transition-colors text-on-surface-variant"
-                id="refresh-pulse"
-                title="Sync Telemetry"
-                type="button"
-              >
-                <span
-                  class="material-symbols-outlined text-[18px] hover:rotate-180 transition-transform duration-500"
-                  >sync</span
-                >
-              </button>
-            </div>
-          </div>
-          <!-- Realtime Tactical Visual Strip -->
-          <div
-            class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-2xl"
-          >
-            <!-- Mini Signal 1 -->
-            <div
-              class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex items-center gap-space-md group"
-            >
-              <div
-                class="w-12 h-12 rounded-xl bg-error-container/60 flex items-center justify-center text-error shrink-0 group-hover:scale-105 transition-transform"
-              >
-                <span class="material-symbols-outlined text-[26px]"
-                  >emergency_heat</span
-                >
-              </div>
-              <div class="min-w-0 flex-1">
-                <span
-                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                  >Flux Pressure</span
-                >
-                <div class="flex items-baseline gap-2">
-                  <span
-                    class="font-label-numeric-lg text-label-numeric-lg text-on-surface"
-                    >91%</span
-                  >
-                  <span
-                    class="font-label-sm text-label-sm text-error flex items-center font-bold"
-                  >
-                    <span class="material-symbols-outlined text-[14px]"
-                      >north_east</span
-                    >
-                    +20%
-                  </span>
-                </div>
-                <p
-                  class="font-body-sm text-body-sm text-on-surface-variant truncate"
-                >
-                  Kurla corridor surge peak
-                </p>
-              </div>
-              <div class="w-16 h-8 shrink-0">
-                <svg
-                  class="w-full h-full overflow-visible text-error"
-                  fill="none"
-                  viewbox="0 0 64 32"
-                >
-                  <path
-                    d="M0 24 Q 16 26, 28 14 T 52 8 T 64 2"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2.5"
-                  ></path>
-                  <circle cx="64" cy="2" fill="currentColor" r="3"></circle>
-                </svg>
-              </div>
-            </div>
-            <!-- Mini Signal 2 -->
-            <div
-              class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex items-center gap-space-md group"
-            >
-              <div
-                class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-fixed-variant shrink-0 group-hover:scale-105 transition-transform"
-              >
-                <span class="material-symbols-outlined text-[26px]">train</span>
-              </div>
-              <div class="min-w-0 flex-1">
-                <span
-                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                  >Transit Load</span
-                >
-                <div class="flex items-baseline gap-2">
-                  <span
-                    class="font-label-numeric-lg text-label-numeric-lg text-on-surface"
-                    >1.5k</span
-                  >
-                  <span
-                    class="font-label-sm text-label-sm text-on-surface-variant font-medium"
-                    >commuters/15m</span
-                  >
-                </div>
-                <p
-                  class="font-body-sm text-body-sm text-on-surface-variant truncate"
-                >
-                  4 inbound arrivals queue
-                </p>
-              </div>
-              <div class="w-16 h-8 shrink-0">
-                <svg
-                  class="w-full h-full overflow-visible text-secondary"
-                  fill="none"
-                  viewbox="0 0 64 32"
-                >
-                  <path
-                    d="M0 28 L 18 20 L 36 22 L 50 10 L 64 6"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  ></path>
-                  <circle cx="64" cy="6" fill="currentColor" r="3"></circle>
-                </svg>
-              </div>
-            </div>
-            <!-- Mini Signal 3 -->
-            <div
-              class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex items-center gap-space-md group"
-            >
-              <div
-                class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0 group-hover:scale-105 transition-transform"
-              >
-                <span class="material-symbols-outlined text-[26px]"
-                  >celebration</span
-                >
-              </div>
-              <div class="min-w-0 flex-1">
-                <span
-                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                  >Event Forecast</span
-                >
-                <div class="flex items-baseline gap-2">
-                  <span
-                    class="font-label-numeric-lg text-label-numeric-lg text-on-surface"
-                    >In 45m</span
-                  >
-                  <span
-                    class="font-label-sm text-label-sm text-tertiary font-bold"
-                    >High Surge</span
-                  >
-                </div>
-                <p
-                  class="font-body-sm text-body-sm text-on-surface-variant truncate"
-                >
-                  Marketcity festival influx
-                </p>
-              </div>
-              <div class="w-16 h-8 shrink-0">
-                <svg
-                  class="w-full h-full overflow-visible text-tertiary"
-                  fill="none"
-                  viewbox="0 0 64 32"
-                >
-                  <path
-                    d="M0 30 C 20 30, 30 18, 45 12 C 55 6, 60 4, 64 4"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                  ></path>
-                  <circle cx="64" cy="4" fill="currentColor" r="3"></circle>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <!-- Controls Hub: Search & Category Filter Pills -->
-          <div
-            class="flex flex-col gap-space-md mb-space-xl bg-surface-container-low p-space-md sm:p-space-lg rounded-2xl shadow-sm"
-          >
-            <!-- Search Bar -->
-            <div class="relative w-full flex items-center">
-              <span
-                class="material-symbols-outlined absolute left-4 text-on-surface-variant text-[22px] pointer-events-none"
-                >search</span
-              >
-              <input
-                class="w-full h-12 pl-12 pr-12 bg-surface-container-lowest rounded-xl font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-[0_2px_6px_rgba(41,37,36,0.03)] transition-all"
-                id="alert-search-input"
-                placeholder="Search alerts by spot, transit node, or event type..."
-                type="text"
-              />
-              <button
-                class="hidden absolute right-3 w-8 h-8 rounded-lg items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"
-                id="search-clear-btn"
-                type="button"
-              >
-                <span class="material-symbols-outlined text-[18px]">close</span>
-              </button>
-            </div>
-            <!-- Category Filter Pills -->
-            <div
-              class="flex items-center gap-space-xs overflow-x-auto pb-1 scrollbar-none"
-            >
-              <button
-                class="filter-pill active-pill shrink-0 px-space-md py-2 rounded-xl font-label-md text-label-md flex items-center gap-2 bg-primary text-on-primary shadow-sm transition-all"
-                data-filter="all"
-                type="button"
-              >
-                <span>ALL</span>
-                <span
-                  class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded-full text-[11px] font-bold"
-                  id="pill-count-all"
-                  >3</span
-                >
-              </button>
-              <button
-                class="filter-pill shrink-0 px-space-md py-2 rounded-xl font-label-md text-label-md flex items-center gap-2 bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all shadow-sm"
-                data-filter="high-priority"
-                type="button"
-              >
-                <span class="material-symbols-outlined text-[18px] text-error"
-                  >bolt</span
-                >
-                <span>⚡ HIGH PRIORITY</span>
-              </button>
-              <button
-                class="filter-pill shrink-0 px-space-md py-2 rounded-xl font-label-md text-label-md flex items-center gap-2 bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all shadow-sm"
-                data-filter="demand"
-                type="button"
-              >
-                <span class="material-symbols-outlined text-[18px] text-primary"
-                  >trending_up</span
-                >
-                <span>📈 DEMAND</span>
-              </button>
-              <button
-                class="filter-pill shrink-0 px-space-md py-2 rounded-xl font-label-md text-label-md flex items-center gap-2 bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all shadow-sm"
-                data-filter="events"
-                type="button"
-              >
-                <span
-                  class="material-symbols-outlined text-[18px] text-tertiary"
-                  >celebration</span
-                >
-                <span>🎉 EVENTS</span>
-              </button>
-              <div
-                class="ml-auto hidden md:flex items-center gap-2 pl-4 text-on-surface-variant font-label-sm text-label-sm"
-              >
-                <span class="w-2 h-2 rounded-full bg-primary"></span>
-                <span id="filtered-label-feedback"
-                  >Showing all actionable live signals</span
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Alert Stream Section -->
-          <div class="flex flex-col gap-space-lg" id="alerts-stream-container">
-            <!-- ALERT CARD #1: HIGH URGENCY / DEMAND SPIKE -->
-            <article
-              class="alert-card relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col p-space-lg sm:p-space-xl"
-              data-categories="high-priority demand"
-              data-keywords="kurla station west exit rush score commuter flux peak 0.8km very busy"
-              id="alert-card-1"
-            >
-              <!-- Subtle Red Urgency Left Line Accent -->
-              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-error"></div>
-              <div
-                class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-md"
-              >
-                <div class="flex flex-wrap items-center gap-space-xs">
-                  <!-- Urgency Badge -->
-                  <span
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container/70 text-error font-label-caps text-label-caps"
-                  >
-                    <span
-                      class="w-2 h-2 rounded-full bg-error animate-ping"
-                    ></span>
-                    ⚡ HIGH URGENCY • DEMAND SPIKE
-                  </span>
-                  <span class="text-outline-variant font-body-sm select-none"
-                    >•</span
-                  >
-                  <div
-                    class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm"
-                  >
-                    <span class="material-symbols-outlined text-[15px]"
-                      >schedule</span
-                    >
-                    <span>2 min ago</span>
-                  </div>
-                </div>
-                <button
-                  class="self-end sm:self-auto p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors flex items-center gap-1 font-label-sm text-label-sm"
-                  onclick="dismissAlert('alert-card-1')"
-                  title="Dismiss Alert"
-                  type="button"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >close</span
-                  >
-                  <span class="sm:hidden">Dismiss</span>
-                </button>
-              </div>
-              <!-- Main Headline -->
-              <div class="mb-space-md">
-                <h2
-                  class="font-headline-md text-headline-md text-on-surface tracking-tight leading-snug"
-                >
-                  Kurla Station (West Exit) — Rush score jumped 76 → 91 (+20%)
-                </h2>
-              </div>
-              <!-- Context Badges & Telemetry Row -->
-              <div class="flex flex-wrap items-center gap-space-sm mb-space-lg">
-                <!-- Customer Rush Badge -->
-                <div
-                  class="flex items-center gap-2 bg-surface-container-low px-3.5 py-2 rounded-xl"
-                >
-                  <span class="material-symbols-outlined text-error text-[20px]"
-                    >local_fire_department</span
-                  >
-                  <div class="flex flex-col">
-                    <span
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >CUSTOMER RUSH</span
-                    >
-                    <span
-                      class="font-headline-sm text-headline-sm text-on-surface leading-tight"
-                      >91
-                      <span
-                        class="text-[13px] font-normal text-on-surface-variant"
-                        >/ 100</span
-                      ></span
-                    >
-                  </div>
-                </div>
-                <!-- Demand Intensity Badge -->
-                <div
-                  class="flex items-center gap-2 px-3 py-2 rounded-xl bg-error-container/60 text-error font-label-md text-label-md font-bold"
-                >
-                  <span class="w-2.5 h-2.5 rounded-full bg-error"></span>
-                  <span>🔥 VERY BUSY</span>
-                </div>
-                <!-- Supporting Signal: Commuter Flux -->
-                <div
-                  class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface"
-                >
-                  <span
-                    class="material-symbols-outlined text-primary text-[18px]"
-                    >group</span
-                  >
-                  <span>Commuter flux peak detected</span>
-                </div>
-                <!-- Supporting Signal: Distance -->
-                <div
-                  class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface-variant"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >distance</span
-                  >
-                  <span>0.8 km away</span>
-                </div>
-              </div>
-              <!-- Detailed Mini-Geospatial Snapshot & Immediate Action Strip -->
-              <div
-                class="bg-surface-container-low rounded-xl p-space-md flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md"
-              >
-                <div class="flex items-center gap-space-md min-w-0">
-                  <div
-                    class="w-14 h-14 rounded-xl bg-surface-container-high shrink-0 overflow-hidden relative"
-                    data-location="Kurla Railway Station West Mumbai"
-                    style=""
-                  >
-                    <!-- Decorative miniature map preview radar -->
-                    <div
-                      class="absolute inset-0 bg-gradient-to-tr from-error/20 to-primary/10 flex items-center justify-center"
-                    >
-                      <span
-                        class="material-symbols-outlined text-error text-[24px] animate-bounce"
-                        >place</span
-                      >
-                    </div>
-                  </div>
-                  <div class="min-w-0">
-                    <p
-                      class="font-headline-sm text-headline-sm text-on-surface truncate"
-                    >
-                      West Exit Main Concourse Zone
-                    </p>
-                    <p
-                      class="font-body-sm text-body-sm text-on-surface-variant truncate"
-                    >
-                      Ideal deployment for fast snacks, hot tea, and beverages
-                    </p>
-                  </div>
-                </div>
-                <!-- Actions -->
-                <div
-                  class="flex items-center gap-space-xs sm:gap-space-sm shrink-0"
-                >
-                  <button
-                    class="px-space-md py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors"
-                    onclick="dismissAlert('alert-card-1')"
-                    type="button"
-                  >
-                    Dismiss
-                  </button>
-                  <a
-                    class="px-space-lg py-2.5 rounded-xl font-label-md text-label-md bg-primary hover:bg-primary-container text-on-primary font-semibold flex items-center gap-2 shadow-sm transition-all hover:scale-[1.02]"
-                    href="spot.html?id=kurla-station-west"
-                  >
-                    <span>📍 NAVIGATE TO SPOT</span>
-                    <span class="material-symbols-outlined text-[18px]"
-                      >arrow_forward</span
-                    >
-                  </a>
-                </div>
-              </div>
-            </article>
-            <!-- ALERT CARD #2: TRANSIT FLUX / INFORMATIONAL -->
-            <article
-              class="alert-card relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col p-space-lg sm:p-space-xl"
-              data-categories="demand"
-              data-keywords="high train arrival volume kurla station trains arriving 1500 commuters expected 0.8km transit"
-              id="alert-card-2"
-            >
-              <!-- Subtle Cool/Neutral Indigo Accent Line -->
-              <div
-                class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary"
-              ></div>
-              <div
-                class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-md"
-              >
-                <div class="flex flex-wrap items-center gap-space-xs">
-                  <!-- Badge -->
-                  <span
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-caps text-label-caps font-semibold"
-                  >
-                    <span class="material-symbols-outlined text-[14px]"
-                      >train</span
-                    >
-                    🚆 TRANSIT FLUX • INFORMATIONAL
-                  </span>
-                  <span class="text-outline-variant font-body-sm select-none"
-                    >•</span
-                  >
-                  <div
-                    class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm"
-                  >
-                    <span class="material-symbols-outlined text-[15px]"
-                      >schedule</span
-                    >
-                    <span>8 min ago</span>
-                  </div>
-                </div>
-                <button
-                  class="self-end sm:self-auto p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors flex items-center gap-1 font-label-sm text-label-sm"
-                  onclick="dismissAlert('alert-card-2')"
-                  title="Dismiss Alert"
-                  type="button"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >close</span
-                  >
-                  <span class="sm:hidden">Dismiss</span>
-                </button>
-              </div>
-              <!-- Main Headline -->
-              <div class="mb-space-md">
-                <h2
-                  class="font-headline-md text-headline-md text-on-surface tracking-tight leading-snug"
-                >
-                  High train arrival volume at Kurla Station
-                </h2>
-              </div>
-              <!-- Context Badges & Signals Row -->
-              <div class="flex flex-wrap items-center gap-space-sm mb-space-lg">
-                <!-- Arrival Payload Badge -->
-                <div
-                  class="flex items-center gap-2 bg-surface-container-low px-3.5 py-2 rounded-xl"
-                >
-                  <span
-                    class="material-symbols-outlined text-secondary text-[20px]"
-                    >directions_transit_filled</span
-                  >
-                  <div class="flex flex-col">
-                    <span
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >ARRIVAL BATCH</span
-                    >
-                    <span
-                      class="font-headline-sm text-headline-sm text-on-surface leading-tight"
-                      >4 Trains
-                      <span
-                        class="text-[13px] font-normal text-on-surface-variant"
-                        >in 15m</span
-                      ></span
-                    >
-                  </div>
-                </div>
-                <!-- Demand Intensity Badge: Busy -->
-                <div
-                  class="flex items-center gap-2 px-3 py-2 rounded-xl bg-amber-100/70 text-tertiary font-label-md text-label-md font-bold"
-                >
-                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                  <span>⚡ BUSY FLUX</span>
-                </div>
-                <!-- Supporting Signal: Estimated Commuters -->
-                <div
-                  class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface"
-                >
-                  <span
-                    class="material-symbols-outlined text-secondary text-[18px]"
-                    >bar_chart</span
-                  >
-                  <span>~1,500 commuters expected</span>
-                </div>
-                <!-- Supporting Signal: Distance -->
-                <div
-                  class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface-variant"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >distance</span
-                  >
-                  <span>0.8 km away</span>
-                </div>
-              </div>
-              <!-- Bottom Interactive Action Strip -->
-              <div
-                class="bg-surface-container-low rounded-xl p-space-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md"
-              >
-                <div
-                  class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm"
-                >
-                  <span
-                    class="material-symbols-outlined text-primary text-[18px]"
-                    >lightbulb</span
-                  >
-                  <span
-                    >Platform 1 and West bridge show sustained exit
-                    concentration.</span
-                  >
-                </div>
-                <!-- Actions -->
-                <div
-                  class="flex items-center gap-space-xs sm:gap-space-sm shrink-0"
-                >
-                  <button
-                    class="px-space-md py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors"
-                    onclick="dismissAlert('alert-card-2')"
-                    type="button"
-                  >
-                    Dismiss
-                  </button>
-                  <a
-                    class="px-space-lg py-2.5 rounded-xl font-label-md text-label-md bg-surface-container-lowest hover:bg-surface-container-high text-on-surface font-semibold flex items-center gap-2 shadow-sm transition-all"
-                    href="spot.html?id=kurla-station-west"
-                  >
-                    <span>📊 VIEW SPOT DETAILS</span>
-                    <span class="material-symbols-outlined text-[18px]"
-                      >arrow_forward</span
-                    >
-                  </a>
-                </div>
-              </div>
-            </article>
-            <!-- ALERT CARD #3: UPCOMING EVENT / DEMAND FORECAST -->
-            <article
-              class="alert-card relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col p-space-lg sm:p-space-xl"
-              data-categories="events"
-              data-keywords="community festival near phoenix marketcity expected surge starts in 45 mins 1.4km upcoming event forecast"
-              id="alert-card-3"
-            >
-              <!-- Subtle Warm Amber/Orange Left Accent -->
-              <div
-                class="absolute left-0 top-0 bottom-0 w-1.5 bg-tertiary"
-              ></div>
-              <div
-                class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-md"
-              >
-                <div class="flex flex-wrap items-center gap-space-xs">
-                  <!-- Badge -->
-                  <span
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-caps text-label-caps font-bold"
-                  >
-                    <span class="material-symbols-outlined text-[14px]"
-                      >celebration</span
-                    >
-                    🎉 UPCOMING EVENT • DEMAND FORECAST
-                  </span>
-                  <span class="text-outline-variant font-body-sm select-none"
-                    >•</span
-                  >
-                  <div
-                    class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm"
-                  >
-                    <span class="material-symbols-outlined text-[15px]"
-                      >schedule</span
-                    >
-                    <span>15 min ago</span>
-                  </div>
-                </div>
-                <button
-                  class="self-end sm:self-auto p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors flex items-center gap-1 font-label-sm text-label-sm"
-                  onclick="dismissAlert('alert-card-3')"
-                  title="Dismiss Alert"
-                  type="button"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >close</span
-                  >
-                  <span class="sm:hidden">Dismiss</span>
-                </button>
-              </div>
-              <!-- Main Headline -->
-              <div class="mb-space-md">
-                <h2
-                  class="font-headline-md text-headline-md text-on-surface tracking-tight leading-snug"
-                >
-                  Community Festival near Phoenix Marketcity
-                </h2>
-              </div>
-              <!-- Context Badges & Signals Row -->
-              <div class="flex flex-wrap items-center gap-space-sm mb-space-lg">
-                <!-- Lead Time Badge -->
-                <div
-                  class="flex items-center gap-2 bg-surface-container-low px-3.5 py-2 rounded-xl"
-                >
-                  <span
-                    class="material-symbols-outlined text-tertiary text-[20px]"
-                    >hourglass_top</span
-                  >
-                  <div class="flex flex-col">
-                    <span
-                      class="font-label-caps text-label-caps text-on-surface-variant uppercase"
-                      >SURGE WINDOW</span
-                    >
-                    <span
-                      class="font-headline-sm text-headline-sm text-on-surface leading-tight"
-                      >In 45 Mins</span
-                    >
-                  </div>
-                </div>
-                <!-- Event Forecast Surge Type -->
-                <div
-                  class="flex items-center gap-2 px-3 py-2 rounded-xl bg-tertiary-fixed/60 text-on-tertiary-fixed font-label-md text-label-md font-bold"
-                >
-                  <span
-                    class="w-2.5 h-2.5 rounded-full bg-tertiary animate-pulse"
-                  ></span>
-                  <span>HIGH DURATION SPIKE</span>
-                </div>
-                <!-- Supporting Signal: Timing -->
-                <div
-                  class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface"
-                >
-                  <span
-                    class="material-symbols-outlined text-tertiary text-[18px]"
-                    >schedule</span
-                  >
-                  <span>Expected surge starts in 45 mins</span>
-                </div>
-                <!-- Supporting Signal: Distance -->
-                <div
-                  class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface-variant"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >distance</span
-                  >
-                  <span>1.4 km away</span>
-                </div>
-              </div>
-              <!-- Bottom Interactive Action Strip -->
-              <div
-                class="bg-surface-container-low rounded-xl p-space-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md"
-              >
-                <div
-                  class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm"
-                >
-                  <span
-                    class="material-symbols-outlined text-primary text-[18px]"
-                    >notifications_active</span
-                  >
-                  <span
-                    >Vendor stalls setup buffer window open now outside North
-                    Gate.</span
-                  >
-                </div>
-                <!-- Actions -->
-                <div
-                  class="flex items-center gap-space-xs sm:gap-space-sm shrink-0"
-                >
-                  <button
-                    class="px-space-md py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors"
-                    onclick="dismissAlert('alert-card-3')"
-                    type="button"
-                  >
-                    Dismiss
-                  </button>
-                  <a
-                    class="px-space-lg py-2.5 rounded-xl font-label-md text-label-md bg-surface-container-lowest hover:bg-surface-container-high text-on-surface font-semibold flex items-center gap-2 shadow-sm transition-all"
-                    href="spot.html?id=phoenix-marketcity"
-                  >
-                    <span>📍 PRE-VIEW SPOT</span>
-                    <span class="material-symbols-outlined text-[18px]"
-                      >arrow_forward</span
-                    >
-                  </a>
-                </div>
-              </div>
-            </article>
-          </div>
-          <!-- Search No Results Card (Conditional) -->
-          <div
-            class="hidden my-space-lg p-space-2xl rounded-2xl bg-surface-container-low text-center flex-col items-center justify-center"
-            id="no-search-results"
-          >
-            <div
-              class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant mb-space-sm"
-            >
-              <span class="material-symbols-outlined text-[32px]"
-                >search_off</span
-              >
-            </div>
-            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">
-              No matching alerts found
-            </h3>
-            <p
-              class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-space-md"
-            >
-              Try searching for a different transit node or reset your filter
-              selection.
+
+      <main class="flex-1 max-w-5xl w-full mx-auto p-6 sm:p-8">
+        <!-- Banner Title Section -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#aa3000] bg-[#ffdbd0] px-2.5 py-1 rounded-full">
+              Real-time Telemetry
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif] mt-2">
+              Live Alerts & Local Signals
+            </h1>
+            <p class="text-sm text-[#635d5c] mt-1 flex items-center gap-2">
+              <span id="active-count-num" class="font-bold text-[#aa3000]">0</span>
+              Active situation reports within 10 km
             </p>
-            <button
-              class="px-space-md py-2 bg-primary text-on-primary font-label-md text-label-md rounded-xl shadow-sm"
-              onclick="resetSearchAndFilters()"
-              type="button"
-            >
-              Reset Filters
+          </div>
+
+          <div class="flex items-center gap-2 text-xs text-[#635d5c] bg-[#f6ece6] px-3 py-1.5 rounded-xl self-start md:self-auto">
+            <span class="material-symbols-outlined text-[16px] animate-spin text-[#aa3000]">sync</span>
+            <span id="update-timer">Polling every 8s</span>
+            <button id="refresh-pulse" class="ml-2 hover:text-[#aa3000]" title="Refresh now">
+              <span class="material-symbols-outlined text-[16px]">refresh</span>
             </button>
           </div>
-          <!-- ALL CLEAR / CAUGHT UP STATUS CARD -->
-          <div
-            class="mt-space-2xl bg-surface-container-lowest rounded-2xl p-space-xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-lg"
-            id="all-caught-up-card"
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="bg-[#f6ece6] p-4 rounded-2xl mb-6 flex flex-col gap-3 shadow-sm border border-[#e8dfd8]">
+          <!-- Search input -->
+          <div class="relative w-full">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-[#8e7068] text-[20px]">search</span>
+            <input
+              id="alert-search-input"
+              type="text"
+              placeholder="Filter by keyword (e.g. crowd, police, van, market)..."
+              class="w-full pl-10 pr-10 py-2.5 bg-white rounded-xl text-sm border border-[#e2bfb5]/40 focus:outline-none focus:ring-2 focus:ring-[#aa3000]"
+            />
+            <button id="search-clear-btn" type="button" class="hidden absolute right-3 top-3 text-gray-400 hover:text-gray-700">
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          </div>
+
+          <!-- Filter Pills -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+            <button
+              type="button"
+              data-filter="all"
+              class="filter-pill active-pill px-3.5 py-1.5 rounded-xl font-bold bg-[#aa3000] text-white shadow-sm flex items-center gap-1.5"
+            >
+              <span>ALL</span>
+              <span id="pill-count-all" class="bg-white/20 px-1.5 py-0.2 rounded-full text-[10px]">0</span>
+            </button>
+            <button
+              type="button"
+              data-filter="crowd"
+              class="filter-pill px-3.5 py-1.5 rounded-xl font-medium bg-white text-[#1f1b17] hover:bg-[#eae1da] shadow-sm flex items-center gap-1.5"
+            >
+              <span class="material-symbols-outlined text-[15px] text-red-600">groups</span>
+              <span>CROWDS</span>
+            </button>
+            <button
+              type="button"
+              data-filter="spot_free"
+              class="filter-pill px-3.5 py-1.5 rounded-xl font-medium bg-white text-[#1f1b17] hover:bg-[#eae1da] shadow-sm flex items-center gap-1.5"
+            >
+              <span class="material-symbols-outlined text-[15px] text-emerald-600">storefront</span>
+              <span>FREE SPOTS</span>
+            </button>
+            <button
+              type="button"
+              data-filter="road_blocked"
+              class="filter-pill px-3.5 py-1.5 rounded-xl font-medium bg-white text-[#1f1b17] hover:bg-[#eae1da] shadow-sm flex items-center gap-1.5"
+            >
+              <span class="material-symbols-outlined text-[15px] text-amber-600">block</span>
+              <span>ROAD BLOCKS</span>
+            </button>
+            <button
+              type="button"
+              data-filter="municipal_check"
+              class="filter-pill px-3.5 py-1.5 rounded-xl font-medium bg-white text-[#1f1b17] hover:bg-[#eae1da] shadow-sm flex items-center gap-1.5"
+            >
+              <span class="material-symbols-outlined text-[15px] text-purple-600">local_police</span>
+              <span>MUNICIPAL CHECKS</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Alerts Stream Container -->
+        <div id="alerts-stream-container" class="flex flex-col gap-4">
+          <div class="p-8 rounded-2xl bg-white text-center border border-[#e8dfd8] text-[#635d5c]">
+            <span class="material-symbols-outlined text-[32px] text-[#8e7068] animate-spin">refresh</span>
+            <p class="text-sm font-medium mt-2">Loading live community alerts...</p>
+          </div>
+        </div>
+
+        <!-- Empty State (No Search Results) -->
+        <div id="no-search-results" class="hidden p-8 rounded-2xl bg-white text-center border border-[#e8dfd8] text-[#635d5c] flex-col items-center justify-center">
+          <span class="material-symbols-outlined text-[36px] text-gray-400 mb-2">search_off</span>
+          <h3 class="text-base font-bold text-[#1f1b17]">No Matching Alerts Found</h3>
+          <p class="text-xs text-[#635d5c] mt-1">Try searching with a different keyword or clear your filters.</p>
+        </div>
+
+        <!-- Empty State (All Clear) -->
+        <div id="all-clear-full-empty-state" class="hidden p-10 rounded-2xl bg-white text-center border border-[#e8dfd8] text-[#635d5c] flex-col items-center justify-center shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mb-3">
+            <span class="material-symbols-outlined text-[24px]">verified</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#1f1b17]">All Clear in Your Area</h3>
+          <p class="text-xs text-[#635d5c] mt-1 max-w-sm">No crowds, municipal checks, or road blocks reported nearby right now. Be the first to report!</p>
+          <button
+            onclick="document.getElementById('btn-open-create-alert').click()"
+            type="button"
+            class="mt-4 px-4 py-2 rounded-xl bg-[#aa3000] text-white text-xs font-bold hover:bg-[#852400] transition-all"
           >
-            <div class="flex items-center gap-space-md">
-              <div
-                class="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-700 shrink-0"
-              >
-                <span class="material-symbols-outlined text-[32px]"
-                  >check_circle</span
-                >
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <h3
-                    class="font-headline-sm text-headline-sm text-on-surface font-bold"
-                  >
-                    ✓ You are all caught up
-                  </h3>
-                  <span
-                    class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-caps text-label-caps font-bold"
-                    >MONITORING</span
-                  >
-                </div>
-                <p
-                  class="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
-                >
-                  VYAPAR telemetry is scanning foot-traffic changes across 18
-                  nearby clusters every 30 seconds.
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center gap-space-sm shrink-0">
-              <button
-                class="px-space-md py-2.5 rounded-xl font-label-md text-label-md bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors flex items-center gap-2"
-                onclick="simulateIncomingAlert()"
-                type="button"
-              >
-                <span class="material-symbols-outlined text-[18px]"
-                  >satellite_alt</span
-                >
-                <span>Simulate Signal</span>
-              </button>
-              <a
-                class="px-space-md py-2.5 rounded-xl font-label-md text-label-md bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors flex items-center gap-2"
-                href="recommendations.html"
-              >
-                <span class="material-symbols-outlined text-[18px]">map</span>
-                <span>Explore Map</span>
-              </a>
-            </div>
-          </div>
-          <!-- FALLBACK EMPTY STATE (When all alerts are dismissed) -->
-          <div
-            class="hidden mt-space-2xl p-space-3xl rounded-2xl bg-surface-container-lowest shadow-sm text-center flex-col items-center justify-center animate-fade-in"
-            id="all-clear-full-empty-state"
-          >
-            <div
-              class="w-20 h-20 rounded-3xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-space-md"
-            >
-              <span
-                class="material-symbols-outlined text-[44px]"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                >verified</span
-              >
-            </div>
-            <span
-              class="font-label-caps text-label-caps uppercase tracking-widest text-emerald-700 font-bold mb-2"
-              >Zero Active Disruption</span
-            >
-            <h2
-              class="font-headline-lg text-headline-lg text-on-surface mb-space-xs font-bold"
-            >
-              ALL CLEAR
-            </h2>
-            <p
-              class="font-body-md text-body-md text-on-surface-variant max-w-md mb-space-xl"
-            >
-              No active alerts are affecting your nearby selling spots right
-              now. Footfall patterns across your pinned hotspots remain within
-              normal operational baselines.
-            </p>
-            <div
-              class="flex flex-wrap items-center justify-center gap-space-sm"
-            >
-              <button
-                class="px-space-lg py-2.5 rounded-xl font-label-md text-label-md bg-primary text-on-primary font-semibold hover:bg-primary-container transition-all shadow-sm flex items-center gap-2"
-                onclick="restoreAllAlerts()"
-                type="button"
-              >
-                <span class="material-symbols-outlined text-[18px]"
-                  >refresh</span
-                >
-                <span>Restore Dismissed Alerts</span>
-              </button>
-              <a
-                class="px-space-lg py-2.5 rounded-xl font-label-md text-label-md bg-surface-container-low hover:bg-surface-container text-on-surface font-semibold transition-colors"
-                href="places.html"
-              >
-                Browse Recommended Spots
-              </a>
-            </div>
-          </div>
+            Report an Alert
+          </button>
         </div>
-        <!-- Client-side Interactive Logic -->
-        <script>
-          let activeAlertsCount = 3;
-          let currentFilter = "all";
-
-          // Search input interaction
-          const searchInput = document.getElementById("alert-search-input");
-          const searchClearBtn = document.getElementById("search-clear-btn");
-          const filterPills = document.querySelectorAll(".filter-pill");
-          const filteredLabelFeedback = document.getElementById(
-            "filtered-label-feedback",
-          );
-
-          function updateActiveCounter(delta) {
-            activeAlertsCount = Math.max(0, activeAlertsCount + delta);
-            const counterDisplay = document.getElementById("active-count-num");
-            const pillCount = document.getElementById("pill-count-all");
-            if (counterDisplay) counterDisplay.textContent = activeAlertsCount;
-            if (pillCount) pillCount.textContent = activeAlertsCount;
-
-            // Toggle Empty State if 0
-            const stream = document.getElementById("alerts-stream-container");
-            const caughtUpCard = document.getElementById("all-caught-up-card");
-            const fullEmptyState = document.getElementById(
-              "all-clear-full-empty-state",
-            );
-
-            if (activeAlertsCount === 0) {
-              if (caughtUpCard) caughtUpCard.classList.add("hidden");
-              if (fullEmptyState) {
-                fullEmptyState.classList.remove("hidden");
-                fullEmptyState.classList.add("flex");
-              }
-            } else {
-              if (caughtUpCard) caughtUpCard.classList.remove("hidden");
-              if (fullEmptyState) {
-                fullEmptyState.classList.add("hidden");
-                fullEmptyState.classList.remove("flex");
-              }
-            }
-          }
-
-          function dismissAlert(cardId) {
-            const card = document.getElementById(cardId);
-            if (!card) return;
-
-            card.style.transition = "all 0.3s ease-out";
-            card.style.opacity = "0";
-            card.style.transform = "translateY(-12px) scale(0.98)";
-
-            setTimeout(() => {
-              card.remove();
-              updateActiveCounter(-1);
-              applyFilterAndSearch();
-            }, 300);
-          }
-
-          function applyFilterAndSearch() {
-            const query = searchInput
-              ? searchInput.value.toLowerCase().trim()
-              : "";
-            const cards = document.querySelectorAll(
-              "#alerts-stream-container .alert-card",
-            );
-            let visibleCount = 0;
-
-            cards.forEach((card) => {
-              const categories = (
-                card.getAttribute("data-categories") || ""
-              ).split(" ");
-              const keywords = (
-                card.getAttribute("data-keywords") || ""
-              ).toLowerCase();
-              const textContent = card.innerText.toLowerCase();
-
-              const matchesFilter =
-                currentFilter === "all" || categories.includes(currentFilter);
-              const matchesSearch =
-                query === "" ||
-                keywords.includes(query) ||
-                textContent.includes(query);
-
-              if (matchesFilter && matchesSearch) {
-                card.classList.remove("hidden");
-                visibleCount++;
-              } else {
-                card.classList.add("hidden");
-              }
-            });
-
-            // Handle no search matches UI
-            const noResults = document.getElementById("no-search-results");
-            if (noResults) {
-              if (visibleCount === 0 && activeAlertsCount > 0) {
-                noResults.classList.remove("hidden");
-                noResults.classList.add("flex");
-              } else {
-                noResults.classList.add("hidden");
-                noResults.classList.remove("flex");
-              }
-            }
-
-            if (filteredLabelFeedback) {
-              if (currentFilter === "all") {
-                filteredLabelFeedback.textContent = query
-                  ? `Matching "${query}"`
-                  : "Showing all actionable live signals";
-              } else {
-                filteredLabelFeedback.textContent = `Filtered by ${currentFilter.toUpperCase()}`;
-              }
-            }
-          }
-
-          // Filter Pill clicks
-          filterPills.forEach((pill) => {
-            pill.addEventListener("click", () => {
-              filterPills.forEach((p) => {
-                p.classList.remove(
-                  "bg-primary",
-                  "text-on-primary",
-                  "active-pill",
-                );
-                p.classList.add(
-                  "bg-surface-container-lowest",
-                  "text-on-surface",
-                );
-              });
-
-              pill.classList.remove(
-                "bg-surface-container-lowest",
-                "text-on-surface",
-              );
-              pill.classList.add(
-                "bg-primary",
-                "text-on-primary",
-                "active-pill",
-              );
-
-              currentFilter = pill.getAttribute("data-filter") || "all";
-              applyFilterAndSearch();
-            });
-          });
-
-          // Search input events
-          if (searchInput) {
-            searchInput.addEventListener("input", (e) => {
-              if (searchClearBtn) {
-                if (e.target.value.length > 0) {
-                  searchClearBtn.classList.remove("hidden");
-                  searchClearBtn.classList.add("flex");
-                } else {
-                  searchClearBtn.classList.add("hidden");
-                  searchClearBtn.classList.remove("flex");
-                }
-              }
-              applyFilterAndSearch();
-            });
-          }
-
-          if (searchClearBtn) {
-            searchClearBtn.addEventListener("click", () => {
-              searchInput.value = "";
-              searchClearBtn.classList.add("hidden");
-              searchClearBtn.classList.remove("flex");
-              applyFilterAndSearch();
-            });
-          }
-
-          function resetSearchAndFilters() {
-            if (searchInput) searchInput.value = "";
-            if (searchClearBtn) {
-              searchClearBtn.classList.add("hidden");
-              searchClearBtn.classList.remove("flex");
-            }
-            const allPill = document.querySelector(
-              '.filter-pill[data-filter="all"]',
-            );
-            if (allPill) allPill.click();
-          }
-
-          function simulateIncomingAlert() {
-            const container = document.getElementById(
-              "alerts-stream-container",
-            );
-            if (!container) return;
-
-            const newId = "alert-card-" + Date.now();
-            const newCard = document.createElement("article");
-            newCard.id = newId;
-            newCard.setAttribute("data-categories", "high-priority demand");
-            newCard.setAttribute(
-              "data-keywords",
-              "dadar flower market morning surge floral demand spike fresh stock 0.4km very busy",
-            );
-            newCard.className =
-              "alert-card relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col p-space-lg sm:p-space-xl opacity-0 translate-y-4";
-
-            newCard.innerHTML = `
-      <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary"></div>
-      <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-md">
-        <div class="flex flex-wrap items-center gap-space-xs">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-primary font-label-caps text-label-caps font-bold">
-            <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-            ⚡ NEW SIGNAL • SPATIAL OPPORTUNITY
-          </span>
-          <span class="text-outline-variant font-body-sm select-none">•</span>
-          <div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
-            <span class="material-symbols-outlined text-[15px]">schedule</span>
-            <span>Just now</span>
-          </div>
-        </div>
-        <button type="button" onclick="dismissAlert('${newId}')" class="p-1.5 text-on-surface-variant hover:text-on-surface rounded-lg">
-          <span class="material-symbols-outlined text-[18px]">close</span>
-        </button>
-      </div>
-      <h2 class="font-headline-md text-headline-md text-on-surface tracking-tight leading-snug mb-space-md">
-        Dadar Market Arcade — Customer Rush jumped to 88 (+28%)
-      </h2>
-      <div class="flex flex-wrap items-center gap-space-sm mb-space-lg">
-        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-orange-100 text-orange-900 font-label-md text-label-md font-bold">
-          <span class="w-2.5 h-2.5 rounded-full bg-orange-600"></span>
-          <span>🔥 BUSY CORRIDOR</span>
-        </div>
-        <div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface">
-          <span class="material-symbols-outlined text-primary text-[18px]">trending_up</span>
-          <span>Quick turnaround spot opened</span>
-        </div>
-        <div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-xl font-label-md text-label-md text-on-surface-variant">
-          <span class="material-symbols-outlined text-[18px]">distance</span>
-          <span>0.4 km away</span>
-        </div>
-      </div>
-      <div class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between gap-space-md">
-        <span class="font-body-sm text-body-sm text-on-surface-variant">Optimal stall parking along North Concourse perimeter.</span>
-        <div class="flex items-center gap-2">
-          <button type="button" onclick="dismissAlert('${newId}')" class="px-3 py-2 font-label-md text-label-md text-on-surface-variant">Dismiss</button>
-          <a href="spot.html?id=kurla-station-west" class="px-space-md py-2 rounded-xl font-label-md text-label-md bg-primary text-on-primary font-semibold flex items-center gap-1.5">
-            <span>PREVIEW</span>
-            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-          </a>
-        </div>
-      </div>
-    `;
-
-            container.prepend(newCard);
-            setTimeout(() => {
-              newCard.classList.remove("opacity-0", "translate-y-4");
-            }, 50);
-
-            updateActiveCounter(1);
-            applyFilterAndSearch();
-          }
-
-          function restoreAllAlerts() {
-            location.reload();
-          }
-
-          // Simulated timestamp live ticker
-          let seconds = 30;
-          setInterval(() => {
-            seconds += 1;
-            const timerElem = document.getElementById("update-timer");
-            if (timerElem) {
-              timerElem.textContent = `Updated ${seconds}s ago`;
-            }
-          }, 1000);
-
-          const refreshBtn = document.getElementById("refresh-pulse");
-          if (refreshBtn) {
-            refreshBtn.addEventListener("click", () => {
-              seconds = 1;
-              const timerElem = document.getElementById("update-timer");
-              if (timerElem) timerElem.textContent = "Updated just now";
-            });
-          }
-        </script>
       </main>
+    </div>
+
+    <!-- Create Alert Modal -->
+    <div id="create-alert-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-[#e8dfd8]">
+        <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#aa3000] text-[22px]">add_alert</span>
+            <h3 class="font-bold text-lg text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">Report a Local Situation</h3>
+          </div>
+          <button id="btn-close-alert-modal" type="button" class="text-gray-400 hover:text-gray-700">
+            <span class="material-symbols-outlined text-[22px]">close</span>
+          </button>
+        </div>
+
+        <form id="create-alert-form" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-[#1f1b17] uppercase tracking-wider mb-1.5" for="alert-type-select">
+              Situation Type
+            </label>
+            <select
+              id="alert-type-select"
+              required
+              class="w-full px-4 py-2.5 rounded-xl border border-[#d0c5be] bg-[#fff8f5] focus:bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#aa3000]"
+            >
+              <option value="crowd">👥 Crowd Gathering / Heavy Footfall</option>
+              <option value="spot_free">🟢 Spot Free (Stall Space Open)</option>
+              <option value="road_blocked">🚧 Road Blocked / Construction</option>
+              <option value="municipal_check">👮 Municipal Check / Van Inspection</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-[#1f1b17] uppercase tracking-wider mb-1.5" for="alert-message-input">
+              Description <span class="text-[#8e7068] font-normal lowercase">(optional)</span>
+            </label>
+            <textarea
+              id="alert-message-input"
+              rows="3"
+              placeholder="e.g. Near East Gate entrance, police van checking food stalls..."
+              class="w-full px-4 py-2.5 rounded-xl border border-[#d0c5be] bg-[#fff8f5] focus:bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#aa3000] resize-none"
+            ></textarea>
+          </div>
+
+          <div class="p-3 bg-[#fcf2eb] rounded-xl text-[11px] text-[#635d5c] flex items-start gap-2">
+            <span class="material-symbols-outlined text-[16px] text-[#aa3000] shrink-0">my_location</span>
+            <span>Your current GPS location will be broadcast with this alert. Active for 60 minutes.</span>
+          </div>
+
+          <button
+            type="submit"
+            id="btn-submit-alert"
+            class="w-full py-3 rounded-xl bg-[#aa3000] text-white font-bold text-sm hover:bg-[#852400] transition-all shadow-md active:scale-98"
+          >
+            Broadcast Alert
+          </button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

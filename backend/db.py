@@ -118,12 +118,20 @@ def init_db_indexes(db: Optional[Database] = None) -> Dict[str, Any]:
         results["alerts"] = ["location (2dsphere)", "expires_at", "alert_type"]
 
         # 5. Alert Confirmations collection
-        # - Unique compound index on (alert_id, vendor_id) to prevent duplicate confirmations
+        # - Unique compound index on (alert_id, user_id) to prevent duplicate confirmations
         target_db.alert_confirmations.create_index(
-            [("alert_id", ASCENDING), ("vendor_id", ASCENDING)],
+            [("alert_id", ASCENDING), ("user_id", ASCENDING)],
             unique=True
         )
-        results["alert_confirmations"] = ["(alert_id, vendor_id) (unique compound)"]
+        results["alert_confirmations"] = ["(alert_id, user_id) (unique compound)"]
+
+        # 5b. Alert Flags collection
+        # - Unique compound index on (alert_id, user_id) to prevent duplicate flags
+        target_db.alert_flags.create_index(
+            [("alert_id", ASCENDING), ("user_id", ASCENDING)],
+            unique=True
+        )
+        results["alert_flags"] = ["(alert_id, user_id) (unique compound)"]
 
         # 6. Spots collection
         # - 2dsphere index on location
