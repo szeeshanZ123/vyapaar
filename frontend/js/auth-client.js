@@ -1,5 +1,5 @@
 /**
- * auth-client.js - Centralized Supabase Auth & FastAPI Client
+ * auth-client.js - Centralized Supabase Auth & FastAPI Client Layer
  */
 (function (root, factory) {
   if (typeof module === "object" && module.exports) {
@@ -10,11 +10,6 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
-  // Check if supabase SDK is loaded
-  if (typeof supabase === "undefined") {
-    console.error("Supabase SDK is not loaded. Please include supabase-js CDN.");
-  }
-
   const config = window.VYAPAR_CONFIG || {
     SUPABASE_URL: "https://your-project.supabase.co",
     SUPABASE_ANON_KEY: "your-anon-key",
@@ -22,15 +17,16 @@
   };
 
   // Initialize Supabase Client
-  const client = (typeof supabase !== "undefined" && config.SUPABASE_URL && config.SUPABASE_ANON_KEY)
-    ? supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY)
-    : null;
+  let client = null;
+  if (typeof supabase !== "undefined" && config.SUPABASE_URL && config.SUPABASE_ANON_KEY) {
+    client = supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
+  }
 
   async function getSession() {
     if (!client) return null;
     const { data: { session }, error } = await client.auth.getSession();
     if (error) {
-      console.warn("Error fetching session:", error.message);
+      console.warn("Error fetching Supabase session:", error.message);
       return null;
     }
     return session;
@@ -48,7 +44,8 @@
 
   async function loginWithGoogle() {
     if (!client) throw new Error("Supabase client is not initialized.");
-    const redirectTo = window.location.origin + "/role-selection.html";
+    // Dynamic redirect back to the current domain's login handler
+    const redirectTo = window.location.origin + "/login.html";
     const { error } = await client.auth.signInWithOAuth({
       provider: "google",
       options: {
@@ -82,23 +79,7 @@
     if (client) {
       await client.auth.signOut();
     }
-    window.location.href = "landing.html";
-  }
-
-  async function requireAuth(redirectPath = "login.html") {
-    const session = await getSession();
-    if (!session) {
-      window.location.href = redirectPath;
-      return null;
-    }
-    return session;
-  }
-
-  async function redirectIfAuthenticated(targetPath = "auth-home.html") {
-    const session = await getSession();
-    if (session) {
-      window.location.href = targetPath;
-    }
+    window.location.href = "/";
   }
 
   async function callBackendAPI(endpoint, options = {}) {
@@ -134,6 +115,79 @@
     return responseData;
   }
 
+  async function fetchUserProfile() {
+    try {
+      const res = await callBackendAPI("/api/users/profile");
+      return res?.data || null;
+    } catch (err) {
+      if (err.status === 404) return null;
+      throw err;
+    }
+  }
+
+  async function fetchVendorProfile() {
+    try {
+      const res = await callBackendAPI("/api/vendors/me");
+      return res?.data || null;
+    } catch (err) {
+      if (err.status === 404) return null;
+      throw err;
+    }
+  }
+
+  /**
+   * Auth Guard for Protected Pages (Dashboard, Discover, Recommendations, etc.)
+   * Redirects unauthenticated visitors to Landing Page (/).
+   * If profile is missing, redirects to /onboarding/role.
+   */
+  async function requireAuthOrRedirect() {
+    const session = await getSession();
+    if (!session) {
+      window.location.href = "/";
+      return null;
+    }
+
+    try {
+      const profile = await fetchUserProfile();
+      if (!profile) {
+        window.location.href = "/onboarding/role.html";
+        return null;
+      }
+
+      let vendor = null;
+      if (profile.role === "vendor") {
+        vendor = await fetchVendorProfile().catch(() => null);
+      }
+
+      return { session, user: session.user, profile, vendor };
+    } catch (err) {
+      console.warn("Failed checking user profile:", err);
+      return { session, user: session.user, profile: null, vendor: null };
+    }
+  }
+
+  /**
+   * Auth Guard for Landing / Login / Signup Pages.
+   * If user is already logged in:
+   * - If profile exists -> redirect to /dashboard.html
+   * - If no profile -> redirect to /onboarding/role.html
+   */
+  async function redirectIfAuthenticated() {
+    const session = await getSession();
+    if (!session) return;
+
+    try {
+      const profile = await fetchUserProfile();
+      if (profile) {
+        window.location.href = "/dashboard.html";
+      } else {
+        window.location.href = "/onboarding/role.html";
+      }
+    } catch (err) {
+      window.location.href = "/dashboard.html";
+    }
+  }
+
   return {
     client,
     getSession,
@@ -143,8 +197,10 @@
     loginWithEmail,
     signupWithEmail,
     logout,
-    requireAuth,
-    redirectIfAuthenticated,
-    callBackendAPI
+    callBackendAPI,
+    fetchUserProfile,
+    fetchVendorProfile,
+    requireAuthOrRedirect,
+    redirectIfAuthenticated
   };
 });

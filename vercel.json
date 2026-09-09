@@ -4,11 +4,31 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/landing.html"
+      "destination": "/index.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/login.html"
+    },
+    {
+      "source": "/signup",
+      "destination": "/signup.html"
+    },
+    {
+      "source": "/onboarding/role",
+      "destination": "/onboarding/role.html"
+    },
+    {
+      "source": "/onboarding/vendor",
+      "destination": "/onboarding/vendor.html"
+    },
+    {
+      "source": "/onboarding/user",
+      "destination": "/onboarding/user.html"
     },
     {
       "source": "/dashboard",
-      "destination": "/index.html"
+      "destination": "/dashboard.html"
     },
     {
       "source": "/:page",

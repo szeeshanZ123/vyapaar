@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Vyapar — Authentication Flow Test</title>
+    <title>Vyapar — Hyperlocal Street Vendor Intelligence</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -15,7 +15,7 @@
     <script src="js/config.js"></script>
     <script src="js/auth-client.js"></script>
   </head>
-  <body class="bg-[#fcf8f6] text-[#1f1b17] min-h-screen flex flex-col items-center justify-center p-6 font-sans">
+  <body class="bg-[#fcf8f6] text-[#1f1b17] min-h-screen flex flex-col items-center justify-center p-6 font-sans selection:bg-[#aa3000] selection:text-white">
     <div class="max-w-md w-full text-center bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-[#e8dfd8]">
       
       <!-- Brand Logo & Title -->
@@ -34,35 +34,30 @@
       <!-- Action Buttons -->
       <div class="flex flex-col gap-3.5">
         <a
-          href="login.html"
+          href="/login.html"
           class="w-full py-3.5 px-6 rounded-xl bg-[#aa3000] text-white font-bold text-base hover:bg-[#852400] transition-all shadow-md hover:shadow-lg active:scale-98 text-center"
         >
           Login
         </a>
         <a
-          href="signup.html"
+          href="/signup.html"
           class="w-full py-3.5 px-6 rounded-xl bg-[#f6ece6] text-[#aa3000] font-bold text-base border border-[#e2bfb5] hover:bg-[#eae1da] transition-all active:scale-98 text-center"
         >
           Create Account
         </a>
       </div>
 
-      <!-- Quick Credentials Helper notice if unconfigured -->
-      <div id="config-notice" class="hidden mt-8 text-xs text-left bg-amber-50 border border-amber-200 text-amber-900 p-3.5 rounded-xl">
-        <span class="font-bold block mb-1">⚙️ Supabase Setup:</span>
-        <span class="text-amber-800">Ensure your Supabase project keys are added in <code>frontend/js/config.js</code> or local storage.</span>
+      <div class="mt-8 pt-6 border-t border-[#e8dfd8] text-xs text-[#8e7068]">
+        <p>Hyperlocal intelligence for street vendors & consumers</p>
       </div>
 
     </div>
 
     <script>
-      // If user is already authenticated, redirect to auth-home.html
+      // If user is already authenticated, check profile and redirect accordingly
       document.addEventListener("DOMContentLoaded", async () => {
         if (window.VyaparAuth) {
-          const session = await window.VyaparAuth.getSession();
-          if (session) {
-            window.location.href = "auth-home.html";
-          }
+          await window.VyaparAuth.redirectIfAuthenticated();
         }
       });
     </script>
