@@ -1,22 +1,18 @@
 {
-  "version": 2,
+  "outputDirectory": "frontend",
   "cleanUrls": true,
   "rewrites": [
     {
       "source": "/",
-      "destination": "/frontend/landing.html"
+      "destination": "/landing.html"
     },
     {
-      "source": "/(css|js)/(.*)",
-      "destination": "/frontend/$1/$2"
-    },
-    {
-      "source": "/:page.html",
-      "destination": "/frontend/:page.html"
+      "source": "/dashboard",
+      "destination": "/index.html"
     },
     {
       "source": "/:page",
-      "destination": "/frontend/:page.html"
+      "destination": "/:page.html"
     }
   ]
 }
