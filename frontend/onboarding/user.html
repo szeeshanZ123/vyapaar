@@ -94,8 +94,8 @@
         try {
           await auth.saveUserProfile(name, "user");
 
-          // Success -> Open Dashboard
-          window.location.href = "../dashboard.html";
+          // Success -> Open User Dashboard
+          window.location.href = "../user/dashboard.html";
 
         } catch (err) {
           showError(err.message || "Failed to create user profile. Please try again.");

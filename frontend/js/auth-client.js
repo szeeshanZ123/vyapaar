@@ -287,11 +287,11 @@
   }
 
   /**
-   * Auth Guard for Protected Pages (Dashboard, Discover, Recommendations, etc.)
-   * Redirects unauthenticated visitors to Landing Page (/).
-   * If profile is missing, redirects to /onboarding/role.
+   * Role-based Auth Guard for Protected Pages
+   * Options:
+   *   allowedRole: "vendor" | "user" | null
    */
-  async function requireAuthOrRedirect() {
+  async function requireAuthOrRedirect(options = {}) {
     const session = await getSession();
     if (!session) {
       window.location.href = "/";
@@ -300,16 +300,39 @@
 
     try {
       const profile = await fetchUserProfile();
-      if (!profile) {
+      if (!profile || !profile.role) {
         window.location.href = "/onboarding/role.html";
         return null;
       }
 
+      // Enforce role separation
+      if (options.allowedRole === "vendor") {
+        if (profile.role !== "vendor") {
+          window.location.href = "/user/dashboard.html";
+          return null;
+        }
+        let vendor = await fetchVendorProfile().catch(() => null);
+        if (!vendor) {
+          // If vendor details incomplete
+          window.location.href = "/onboarding/vendor.html";
+          return null;
+        }
+        return { session, user: session.user, profile, vendor };
+      }
+
+      if (options.allowedRole === "user") {
+        if (profile.role !== "user") {
+          window.location.href = "/vendor/dashboard.html";
+          return null;
+        }
+        return { session, user: session.user, profile, vendor: null };
+      }
+
+      // Default generic guard
       let vendor = null;
       if (profile.role === "vendor") {
         vendor = await fetchVendorProfile().catch(() => null);
       }
-
       return { session, user: session.user, profile, vendor };
     } catch (err) {
       console.warn("Failed checking user profile:", err);
@@ -320,7 +343,8 @@
   /**
    * Auth Guard for Landing / Login / Signup Pages.
    * If user is already logged in:
-   * - If profile exists -> redirect to /dashboard.html
+   * - If role === "vendor" -> redirect to /vendor/dashboard.html
+   * - If role === "user" -> redirect to /user/dashboard.html
    * - If no profile -> redirect to /onboarding/role.html
    */
   async function redirectIfAuthenticated() {
@@ -329,13 +353,17 @@
 
     try {
       const profile = await fetchUserProfile();
-      if (profile) {
-        window.location.href = "/dashboard.html";
+      if (profile?.role === "vendor") {
+        window.location.href = "/vendor/dashboard.html";
+      } else if (profile?.role === "user") {
+        window.location.href = "/user/dashboard.html";
+      } else if (profile) {
+        window.location.href = "/vendor/dashboard.html";
       } else {
         window.location.href = "/onboarding/role.html";
       }
     } catch (err) {
-      window.location.href = "/dashboard.html";
+      window.location.href = "/onboarding/role.html";
     }
   }
 

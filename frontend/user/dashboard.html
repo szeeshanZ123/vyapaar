@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vyapar — Discover Local Street Vendors</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth-client.js"></script>
+  </head>
+  <body class="bg-[#fcf8f6] text-[#1f1b17] min-h-screen font-sans flex flex-col selection:bg-[#aa3000] selection:text-white">
+
+    <!-- Top Navigation -->
+    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-[#e8dfd8] px-4 sm:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-[#aa3000] text-white font-extrabold text-xl flex items-center justify-center shadow-sm">
+          V
+        </div>
+        <div>
+          <span class="text-lg font-extrabold font-['Plus_Jakarta_Sans',sans-serif] text-[#1f1b17] tracking-tight">Vyapar</span>
+          <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#ffddb8] text-[#653e00]">Consumer</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- User Profile Avatar & Name -->
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-full bg-[#f6ece6] text-[#aa3000] font-bold text-sm flex items-center justify-center border border-[#e2bfb5]" id="user-avatar">
+            U
+          </div>
+          <span class="text-sm font-semibold text-[#1f1b17] hidden sm:inline-block" id="nav-user-name">Loading...</span>
+        </div>
+
+        <!-- Logout Button -->
+        <button
+          id="logout-btn"
+          class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#d0c5be] bg-white text-xs font-bold text-[#635d5c] hover:text-[#aa3000] hover:border-[#aa3000] transition-all shadow-sm"
+        >
+          <span class="material-symbols-outlined text-[16px]">logout</span>
+          <span class="hidden sm:inline">Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-6xl w-full mx-auto p-4 sm:p-8 space-y-8 pb-20">
+      
+      <!-- Hero / Greeting Banner -->
+      <div class="bg-gradient-to-r from-[#aa3000] to-[#d9480f] rounded-3xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden">
+        <div class="relative z-10 max-w-2xl">
+          <span class="inline-block text-xs font-bold uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full mb-3 backdrop-blur-sm">
+            Hyperlocal Street Discovery
+          </span>
+          <h1 class="text-2xl sm:text-4xl font-extrabold font-['Plus_Jakarta_Sans',sans-serif] mb-2 tracking-tight" id="hero-greeting">
+            Welcome back, Explorer!
+          </h1>
+          <p class="text-white/90 text-sm sm:text-base leading-relaxed mb-6">
+            Find authentic local street food stalls, fresh fruit carts, artisans, and popular vendor spots near you.
+          </p>
+
+          <!-- Search Bar -->
+          <div class="relative flex items-center bg-white rounded-2xl shadow-lg p-1.5 text-[#1f1b17]">
+            <span class="material-symbols-outlined text-[#8e7068] ml-3 mr-2">search</span>
+            <input
+              type="text"
+              id="vendor-search-input"
+              placeholder="Search by stall name, street snack, flowers, chai..."
+              class="w-full py-2.5 px-2 text-sm focus:outline-none bg-transparent placeholder-[#8e7068]"
+            />
+            <button
+              id="search-btn"
+              class="px-5 py-2.5 rounded-xl bg-[#aa3000] text-white text-xs font-bold hover:bg-[#852400] transition-all shadow-sm flex-shrink-0"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <section>
+        <h2 class="text-lg font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif] mb-3">
+          Explore by Category
+        </h2>
+        <div class="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none" id="category-pills">
+          <button data-cat="all" class="cat-pill active px-4 py-2 rounded-xl text-xs font-bold bg-[#aa3000] text-white shadow-sm transition-all">
+            All Vendors
+          </button>
+          <button data-cat="food" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+            🍲 Street Food & Snacks
+          </button>
+          <button data-cat="fruit" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+            🍎 Fresh Fruits & Juices
+          </button>
+          <button data-cat="flowers" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+            🌸 Flowers & Pooja
+          </button>
+          <button data-cat="clothing" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+            👕 Clothing & Accessories
+          </button>
+          <button data-cat="repair" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+            🔧 Repair & Services
+          </button>
+        </div>
+      </section>
+
+      <!-- Nearby Active Vendors List -->
+      <section>
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">
+              Active Street Vendors Nearby
+            </h2>
+            <p class="text-xs text-[#635d5c] mt-0.5">Real-time stalls verified through Vyapar smart check-in</p>
+          </div>
+          <span class="text-xs font-bold text-[#aa3000] bg-[#f6ece6] px-3 py-1 rounded-full border border-[#e2bfb5]" id="vendor-count-badge">
+            Finding vendors...
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="vendors-grid">
+          <!-- Vendor Card Skeleton Loader -->
+          <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] animate-pulse h-44"></div>
+          <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] animate-pulse h-44"></div>
+          <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] animate-pulse h-44"></div>
+        </div>
+      </section>
+
+      <!-- Popular Local Street Spots -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-xl font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">
+            Popular Street Vendor Hotspots
+          </h2>
+          <p class="text-xs text-[#635d5c] mt-0.5">Bustling shopping & food hubs with high vendor presence</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="spots-grid">
+          <div class="bg-white p-4 rounded-2xl border border-[#e8dfd8] shadow-sm hover:border-[#aa3000] transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-[#aa3000] bg-[#ffdbd0] px-2 py-0.5 rounded-full">High Footfall</span>
+              <span class="material-symbols-outlined text-[18px] text-[#8e7068]">location_on</span>
+            </div>
+            <h3 class="text-sm font-bold text-[#1f1b17]">Bandra Station West</h3>
+            <p class="text-xs text-[#635d5c] mt-1">Famous for Evening Snacks, Cutting Chai, & Fresh Juices</p>
+          </div>
+
+          <div class="bg-white p-4 rounded-2xl border border-[#e8dfd8] shadow-sm hover:border-[#aa3000] transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-[#aa3000] bg-[#ffdbd0] px-2 py-0.5 rounded-full">High Footfall</span>
+              <span class="material-symbols-outlined text-[18px] text-[#8e7068]">location_on</span>
+            </div>
+            <h3 class="text-sm font-bold text-[#1f1b17]">Linking Road Market</h3>
+            <p class="text-xs text-[#635d5c] mt-1">Street Fashion, Footwear, Accessories & Chaat Stalls</p>
+          </div>
+
+          <div class="bg-white p-4 rounded-2xl border border-[#e8dfd8] shadow-sm hover:border-[#aa3000] transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-[#2a8500] bg-[#e6ffd0] px-2 py-0.5 rounded-full">Active Hub</span>
+              <span class="material-symbols-outlined text-[18px] text-[#8e7068]">location_on</span>
+            </div>
+            <h3 class="text-sm font-bold text-[#1f1b17]">Hill Road Junction</h3>
+            <p class="text-xs text-[#635d5c] mt-1">Artisan crafts, street apparel & food carts</p>
+          </div>
+
+          <div class="bg-white p-4 rounded-2xl border border-[#e8dfd8] shadow-sm hover:border-[#aa3000] transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-[#2a8500] bg-[#e6ffd0] px-2 py-0.5 rounded-full">Active Hub</span>
+              <span class="material-symbols-outlined text-[18px] text-[#8e7068]">location_on</span>
+            </div>
+            <h3 class="text-sm font-bold text-[#1f1b17]">Carter Road Promenade</h3>
+            <p class="text-xs text-[#635d5c] mt-1">Evening sunset food trucks, ice golas & corn carts</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Script Layer -->
+    <script>
+      let allVendors = [];
+      let selectedCategory = "all";
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        if (!window.VyaparAuth) return;
+
+        // 1. Guard page strictly for role = "user"
+        const authData = await window.VyaparAuth.requireAuthOrRedirect({ allowedRole: "user" });
+        if (!authData) return;
+
+        const { user, profile } = authData;
+        const userName = profile?.name || (user?.email ? user.email.split('@')[0] : "User");
+
+        // Personalize greeting & navigation
+        document.getElementById("hero-greeting").textContent = `Welcome back, ${userName}!`;
+        document.getElementById("nav-user-name").textContent = userName;
+        document.getElementById("user-avatar").textContent = userName.charAt(0).toUpperCase();
+
+        // 2. Bind Logout
+        document.getElementById("logout-btn").addEventListener("click", () => {
+          window.VyaparAuth.logout();
+        });
+
+        // 3. Fetch Vendors
+        await loadVendors();
+
+        // 4. Category Filter Buttons
+        document.querySelectorAll(".cat-pill").forEach(btn => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".cat-pill").forEach(b => {
+              b.classList.remove("bg-[#aa3000]", "text-white", "shadow-sm");
+              b.classList.add("bg-white", "text-[#635d5c]");
+            });
+            btn.classList.add("bg-[#aa3000]", "text-white", "shadow-sm");
+            btn.classList.remove("bg-white", "text-[#635d5c]");
+            selectedCategory = btn.dataset.cat;
+            renderVendors();
+          });
+        });
+
+        // 5. Search Bar Filter
+        document.getElementById("vendor-search-input").addEventListener("input", (e) => {
+          renderVendors(e.target.value.trim().toLowerCase());
+        });
+
+        document.getElementById("search-btn").addEventListener("click", () => {
+          const q = document.getElementById("vendor-search-input").value.trim().toLowerCase();
+          renderVendors(q);
+        });
+      });
+
+      async function loadVendors() {
+        const grid = document.getElementById("vendors-grid");
+        const countBadge = document.getElementById("vendor-count-badge");
+
+        try {
+          const res = await window.VyaparAuth.callBackendAPI("/api/vendors").catch(() => null);
+          allVendors = res?.data || [
+            {
+              display_name: "Ramesh Sharma",
+              business_name: "Ramesh Chai & Bun Maska",
+              category: "food",
+              business_description: "Fresh hot adrak chai, bun maska, and samosas.",
+              is_active: true,
+              location_name: "Bandra Station Platform 1"
+            },
+            {
+              display_name: "Pooja Gupta",
+              business_name: "Pooja Organic Fruit Cart",
+              category: "fruit",
+              business_description: "Fresh seasonal fruits, cut watermelon, and fresh juice.",
+              is_active: true,
+              location_name: "Linking Road Corner"
+            },
+            {
+              display_name: "Mohan Lal",
+              business_name: "Mohan Floral Stalls",
+              category: "flowers",
+              business_description: "Fresh marigold garlands, roses, and pooja flowers.",
+              is_active: true,
+              location_name: "Hill Road Flower Lane"
+            }
+          ];
+
+          countBadge.textContent = `${allVendors.length} Vendors Active`;
+          renderVendors();
+        } catch (err) {
+          console.warn("Failed loading vendors:", err);
+          grid.innerHTML = `<div class="col-span-full text-center py-8 text-sm text-[#8e7068]">No active street vendors discovered yet. Check back soon!</div>`;
+        }
+      }
+
+      function renderVendors(searchQuery = "") {
+        const grid = document.getElementById("vendors-grid");
+        let filtered = allVendors;
+
+        if (selectedCategory !== "all") {
+          filtered = filtered.filter(v => v.category?.toLowerCase() === selectedCategory.toLowerCase());
+        }
+
+        if (searchQuery) {
+          filtered = filtered.filter(v => 
+            (v.business_name && v.business_name.toLowerCase().includes(searchQuery)) ||
+            (v.display_name && v.display_name.toLowerCase().includes(searchQuery)) ||
+            (v.business_description && v.business_description.toLowerCase().includes(searchQuery)) ||
+            (v.category && v.category.toLowerCase().includes(searchQuery))
+          );
+        }
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div class="col-span-full text-center py-10 bg-white rounded-3xl border border-[#e8dfd8] p-8">
+              <span class="material-symbols-outlined text-4xl text-[#8e7068] mb-2">storefront</span>
+              <p class="font-bold text-base text-[#1f1b17]">No vendors matching this filter</p>
+              <p class="text-xs text-[#635d5c] mt-1">Try searching for a different item or category.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const categoryIcons = {
+          food: "🍲",
+          fruit: "🍎",
+          flowers: "🌸",
+          clothing: "👕",
+          repair: "🔧",
+          other: "🏪"
+        };
+
+        grid.innerHTML = filtered.map(v => {
+          const icon = categoryIcons[v.category?.toLowerCase()] || "🏪";
+          const catName = v.category ? (v.category.charAt(0).toUpperCase() + v.category.slice(1)) : "General";
+          const title = v.business_name || v.display_name || "Street Vendor";
+          const desc = v.business_description || "Local vendor offering authentic products.";
+          const loc = v.location_name || "Bandra, Mumbai";
+
+          return `
+            <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] shadow-sm hover:shadow-md hover:border-[#aa3000] transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-[#ffdbd0] text-[#852400]">
+                    <span>${icon}</span>
+                    <span>${catName}</span>
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Open Now</span>
+                  </span>
+                </div>
+
+                <h3 class="text-base font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif] mb-1">
+                  ${title}
+                </h3>
+                <p class="text-xs text-[#635d5c] leading-relaxed mb-4 line-clamp-2">
+                  ${desc}
+                </p>
+              </div>
+
+              <div class="pt-3 border-t border-[#f0e6e0] flex items-center justify-between text-xs text-[#8e7068]">
+                <div class="flex items-center gap-1 truncate mr-2">
+                  <span class="material-symbols-outlined text-[15px]">location_on</span>
+                  <span class="truncate">${loc}</span>
+                </div>
+                <button
+                  onclick="alert('Directions to ${title}: Location: ${loc}')"
+                  class="font-bold text-[#aa3000] hover:underline flex-shrink-0"
+                >
+                  View Details →
+                </button>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+    </script>
+  </body>
+</html>

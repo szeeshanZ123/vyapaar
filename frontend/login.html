@@ -138,16 +138,7 @@
           if (auth.client) {
             auth.client.auth.onAuthStateChange(async (event, session) => {
               if (session && (event === "SIGNED_IN" || event === "INITIAL_SESSION")) {
-                try {
-                  const profile = await auth.fetchUserProfile();
-                  if (profile) {
-                    window.location.href = "dashboard.html";
-                  } else {
-                    window.location.href = "onboarding/role.html";
-                  }
-                } catch (e) {
-                  window.location.href = "onboarding/role.html";
-                }
+                await auth.redirectIfAuthenticated();
               }
             });
           }
@@ -179,18 +170,7 @@
         try {
           const res = await auth.loginWithEmail(email, password);
           if (res?.session) {
-            // Check whether user profile exists in FastAPI
-            try {
-              const profile = await auth.fetchUserProfile();
-              if (profile) {
-                window.location.href = "dashboard.html";
-                return;
-              }
-            } catch (pErr) {
-              console.warn("Profile check failed:", pErr);
-            }
-            // If profile does not exist, navigate to role onboarding
-            window.location.href = "onboarding/role.html";
+            await auth.redirectIfAuthenticated();
           }
         } catch (err) {
           showError(err.message || "Invalid email or password.");

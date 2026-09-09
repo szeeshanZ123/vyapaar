@@ -162,16 +162,7 @@
           if (auth.client) {
             auth.client.auth.onAuthStateChange(async (event, session) => {
               if (session && (event === "SIGNED_IN" || event === "INITIAL_SESSION")) {
-                try {
-                  const profile = await auth.fetchUserProfile();
-                  if (profile) {
-                    window.location.href = "dashboard.html";
-                  } else {
-                    window.location.href = "onboarding/role.html";
-                  }
-                } catch (e) {
-                  window.location.href = "onboarding/role.html";
-                }
+                await auth.redirectIfAuthenticated();
               }
             });
           }

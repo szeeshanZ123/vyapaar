@@ -44,8 +44,16 @@
       "dest": "/frontend/onboarding/user.html"
     },
     {
+      "src": "/vendor/dashboard(\\.html)?",
+      "dest": "/frontend/vendor/dashboard.html"
+    },
+    {
+      "src": "/user/dashboard(\\.html)?",
+      "dest": "/frontend/user/dashboard.html"
+    },
+    {
       "src": "/dashboard(\\.html)?",
-      "dest": "/frontend/dashboard.html"
+      "dest": "/frontend/vendor/dashboard.html"
     },
     {
       "src": "/discover(\\.html)?",
