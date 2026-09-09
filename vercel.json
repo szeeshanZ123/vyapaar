@@ -1,5 +1,83 @@
 {
-  "outputDirectory": "frontend",
-  "cleanUrls": true,
-  "trailingSlash": false
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/frontend/index.html"
+    },
+    {
+      "src": "/login(\\.html)?",
+      "dest": "/frontend/login.html"
+    },
+    {
+      "src": "/signup(\\.html)?",
+      "dest": "/frontend/signup.html"
+    },
+    {
+      "src": "/onboarding/role(\\.html)?",
+      "dest": "/frontend/onboarding/role.html"
+    },
+    {
+      "src": "/onboarding/vendor(\\.html)?",
+      "dest": "/frontend/onboarding/vendor.html"
+    },
+    {
+      "src": "/onboarding/user(\\.html)?",
+      "dest": "/frontend/onboarding/user.html"
+    },
+    {
+      "src": "/role-selection(\\.html)?",
+      "dest": "/frontend/onboarding/role.html"
+    },
+    {
+      "src": "/vendor-onboarding(\\.html)?",
+      "dest": "/frontend/onboarding/vendor.html"
+    },
+    {
+      "src": "/user-onboarding(\\.html)?",
+      "dest": "/frontend/onboarding/user.html"
+    },
+    {
+      "src": "/dashboard(\\.html)?",
+      "dest": "/frontend/dashboard.html"
+    },
+    {
+      "src": "/discover(\\.html)?",
+      "dest": "/frontend/discover.html"
+    },
+    {
+      "src": "/recommendations(\\.html)?",
+      "dest": "/frontend/recommendations.html"
+    },
+    {
+      "src": "/checkin(\\.html)?",
+      "dest": "/frontend/checkin.html"
+    },
+    {
+      "src": "/alerts(\\.html)?",
+      "dest": "/frontend/alerts.html"
+    },
+    {
+      "src": "/spot(\\.html)?",
+      "dest": "/frontend/spot.html"
+    },
+    {
+      "src": "/landing(\\.html)?",
+      "dest": "/frontend/index.html"
+    },
+    {
+      "src": "/(css|js)/(.*)",
+      "dest": "/frontend/$1/$2"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ]
 }
