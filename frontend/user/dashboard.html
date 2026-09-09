@@ -14,8 +14,21 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Leaflet Map CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Leaflet Map JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth-client.js"></script>
   </head>
@@ -45,7 +58,7 @@
         <!-- Logout Button -->
         <button
           id="logout-btn"
-          class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#d0c5be] bg-white text-xs font-bold text-[#635d5c] hover:text-[#aa3000] hover:border-[#aa3000] transition-all shadow-sm"
+          class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#d0c5be] bg-white text-xs font-bold text-[#635d5c] hover:text-[#aa3000] hover:border-[#aa3000] transition-all shadow-sm cursor-pointer"
         >
           <span class="material-symbols-outlined text-[16px]">logout</span>
           <span class="hidden sm:inline">Logout</span>
@@ -66,7 +79,7 @@
             Welcome back, Explorer!
           </h1>
           <p class="text-white/90 text-sm sm:text-base leading-relaxed mb-6">
-            Find authentic local street food stalls, fresh fruit carts, artisans, and popular vendor spots near you.
+            Find authentic local street food stalls, fresh fruit carts, artisans, and popular vendor spots verified in real-time.
           </p>
 
           <!-- Search Bar -->
@@ -80,7 +93,7 @@
             />
             <button
               id="search-btn"
-              class="px-5 py-2.5 rounded-xl bg-[#aa3000] text-white text-xs font-bold hover:bg-[#852400] transition-all shadow-sm flex-shrink-0"
+              class="px-5 py-2.5 rounded-xl bg-[#aa3000] text-white text-xs font-bold hover:bg-[#852400] transition-all shadow-sm flex-shrink-0 cursor-pointer"
             >
               Search
             </button>
@@ -88,28 +101,55 @@
         </div>
       </div>
 
+      <!-- GPS Status & Map Section -->
+      <section class="bg-white rounded-3xl p-5 sm:p-6 border border-[#e8dfd8] shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#aa3000] text-[22px]">map</span>
+            <h2 class="text-lg font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">
+              Live Street Map
+            </h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-xs text-[#635d5c] font-medium" id="user-location-status">
+              Locating your device...
+            </span>
+            <button
+              id="refresh-location-btn"
+              class="ml-2 text-xs font-bold text-[#aa3000] hover:underline flex items-center gap-1 cursor-pointer"
+            >
+              <span class="material-symbols-outlined text-[15px]">my_location</span> Refresh GPS
+            </button>
+          </div>
+        </div>
+
+        <!-- Leaflet Map Canvas -->
+        <div id="user-map" class="w-full h-72 sm:h-96 rounded-2xl border border-[#e8dfd8] shadow-inner z-10"></div>
+      </section>
+
       <!-- Category Filter Pills -->
       <section>
         <h2 class="text-lg font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif] mb-3">
           Explore by Category
         </h2>
         <div class="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none" id="category-pills">
-          <button data-cat="all" class="cat-pill active px-4 py-2 rounded-xl text-xs font-bold bg-[#aa3000] text-white shadow-sm transition-all">
+          <button data-cat="all" class="cat-pill active px-4 py-2 rounded-xl text-xs font-bold bg-[#aa3000] text-white shadow-sm transition-all cursor-pointer">
             All Vendors
           </button>
-          <button data-cat="food" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+          <button data-cat="food" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all cursor-pointer">
             🍲 Street Food & Snacks
           </button>
-          <button data-cat="fruit" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+          <button data-cat="fruit" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all cursor-pointer">
             🍎 Fresh Fruits & Juices
           </button>
-          <button data-cat="flowers" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+          <button data-cat="flowers" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all cursor-pointer">
             🌸 Flowers & Pooja
           </button>
-          <button data-cat="clothing" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+          <button data-cat="clothing" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all cursor-pointer">
             👕 Clothing & Accessories
           </button>
-          <button data-cat="repair" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all">
+          <button data-cat="repair" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#635d5c] border border-[#e8dfd8] hover:border-[#aa3000] hover:text-[#aa3000] transition-all cursor-pointer">
             🔧 Repair & Services
           </button>
         </div>
@@ -122,7 +162,7 @@
             <h2 class="text-xl font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">
               Active Street Vendors Nearby
             </h2>
-            <p class="text-xs text-[#635d5c] mt-0.5">Real-time stalls verified through Vyapar smart check-in</p>
+            <p class="text-xs text-[#635d5c] mt-0.5">Real-time stalls verified through Vyapar live GPS check-in</p>
           </div>
           <span class="text-xs font-bold text-[#aa3000] bg-[#f6ece6] px-3 py-1 rounded-full border border-[#e2bfb5]" id="vendor-count-badge">
             Finding vendors...
@@ -130,67 +170,84 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="vendors-grid">
-          <!-- Vendor Card Skeleton Loader -->
-          <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] animate-pulse h-44"></div>
-          <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] animate-pulse h-44"></div>
-          <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] animate-pulse h-44"></div>
-        </div>
-      </section>
-
-      <!-- Popular Local Street Spots -->
-      <section>
-        <div class="mb-4">
-          <h2 class="text-xl font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">
-            Popular Street Vendor Hotspots
-          </h2>
-          <p class="text-xs text-[#635d5c] mt-0.5">Bustling shopping & food hubs with high vendor presence</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="spots-grid">
-          <div class="bg-white p-4 rounded-2xl border border-[#e8dfd8] shadow-sm hover:border-[#aa3000] transition-all">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-[#aa3000] bg-[#ffdbd0] px-2 py-0.5 rounded-full">High Footfall</span>
-              <span class="material-symbols-outlined text-[18px] text-[#8e7068]">location_on</span>
-            </div>
-            <h3 class="text-sm font-bold text-[#1f1b17]">Bandra Station West</h3>
-            <p class="text-xs text-[#635d5c] mt-1">Famous for Evening Snacks, Cutting Chai, & Fresh Juices</p>
-          </div>
-
-          <div class="bg-white p-4 rounded-2xl border border-[#e8dfd8] shadow-sm hover:border-[#aa3000] transition-all">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-[#aa3000] bg-[#ffdbd0] px-2 py-0.5 rounded-full">High Footfall</span>
-              <span class="material-symbols-outlined text-[18px] text-[#8e7068]">location_on</span>
-            </div>
-            <h3 class="text-sm font-bold text-[#1f1b17]">Linking Road Market</h3>
-            <p class="text-xs text-[#635d5c] mt-1">Street Fashion, Footwear, Accessories & Chaat Stalls</p>
-          </div>
-
-          <div class="bg-white p-4 rounded-2xl border border-[#e8dfd8] shadow-sm hover:border-[#aa3000] transition-all">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-[#2a8500] bg-[#e6ffd0] px-2 py-0.5 rounded-full">Active Hub</span>
-              <span class="material-symbols-outlined text-[18px] text-[#8e7068]">location_on</span>
-            </div>
-            <h3 class="text-sm font-bold text-[#1f1b17]">Hill Road Junction</h3>
-            <p class="text-xs text-[#635d5c] mt-1">Artisan crafts, street apparel & food carts</p>
-          </div>
-
-          <div class="bg-white p-4 rounded-2xl border border-[#e8dfd8] shadow-sm hover:border-[#aa3000] transition-all">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-[#2a8500] bg-[#e6ffd0] px-2 py-0.5 rounded-full">Active Hub</span>
-              <span class="material-symbols-outlined text-[18px] text-[#8e7068]">location_on</span>
-            </div>
-            <h3 class="text-sm font-bold text-[#1f1b17]">Carter Road Promenade</h3>
-            <p class="text-xs text-[#635d5c] mt-1">Evening sunset food trucks, ice golas & corn carts</p>
-          </div>
+          <!-- Skeleton Loaders -->
+          <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] animate-pulse h-48"></div>
+          <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] animate-pulse h-48"></div>
+          <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] animate-pulse h-48"></div>
         </div>
       </section>
 
     </main>
 
+    <!-- Vendor Details Modal -->
+    <div id="vendor-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+      <div class="bg-white max-w-lg w-full rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#e8dfd8] relative max-h-[90vh] overflow-y-auto">
+        <button
+          id="close-modal-btn"
+          class="absolute top-5 right-5 w-8 h-8 rounded-full bg-[#f6ece6] text-[#8e7068] hover:text-[#aa3000] flex items-center justify-center font-bold text-lg cursor-pointer"
+        >
+          ✕
+        </button>
+
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold px-3 py-1 rounded-full bg-[#ffdbd0] text-[#852400]" id="modal-category">Category</span>
+          <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Open Now</span>
+          </span>
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif] mb-1" id="modal-business-name">
+          Business Name
+        </h3>
+        <p class="text-xs text-[#635d5c] mb-4" id="modal-owner-name">Operated by Vendor</p>
+
+        <p class="text-sm text-[#4b4644] leading-relaxed mb-6" id="modal-description">
+          Vendor description will appear here.
+        </p>
+
+        <div class="bg-[#fff8f5] p-4 rounded-2xl border border-[#e8dfd8] mb-6 space-y-2 text-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-[#635d5c]">Distance from you:</span>
+            <span class="font-bold text-[#aa3000]" id="modal-distance">--</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-[#635d5c]">Last Verified GPS Check-in:</span>
+            <span class="font-semibold text-[#1f1b17]" id="modal-last-active">Just now</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a
+            id="modal-directions-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 py-3.5 px-4 rounded-xl bg-[#aa3000] text-white font-bold text-sm hover:bg-[#852400] transition-all shadow-md text-center flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined text-[18px]">directions</span>
+            Get Directions
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!-- Script Layer -->
     <script>
+      let map = null;
+      let userMarker = null;
+      let vendorMarkers = [];
       let allVendors = [];
       let selectedCategory = "all";
+      let userCoords = { lat: 19.0760, lng: 72.8777 }; // default center (Mumbai)
+
+      const categoryIcons = {
+        food: "🍲",
+        fruit: "🍎",
+        flowers: "🌸",
+        clothing: "👕",
+        repair: "🔧",
+        other: "🏪"
+      };
 
       document.addEventListener("DOMContentLoaded", async () => {
         if (!window.VyaparAuth) return;
@@ -200,7 +257,7 @@
         if (!authData) return;
 
         const { user, profile } = authData;
-        const userName = profile?.name || (user?.email ? user.email.split('@')[0] : "User");
+        const userName = profile?.name || (user?.email ? user.email.split('@')[0] : "Explorer");
 
         // Personalize greeting & navigation
         document.getElementById("hero-greeting").textContent = `Welcome back, ${userName}!`;
@@ -212,10 +269,13 @@
           window.VyaparAuth.logout();
         });
 
-        // 3. Fetch Vendors
-        await loadVendors();
+        // 3. Initialize Leaflet Map
+        initLeafletMap();
 
-        // 4. Category Filter Buttons
+        // 4. Request Real Browser Geolocation
+        acquireUserLocation();
+
+        // 5. Category Filter Buttons
         document.querySelectorAll(".cat-pill").forEach(btn => {
           btn.addEventListener("click", () => {
             document.querySelectorAll(".cat-pill").forEach(b => {
@@ -226,10 +286,11 @@
             btn.classList.remove("bg-white", "text-[#635d5c]");
             selectedCategory = btn.dataset.cat;
             renderVendors();
+            updateMapMarkers();
           });
         });
 
-        // 5. Search Bar Filter
+        // 6. Search Bar Filter
         document.getElementById("vendor-search-input").addEventListener("input", (e) => {
           renderVendors(e.target.value.trim().toLowerCase());
         });
@@ -238,51 +299,168 @@
           const q = document.getElementById("vendor-search-input").value.trim().toLowerCase();
           renderVendors(q);
         });
+
+        // 7. Refresh GPS button
+        document.getElementById("refresh-location-btn").addEventListener("click", () => {
+          acquireUserLocation();
+        });
+
+        // 8. Modal Close
+        document.getElementById("close-modal-btn").addEventListener("click", () => {
+          document.getElementById("vendor-modal").classList.add("hidden");
+        });
       });
 
-      async function loadVendors() {
-        const grid = document.getElementById("vendors-grid");
+      function initLeafletMap() {
+        if (typeof L === "undefined") return;
+
+        map = L.map("user-map").setView([userCoords.lat, userCoords.lng], 13);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // User Marker Icon
+        const userIcon = L.divIcon({
+          className: "user-gps-marker",
+          html: `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:24px;height:24px;">
+                   <span style="position:absolute;width:24px;height:24px;border-radius:50%;background:#3b82f6;opacity:0.4;animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></span>
+                   <div style="width:14px;height:14px;border-radius:50%;background:#2563eb;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div>
+                 </div>`,
+          iconSize: [24, 24],
+          iconAnchor: [12, 12]
+        });
+
+        userMarker = L.marker([userCoords.lat, userCoords.lng], { icon: userIcon })
+          .addTo(map)
+          .bindPopup("<b>📍 You are here</b>");
+      }
+
+      function acquireUserLocation() {
+        const statusEl = document.getElementById("user-location-status");
+        if (statusEl) statusEl.textContent = "Acquiring your GPS location...";
+
+        if (!navigator.geolocation) {
+          if (statusEl) statusEl.textContent = "Geolocation not supported. Showing general area.";
+          fetchRealActiveVendors(userCoords.lat, userCoords.lng);
+          return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            userCoords = {
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude
+            };
+            if (statusEl) {
+              statusEl.textContent = `GPS Location: ${userCoords.lat.toFixed(4)}, ${userCoords.lng.toFixed(4)}`;
+            }
+
+            if (map && userMarker) {
+              userMarker.setLatLng([userCoords.lat, userCoords.lng]);
+              map.setView([userCoords.lat, userCoords.lng], 14);
+            }
+
+            fetchRealActiveVendors(userCoords.lat, userCoords.lng);
+          },
+          (err) => {
+            console.warn("Location permission denied or unavailable:", err);
+            if (statusEl) {
+              statusEl.textContent = "Location access needed for exact distance. Showing all active spots.";
+            }
+            fetchRealActiveVendors(userCoords.lat, userCoords.lng);
+          },
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+        );
+      }
+
+      async function fetchRealActiveVendors(lat, lng) {
         const countBadge = document.getElementById("vendor-count-badge");
+        if (countBadge) countBadge.textContent = "Finding vendors...";
 
         try {
-          const res = await window.VyaparAuth.callBackendAPI("/api/vendors").catch(() => null);
-          allVendors = res?.data || [
-            {
-              display_name: "Ramesh Sharma",
-              business_name: "Ramesh Chai & Bun Maska",
-              category: "food",
-              business_description: "Fresh hot adrak chai, bun maska, and samosas.",
-              is_active: true,
-              location_name: "Bandra Station Platform 1"
-            },
-            {
-              display_name: "Pooja Gupta",
-              business_name: "Pooja Organic Fruit Cart",
-              category: "fruit",
-              business_description: "Fresh seasonal fruits, cut watermelon, and fresh juice.",
-              is_active: true,
-              location_name: "Linking Road Corner"
-            },
-            {
-              display_name: "Mohan Lal",
-              business_name: "Mohan Floral Stalls",
-              category: "flowers",
-              business_description: "Fresh marigold garlands, roses, and pooja flowers.",
-              is_active: true,
-              location_name: "Hill Road Flower Lane"
-            }
-          ];
+          // Call Real FastAPI Active Vendors endpoint
+          const url = `/api/vendors/active?lat=${lat}&lng=${lng}&radius=10000`;
+          const res = await window.VyaparAuth.callBackendAPI(url);
+          allVendors = res?.data || [];
 
-          countBadge.textContent = `${allVendors.length} Vendors Active`;
+          if (countBadge) {
+            countBadge.textContent = `${allVendors.length} Vendors Active`;
+          }
+
           renderVendors();
+          updateMapMarkers();
         } catch (err) {
-          console.warn("Failed loading vendors:", err);
-          grid.innerHTML = `<div class="col-span-full text-center py-8 text-sm text-[#8e7068]">No active street vendors discovered yet. Check back soon!</div>`;
+          console.warn("Error fetching real active vendors:", err);
+          allVendors = [];
+          if (countBadge) countBadge.textContent = "0 Vendors Active";
+          renderVendors();
         }
       }
 
-      function renderVendors(searchQuery = "") {
-        const grid = document.getElementById("vendors-grid");
+      function updateMapMarkers() {
+        if (!map || typeof L === "undefined") return;
+
+        // Remove old markers
+        vendorMarkers.forEach(m => map.removeLayer(m));
+        vendorMarkers = [];
+
+        let filtered = getFilteredVendors();
+
+        filtered.forEach(v => {
+          const loc = v.current_location?.coordinates;
+          if (!loc || loc.length < 2) return;
+          const vLat = loc[1];
+          const vLng = loc[0];
+
+          const iconChar = categoryIcons[v.category?.toLowerCase()] || "🏪";
+          const title = v.business_name || v.display_name || "Street Vendor";
+          const distStr = v.distance_meters != null 
+            ? (v.distance_meters < 1000 ? `${Math.round(v.distance_meters)}m away` : `${(v.distance_meters/1000).toFixed(1)}km away`)
+            : "Active Stall";
+
+          const vendorIcon = L.divIcon({
+            className: "vendor-marker-pin",
+            html: `<div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:12px;background:#aa3000;color:white;font-size:16px;box-shadow:0 3px 6px rgba(170,48,0,0.4);border:2px solid white;cursor:pointer;">
+                     ${iconChar}
+                   </div>`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16]
+          });
+
+          const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userCoords.lat},${userCoords.lng}&destination=${vLat},${vLng}&travelmode=walking`;
+
+          const popupContent = `
+            <div style="font-family:sans-serif;min-width:160px;padding:2px;">
+              <span style="display:inline-block;font-size:10px;font-weight:bold;background:#ffdbd0;color:#852400;padding:2px 6px;border-radius:6px;text-transform:uppercase;">
+                ${v.category || 'Vendor'}
+              </span>
+              <h4 style="font-size:14px;font-weight:bold;margin:4px 0 2px 0;color:#1f1b17;">${title}</h4>
+              <p style="font-size:11px;color:#635d5c;margin:0 0 8px 0;">${distStr}</p>
+              <div style="display:flex;gap:4px;">
+                <a href="${directionsUrl}" target="_blank" rel="noopener noreferrer" style="flex:1;background:#aa3000;color:white;font-size:11px;font-weight:bold;padding:4px 8px;border-radius:6px;text-align:center;text-decoration:none;">
+                  Directions
+                </a>
+              </div>
+            </div>
+          `;
+
+          const marker = L.marker([vLat, vLng], { icon: vendorIcon })
+            .addTo(map)
+            .bindPopup(popupContent);
+
+          vendorMarkers.push(marker);
+        });
+
+        // Fit map bounds if markers exist
+        if (vendorMarkers.length > 0 && map) {
+          const group = L.featureGroup([...vendorMarkers, userMarker]);
+          map.fitBounds(group.getBounds().pad(0.2));
+        }
+      }
+
+      function getFilteredVendors(searchQuery = "") {
         let filtered = allVendors;
 
         if (selectedCategory !== "all") {
@@ -298,32 +476,42 @@
           );
         }
 
+        return filtered;
+      }
+
+      function renderVendors(searchQuery = "") {
+        const grid = document.getElementById("vendors-grid");
+        const filtered = getFilteredVendors(searchQuery);
+
         if (filtered.length === 0) {
           grid.innerHTML = `
-            <div class="col-span-full text-center py-10 bg-white rounded-3xl border border-[#e8dfd8] p-8">
+            <div class="col-span-full text-center py-12 bg-white rounded-3xl border border-[#e8dfd8] p-8">
               <span class="material-symbols-outlined text-4xl text-[#8e7068] mb-2">storefront</span>
-              <p class="font-bold text-base text-[#1f1b17]">No vendors matching this filter</p>
-              <p class="text-xs text-[#635d5c] mt-1">Try searching for a different item or category.</p>
+              <p class="font-bold text-base text-[#1f1b17]">No active vendors found nearby</p>
+              <p class="text-xs text-[#635d5c] mt-1 max-w-sm mx-auto">
+                Vendors will appear here in real-time as they check into their selling stalls on Vyapar.
+              </p>
             </div>
           `;
           return;
         }
 
-        const categoryIcons = {
-          food: "🍲",
-          fruit: "🍎",
-          flowers: "🌸",
-          clothing: "👕",
-          repair: "🔧",
-          other: "🏪"
-        };
-
-        grid.innerHTML = filtered.map(v => {
+        grid.innerHTML = filtered.map((v, idx) => {
           const icon = categoryIcons[v.category?.toLowerCase()] || "🏪";
           const catName = v.category ? (v.category.charAt(0).toUpperCase() + v.category.slice(1)) : "General";
           const title = v.business_name || v.display_name || "Street Vendor";
-          const desc = v.business_description || "Local vendor offering authentic products.";
-          const loc = v.location_name || "Bandra, Mumbai";
+          const owner = v.display_name ? `By ${v.display_name}` : "";
+          const desc = v.business_description || "Local vendor offering authentic goods and fresh products.";
+          
+          const locCoords = v.current_location?.coordinates;
+          const vLat = locCoords ? locCoords[1] : userCoords.lat;
+          const vLng = locCoords ? locCoords[0] : userCoords.lng;
+
+          const distStr = v.distance_meters != null 
+            ? (v.distance_meters < 1000 ? `${Math.round(v.distance_meters)} m away` : `${(v.distance_meters/1000).toFixed(1)} km away`)
+            : "Active Stall";
+
+          const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userCoords.lat},${userCoords.lng}&destination=${vLat},${vLng}&travelmode=walking`;
 
           return `
             <div class="bg-white p-5 rounded-2xl border border-[#e8dfd8] shadow-sm hover:shadow-md hover:border-[#aa3000] transition-all flex flex-col justify-between">
@@ -339,9 +527,10 @@
                   </span>
                 </div>
 
-                <h3 class="text-base font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif] mb-1">
+                <h3 class="text-base font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif] mb-0.5">
                   ${title}
                 </h3>
+                <p class="text-xs text-[#8e7068] mb-2">${owner}</p>
                 <p class="text-xs text-[#635d5c] leading-relaxed mb-4 line-clamp-2">
                   ${desc}
                 </p>
@@ -349,20 +538,63 @@
 
               <div class="pt-3 border-t border-[#f0e6e0] flex items-center justify-between text-xs text-[#8e7068]">
                 <div class="flex items-center gap-1 truncate mr-2">
-                  <span class="material-symbols-outlined text-[15px]">location_on</span>
-                  <span class="truncate">${loc}</span>
+                  <span class="material-symbols-outlined text-[15px] text-[#aa3000]">near_me</span>
+                  <span class="font-bold text-[#aa3000]">${distStr}</span>
                 </div>
-                <button
-                  onclick="alert('Directions to ${title}: Location: ${loc}')"
-                  class="font-bold text-[#aa3000] hover:underline flex-shrink-0"
-                >
-                  View Details →
-                </button>
+                <div class="flex items-center gap-2">
+                  <button
+                    onclick="openVendorModal(${idx})"
+                    class="font-semibold text-[#635d5c] hover:text-[#aa3000] hover:underline cursor-pointer"
+                  >
+                    Details
+                  </button>
+                  <a
+                    href="${directionsUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-bold bg-[#aa3000] text-white px-3 py-1.5 rounded-lg hover:bg-[#852400] transition-all shadow-xs flex items-center gap-1"
+                  >
+                    <span>Directions</span>
+                    <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+                  </a>
+                </div>
               </div>
             </div>
           `;
         }).join("");
       }
+
+      window.openVendorModal = function(index) {
+        const v = allVendors[index];
+        if (!v) return;
+
+        const title = v.business_name || v.display_name || "Street Vendor";
+        const owner = v.display_name ? `Operated by ${v.display_name}` : "Verified Street Vendor";
+        const desc = v.business_description || "Verified local vendor providing authentic products. Check in at their stall for fresh offerings.";
+        const cat = v.category ? (v.category.charAt(0).toUpperCase() + v.category.slice(1)) : "General";
+
+        const locCoords = v.current_location?.coordinates;
+        const vLat = locCoords ? locCoords[1] : userCoords.lat;
+        const vLng = locCoords ? locCoords[0] : userCoords.lng;
+
+        const distStr = v.distance_meters != null 
+          ? (v.distance_meters < 1000 ? `${Math.round(v.distance_meters)} m away` : `${(v.distance_meters/1000).toFixed(1)} km away`)
+          : "Near your active zone";
+
+        const lastActive = v.last_active_at ? new Date(v.last_active_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "Recently active";
+
+        document.getElementById("modal-business-name").textContent = title;
+        document.getElementById("modal-owner-name").textContent = owner;
+        document.getElementById("modal-description").textContent = desc;
+        document.getElementById("modal-category").textContent = cat;
+        document.getElementById("modal-distance").textContent = distStr;
+        document.getElementById("modal-last-active").textContent = lastActive;
+
+        const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userCoords.lat},${userCoords.lng}&destination=${vLat},${vLng}&travelmode=walking`;
+        document.getElementById("modal-directions-btn").setAttribute("href", directionsUrl);
+
+        document.getElementById("vendor-modal").classList.remove("hidden");
+      };
     </script>
   </body>
 </html>
