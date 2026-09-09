@@ -3,150 +3,68 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Vyapar — Smart Location Intelligence for Street Vendors</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-      rel="stylesheet"
-    />
+    <title>Vyapar — Authentication Flow Test</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#aa3000",
-              "primary-container": "#d04411",
-              "on-primary": "#ffffff",
-              surface: "#fff8f5",
-              "surface-container": "#f6ece6",
-              "surface-container-high": "#f0e6e0",
-              "surface-container-lowest": "#ffffff",
-              "on-surface": "#1f1b17",
-              "on-surface-variant": "#5a4139",
-              outline: "#8e7068",
-              tertiary: "#825100",
-            },
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              display: ["Plus Jakarta Sans", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-      }
-      h1, h2, h3, .font-display {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-      }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth-client.js"></script>
   </head>
-  <body class="bg-surface text-on-surface min-h-screen flex flex-col justify-between selection:bg-primary selection:text-white">
-    <!-- Navbar -->
-    <header class="border-b border-outline/20 bg-surface-container-lowest/80 backdrop-blur sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-xl shadow-md">
-            V
-          </div>
-          <div>
-            <span class="font-display font-extrabold text-xl tracking-tight text-primary">VYAPAR</span>
-            <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary uppercase tracking-wider">Hyperlocal AI</span>
-          </div>
-        </div>
-        <nav class="flex items-center gap-3 sm:gap-6">
-          <a href="index.html" class="text-sm font-semibold hover:text-primary transition-colors">Dashboard</a>
-          <a href="discover.html" class="text-sm font-semibold hover:text-primary transition-colors">Discover</a>
-          <a href="recommendations.html" class="text-sm font-semibold hover:text-primary transition-colors">AI Recommendations</a>
-          <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-bold shadow-md hover:bg-primary-container transition-all hover:scale-105 active:scale-95">
-            Launch App
-            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-          </a>
-        </nav>
+  <body class="bg-[#fcf8f6] text-[#1f1b17] min-h-screen flex flex-col items-center justify-center p-6 font-sans">
+    <div class="max-w-md w-full text-center bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-[#e8dfd8]">
+      
+      <!-- Brand Logo & Title -->
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#aa3000] text-white font-extrabold text-3xl shadow-md mb-6">
+        V
       </div>
-    </header>
 
-    <!-- Hero Section -->
-    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 flex flex-col items-center text-center">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-bold uppercase tracking-wider mb-6 animate-pulse">
-        <span class="material-symbols-outlined text-base">local_fire_department</span>
-        Real-time Footfall & Demand Intelligence
-      </div>
-      
-      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-on-surface max-w-4xl leading-tight">
-        Maximize daily sales for <span class="text-primary underline decoration-primary/40">street vendors</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-[#1f1b17] tracking-tight mb-3 font-['Plus_Jakarta_Sans',sans-serif]">
+        Vyapar
       </h1>
-      
-      <p class="mt-6 text-lg sm:text-xl text-on-surface-variant max-w-2xl">
-        Vyapar combines real-time transit telemetry, weather forecasting, crowd density, and peer vendor coordination to recommend high-profit vending spots in real-time.
+
+      <p class="text-[#635d5c] text-base mb-8 leading-relaxed">
+        Smart location intelligence and real-time demand forecasting for local street vendors.
       </p>
 
-      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-        <a href="index.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-primary text-white font-bold text-base shadow-lg shadow-primary/20 hover:bg-primary-container transition-all hover:scale-105 active:scale-95">
-          <span class="material-symbols-outlined">dashboard</span>
-          Open Vendor Dashboard
+      <!-- Action Buttons -->
+      <div class="flex flex-col gap-3.5">
+        <a
+          href="login.html"
+          class="w-full py-3.5 px-6 rounded-xl bg-[#aa3000] text-white font-bold text-base hover:bg-[#852400] transition-all shadow-md hover:shadow-lg active:scale-98 text-center"
+        >
+          Login
         </a>
-        <a href="discover.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-surface-container-high text-on-surface font-bold text-base border border-outline/20 hover:bg-surface-container transition-all hover:scale-105 active:scale-95">
-          <span class="material-symbols-outlined text-primary">explore</span>
-          Explore Hotspots & Map
+        <a
+          href="signup.html"
+          class="w-full py-3.5 px-6 rounded-xl bg-[#f6ece6] text-[#aa3000] font-bold text-base border border-[#e2bfb5] hover:bg-[#eae1da] transition-all active:scale-98 text-center"
+        >
+          Create Account
         </a>
       </div>
 
-      <!-- Feature Grid -->
-      <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 w-full text-left">
-        <div class="p-6 rounded-2xl bg-surface-container-lowest border border-outline/10 shadow-sm hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 rounded-xl bg-orange-100 text-primary flex items-center justify-center mb-4">
-            <span class="material-symbols-outlined text-2xl">trending_up</span>
-          </div>
-          <h3 class="font-display text-xl font-bold text-on-surface">Demand Spike Alerts</h3>
-          <p class="mt-2 text-sm text-on-surface-variant leading-relaxed">
-            Get instant alerts when train transit, local events, or weather shifts drive thousands of potential customers to nearby spots.
-          </p>
-          <a href="alerts.html" class="inline-flex items-center gap-1 mt-4 text-xs font-bold text-primary hover:underline">
-            View Live Alerts <span class="material-symbols-outlined text-sm">chevron_right</span>
-          </a>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-surface-container-lowest border border-outline/10 shadow-sm hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 rounded-xl bg-amber-100 text-tertiary flex items-center justify-center mb-4">
-            <span class="material-symbols-outlined text-2xl">psychology</span>
-          </div>
-          <h3 class="font-display text-xl font-bold text-on-surface">AI Spot Recommendation</h3>
-          <p class="mt-2 text-sm text-on-surface-variant leading-relaxed">
-            Personalized recommendations tailored to your category (Chai, Snacks, Produce, Clothing) with predicted profit uplift.
-          </p>
-          <a href="recommendations.html" class="inline-flex items-center gap-1 mt-4 text-xs font-bold text-primary hover:underline">
-            See AI Engine <span class="material-symbols-outlined text-sm">chevron_right</span>
-          </a>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-surface-container-lowest border border-outline/10 shadow-sm hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center mb-4">
-            <span class="material-symbols-outlined text-2xl">pin_drop</span>
-          </div>
-          <h3 class="font-display text-xl font-bold text-on-surface">One-Tap Check-In</h3>
-          <p class="mt-2 text-sm text-on-surface-variant leading-relaxed">
-            Broadcast your active spot to avoid overcrowded niches and let nearby buyers discover your daily specials.
-          </p>
-          <a href="checkin.html" class="inline-flex items-center gap-1 mt-4 text-xs font-bold text-primary hover:underline">
-            Try Check-In Flow <span class="material-symbols-outlined text-sm">chevron_right</span>
-          </a>
-        </div>
+      <!-- Quick Credentials Helper notice if unconfigured -->
+      <div id="config-notice" class="hidden mt-8 text-xs text-left bg-amber-50 border border-amber-200 text-amber-900 p-3.5 rounded-xl">
+        <span class="font-bold block mb-1">⚙️ Supabase Setup:</span>
+        <span class="text-amber-800">Ensure your Supabase project keys are added in <code>frontend/js/config.js</code> or local storage.</span>
       </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-outline/20 bg-surface-container py-8 text-center text-xs text-on-surface-variant">
-      <p>© 2026 Vyapar Platform. Hyperlocal intelligence for street vendors.</p>
-    </footer>
+    </div>
+
+    <script>
+      // If user is already authenticated, redirect to auth-home.html
+      document.addEventListener("DOMContentLoaded", async () => {
+        if (window.VyaparAuth) {
+          const session = await window.VyaparAuth.getSession();
+          if (session) {
+            window.location.href = "auth-home.html";
+          }
+        }
+      });
+    </script>
   </body>
 </html>

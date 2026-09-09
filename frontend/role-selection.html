@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Select Role — Vyapar</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth-client.js"></script>
+  </head>
+  <body class="bg-[#fcf8f6] text-[#1f1b17] min-h-screen flex flex-col items-center justify-center p-6 font-sans">
+    <div class="max-w-lg w-full bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-[#e8dfd8]">
+      
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#aa3000] text-white font-extrabold text-2xl shadow-sm mb-4">
+          V
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">
+          How will you use Vyapar?
+        </h1>
+        <p class="text-sm text-[#635d5c] mt-1">Choose how you want to experience the platform</p>
+      </div>
+
+      <!-- Role Selection Cards -->
+      <div class="space-y-4">
+        
+        <!-- Vendor Option -->
+        <a
+          href="vendor-onboarding.html"
+          class="group block p-6 rounded-2xl border-2 border-[#e8dfd8] hover:border-[#aa3000] bg-[#fff8f5] hover:bg-white transition-all shadow-sm hover:shadow-md cursor-pointer"
+        >
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#aa3000]/10 text-[#aa3000] flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+              🏪
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-lg font-bold text-[#1f1b17] group-hover:text-[#aa3000] transition-colors">
+                  Vendor
+                </h3>
+                <span class="text-xs bg-[#ffdbd0] text-[#852400] font-bold px-2 py-0.5 rounded-md uppercase">Business</span>
+              </div>
+              <p class="text-sm text-[#635d5c] mt-1 leading-relaxed">
+                I run a local business or sell products.
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <!-- User Option -->
+        <a
+          href="user-onboarding.html"
+          class="group block p-6 rounded-2xl border-2 border-[#e8dfd8] hover:border-[#aa3000] bg-[#fff8f5] hover:bg-white transition-all shadow-sm hover:shadow-md cursor-pointer"
+        >
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#825100]/10 text-[#825100] flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+              👤
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-lg font-bold text-[#1f1b17] group-hover:text-[#aa3000] transition-colors">
+                  User
+                </h3>
+                <span class="text-xs bg-[#ffddb8] text-[#653e00] font-bold px-2 py-0.5 rounded-md uppercase">Consumer</span>
+              </div>
+              <p class="text-sm text-[#635d5c] mt-1 leading-relaxed">
+                I want to discover nearby vendors.
+              </p>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Logout / Cancel link -->
+      <div class="text-center mt-8">
+        <button
+          type="button"
+          onclick="window.VyaparAuth.logout()"
+          class="text-xs font-semibold text-[#635d5c] hover:text-[#aa3000] transition-colors"
+        >
+          Sign out & return to landing
+        </button>
+      </div>
+
+    </div>
+
+    <script>
+      // Auth Guard
+      document.addEventListener("DOMContentLoaded", async () => {
+        await window.VyaparAuth.requireAuth("login.html");
+      });
+    </script>
+  </body>
+</html>

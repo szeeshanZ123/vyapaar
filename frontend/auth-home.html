@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Authentication Status — Vyapar</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth-client.js"></script>
+  </head>
+  <body class="bg-[#fcf8f6] text-[#1f1b17] min-h-screen flex flex-col items-center justify-center p-6 font-sans">
+    <div class="max-w-xl w-full bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-[#e8dfd8]">
+      
+      <!-- Top Success Banner -->
+      <div class="flex items-center justify-between pb-6 border-b border-[#e8dfd8]">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#aa3000] text-white flex items-center justify-center font-extrabold text-xl shadow-sm">
+            V
+          </div>
+          <div>
+            <h2 class="font-extrabold text-lg text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">Vyapar Auth</h2>
+            <span class="text-xs text-emerald-700 font-bold flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Authentication successful ✓
+            </span>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          id="logout-btn"
+          class="py-2 px-4 rounded-xl border border-[#d0c5be] bg-white hover:bg-[#faf5f2] text-xs font-bold text-[#ba1a1a] transition-all shadow-sm active:scale-95"
+        >
+          Logout
+        </button>
+      </div>
+
+      <!-- Welcome Greeting -->
+      <div class="py-6">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">
+          Welcome, <span id="user-display-name" class="text-[#aa3000]">Loading...</span>
+        </h1>
+        <div class="flex items-center gap-2 mt-2">
+          <span class="text-sm text-[#635d5c]">Account type:</span>
+          <span id="role-badge" class="text-xs font-bold uppercase px-2.5 py-0.5 rounded-md bg-[#ffddb8] text-[#653e00]">
+            Checking...
+          </span>
+        </div>
+      </div>
+
+      <!-- Auth & MongoDB Telemetry Details Box -->
+      <div class="space-y-4 text-xs">
+        
+        <!-- Supabase Identity Card -->
+        <div class="p-4 rounded-2xl bg-[#fff8f5] border border-[#e8dfd8]">
+          <h3 class="font-bold text-xs uppercase tracking-wider text-[#aa3000] mb-2.5">
+            🔑 Supabase Auth Identity
+          </h3>
+          <div class="space-y-1.5 font-mono text-[#4b4644]">
+            <p><strong class="font-sans text-[#1f1b17]">User ID:</strong> <span id="supabase-user-id" class="break-all">-</span></p>
+            <p><strong class="font-sans text-[#1f1b17]">Email:</strong> <span id="supabase-email">-</span></p>
+            <p><strong class="font-sans text-[#1f1b17]">Session:</strong> <span class="text-emerald-600 font-bold">Active (JWT Verified)</span></p>
+          </div>
+        </div>
+
+        <!-- MongoDB Profile Card -->
+        <div class="p-4 rounded-2xl bg-[#fff8f5] border border-[#e8dfd8]">
+          <h3 class="font-bold text-xs uppercase tracking-wider text-[#825100] mb-2.5">
+            🍃 MongoDB Application Profile (FastAPI)
+          </h3>
+          <div id="mongo-profile-data" class="space-y-1.5 text-[#4b4644]">
+            <p>Fetching profile from backend...</p>
+          </div>
+        </div>
+
+        <!-- Vendor Specific Info Card (shown if vendor) -->
+        <div id="vendor-info-card" class="hidden p-4 rounded-2xl bg-[#fff8f5] border border-[#e8dfd8]">
+          <h3 class="font-bold text-xs uppercase tracking-wider text-[#825100] mb-2.5">
+            🏪 Vendor Business Data
+          </h3>
+          <div id="vendor-business-data" class="space-y-1.5 text-[#4b4644]">
+            <p>Fetching business details...</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer navigation info -->
+      <div class="mt-8 pt-4 border-t border-[#e8dfd8] text-center text-xs text-[#635d5c]">
+        <p>End-to-end authentication and database binding verified.</p>
+      </div>
+
+    </div>
+
+    <script>
+      const auth = window.VyaparAuth;
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        // 1. Enforce Authentication
+        const session = await auth.requireAuth("login.html");
+        if (!session) return;
+
+        const user = session.user;
+        document.getElementById("supabase-user-id").textContent = user.id;
+        document.getElementById("supabase-email").textContent = user.email || "(No email / OAuth provider)";
+
+        // 2. Fetch User Profile from FastAPI Backend
+        try {
+          const profileRes = await auth.callBackendAPI("/api/users/profile");
+          const profile = profileRes?.data;
+
+          if (profile) {
+            document.getElementById("user-display-name").textContent = profile.name || "Vendor/User";
+            
+            const roleBadge = document.getElementById("role-badge");
+            roleBadge.textContent = profile.role === "vendor" ? "Vendor (Business)" : "User (Consumer)";
+            if (profile.role === "vendor") {
+              roleBadge.className = "text-xs font-bold uppercase px-2.5 py-0.5 rounded-md bg-[#ffdbd0] text-[#852400]";
+            } else {
+              roleBadge.className = "text-xs font-bold uppercase px-2.5 py-0.5 rounded-md bg-[#ffddb8] text-[#653e00]";
+            }
+
+            document.getElementById("mongo-profile-data").innerHTML = `
+              <p><strong>Name:</strong> ${profile.name}</p>
+              <p><strong>Role:</strong> <span class="capitalize">${profile.role}</span></p>
+              <p><strong>Created At:</strong> ${new Date(profile.created_at).toLocaleString()}</p>
+              <p><strong>Updated At:</strong> ${new Date(profile.updated_at).toLocaleString()}</p>
+            `;
+
+            // If vendor, fetch vendor business profile
+            if (profile.role === "vendor") {
+              try {
+                const vendorRes = await auth.callBackendAPI("/api/vendors/me");
+                const vendor = vendorRes?.data;
+                if (vendor) {
+                  document.getElementById("vendor-info-card").classList.remove("hidden");
+                  document.getElementById("vendor-business-data").innerHTML = `
+                    <p><strong>Vendor ID:</strong> <code class="bg-[#f0e6e0] px-1.5 py-0.5 rounded text-[11px]">${vendor.vendor_id}</code></p>
+                    <p><strong>Business Name:</strong> ${vendor.business_name || vendor.display_name || "N/A"}</p>
+                    <p><strong>Category:</strong> <span class="capitalize font-bold text-[#aa3000]">${vendor.category}</span></p>
+                    ${vendor.business_description ? `<p><strong>Description:</strong> ${vendor.business_description}</p>` : ""}
+                  `;
+                }
+              } catch (vErr) {
+                console.warn("Could not load vendor data:", vErr);
+              }
+            }
+          }
+        } catch (err) {
+          // If profile not created yet, prompt to complete onboarding
+          if (err.status === 404) {
+            window.location.href = "role-selection.html";
+          } else {
+            document.getElementById("user-display-name").textContent = user.email || "Authenticated User";
+            document.getElementById("mongo-profile-data").innerHTML = `
+              <p class="text-amber-700">Backend API reached with status: ${err.message}</p>
+            `;
+          }
+        }
+
+        // 3. Bind Logout Button
+        document.getElementById("logout-btn").addEventListener("click", () => {
+          auth.logout();
+        });
+      });
+    </script>
+  </body>
+</html>

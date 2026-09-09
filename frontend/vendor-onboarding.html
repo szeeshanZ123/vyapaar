@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vendor Onboarding — Vyapar</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth-client.js"></script>
+  </head>
+  <body class="bg-[#fcf8f6] text-[#1f1b17] min-h-screen flex flex-col items-center justify-center p-6 font-sans">
+    <div class="max-w-md w-full bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-[#e8dfd8]">
+      
+      <!-- Header -->
+      <div class="text-center mb-6">
+        <span class="inline-block text-xs font-bold uppercase tracking-wider bg-[#ffdbd0] text-[#852400] px-3 py-1 rounded-full mb-3">
+          Vendor Setup
+        </span>
+        <h1 class="text-2xl sm:text-3xl font-bold text-[#1f1b17] font-['Plus_Jakarta_Sans',sans-serif]">
+          Tell us about your business
+        </h1>
+        <p class="text-sm text-[#635d5c] mt-1">Set up your vendor profile on Vyapar</p>
+      </div>
+
+      <!-- Alert Box -->
+      <div id="error-alert" class="hidden mb-5 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium"></div>
+
+      <!-- Onboarding Form -->
+      <form id="vendor-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-[#1f1b17] uppercase tracking-wider mb-1.5" for="business-name">
+            Business Name
+          </label>
+          <input
+            id="business-name"
+            type="text"
+            required
+            placeholder="e.g. Ramesh Chai Stall"
+            class="w-full px-4 py-3 rounded-xl border border-[#d0c5be] bg-[#fff8f5] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#aa3000] text-sm"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-[#1f1b17] uppercase tracking-wider mb-1.5" for="display-name">
+            Your Name
+          </label>
+          <input
+            id="display-name"
+            type="text"
+            required
+            placeholder="e.g. Ramesh Sharma"
+            class="w-full px-4 py-3 rounded-xl border border-[#d0c5be] bg-[#fff8f5] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#aa3000] text-sm"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-[#1f1b17] uppercase tracking-wider mb-1.5" for="category">
+            Category
+          </label>
+          <select
+            id="category"
+            required
+            class="w-full px-4 py-3 rounded-xl border border-[#d0c5be] bg-[#fff8f5] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#aa3000] text-sm"
+          >
+            <option value="food">Food</option>
+            <option value="fruit">Fruit</option>
+            <option value="flowers">Flowers</option>
+            <option value="clothing">Clothing</option>
+            <option value="repair">Repair</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-[#1f1b17] uppercase tracking-wider mb-1.5" for="business-description">
+            Business Description <span class="text-[#8e7068] font-normal lowercase">(optional)</span>
+          </label>
+          <textarea
+            id="business-description"
+            rows="2"
+            placeholder="e.g. Fresh cutting chai and hot snacks since 2018"
+            class="w-full px-4 py-3 rounded-xl border border-[#d0c5be] bg-[#fff8f5] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#aa3000] text-sm resize-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          id="submit-btn"
+          class="w-full py-3.5 px-4 rounded-xl bg-[#aa3000] text-white font-bold text-sm hover:bg-[#852400] transition-all shadow-md active:scale-98 mt-2"
+        >
+          Continue
+        </button>
+      </form>
+
+      <div class="text-center mt-6">
+        <a href="role-selection.html" class="text-xs text-[#635d5c] hover:text-[#aa3000]">
+          ← Back to Role Selection
+        </a>
+      </div>
+
+    </div>
+
+    <script>
+      const auth = window.VyaparAuth;
+      const form = document.getElementById("vendor-form");
+      const errorAlert = document.getElementById("error-alert");
+      const submitBtn = document.getElementById("submit-btn");
+
+      function showError(msg) {
+        errorAlert.textContent = msg;
+        errorAlert.classList.remove("hidden");
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        await auth.requireAuth("login.html");
+      });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errorAlert.classList.add("hidden");
+
+        const businessName = document.getElementById("business-name").value.trim();
+        const displayName = document.getElementById("display-name").value.trim();
+        const category = document.getElementById("category").value;
+        const businessDescription = document.getElementById("business-description").value.trim();
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Saving Profile...";
+
+        try {
+          // 1. Create or update user profile in MongoDB via FastAPI
+          try {
+            await auth.callBackendAPI("/api/users/profile", {
+              method: "POST",
+              body: JSON.stringify({
+                name: displayName,
+                role: "vendor"
+              })
+            });
+          } catch (pErr) {
+            // If already exists, update role
+            if (pErr.status === 409) {
+              await auth.callBackendAPI("/api/users/profile", {
+                method: "PATCH",
+                body: JSON.stringify({
+                  name: displayName,
+                  role: "vendor"
+                })
+              }).catch(() => {});
+            }
+          }
+
+          // 2. Submit Vendor Onboarding to FastAPI
+          await auth.callBackendAPI("/api/vendors/onboarding", {
+            method: "POST",
+            body: JSON.stringify({
+              business_name: businessName,
+              display_name: displayName,
+              category: category,
+              business_description: businessDescription || null
+            })
+          });
+
+          // 3. Success -> Redirect to Authenticated Test Home
+          window.location.href = "auth-home.html";
+
+        } catch (err) {
+          showError(err.message || "Failed to complete vendor onboarding. Please check backend connection.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Continue";
+        }
+      });
+    </script>
+  </body>
+</html>
