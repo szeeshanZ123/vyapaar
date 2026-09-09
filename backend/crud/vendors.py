@@ -171,3 +171,62 @@ def update_vendor_location(
         return_document=ReturnDocument.AFTER,
         projection={"_id": 0}
     )
+
+
+def haversine_distance_meters(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    import math
+    R = 6371000.0  # Earth radius in meters
+    phi1 = math.radians(lat1)
+    phi2 = math.radians(lat2)
+    delta_phi = math.radians(lat2 - lat1)
+    delta_lambda = math.radians(lon2 - lon1)
+
+    a = math.sin(delta_phi / 2.0) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(delta_lambda / 2.0) ** 2
+    c = 2.0 * math.atan2(math.sqrt(a), math.sqrt(1.0 - a))
+    return R * c
+
+
+def get_active_vendors(
+    db: Database,
+    lat: Optional[float] = None,
+    lng: Optional[float] = None,
+    radius_meters: float = 5000.0,
+    category: Optional[str] = None,
+    exclude_vendor_id: Optional[str] = None
+) -> list:
+    """
+    Returns active vendors within radius_meters with calculated distance.
+    """
+    query = {"current_location": {"$ne": None}}
+    if category:
+        query["category"] = category.lower()
+    if exclude_vendor_id:
+        query["vendor_id"] = {"$ne": exclude_vendor_id}
+
+    cursor = db.vendors.find(query, {"_id": 0})
+    results = []
+
+    for v in cursor:
+        loc = v.get("current_location")
+        if not loc or not isinstance(loc, dict):
+            continue
+        coords = loc.get("coordinates")
+        if not coords or len(coords) < 2:
+            continue
+        
+        v_lng, v_lat = coords[0], coords[1]
+        
+        if lat is not None and lng is not None:
+            dist = haversine_distance_meters(lat, lng, v_lat, v_lng)
+            if dist > radius_meters:
+                continue
+            v["distance_meters"] = round(dist, 1)
+        else:
+            v["distance_meters"] = None
+
+        results.append(v)
+
+    if lat is not None and lng is not None:
+        results.sort(key=lambda x: x.get("distance_meters") or 0)
+
+    return results

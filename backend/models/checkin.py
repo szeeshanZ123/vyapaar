@@ -5,7 +5,7 @@ from .vendor import VendorCategory
 
 
 class CheckInCreate(BaseModel):
-    vendor_id: str = Field(..., min_length=1, description="Vendor identifier")
+    vendor_id: Optional[str] = Field(default=None, description="Vendor identifier (optional if authenticated)")
     lat: float = Field(..., description="Latitude between -90.0 and 90.0")
     lng: float = Field(..., description="Longitude between -180.0 and 180.0")
     category: Optional[VendorCategory] = Field(None, description="Category of goods during this check-in")

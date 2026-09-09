@@ -471,6 +471,41 @@
               <span class="material-symbols-outlined text-[18px]">close</span>
             </button>
           </div>
+          <!-- REAL VENDOR GPS & CHECK-IN ACTION BAR -->
+          <div class="flex flex-wrap items-center justify-between gap-3 bg-surface-container-lowest p-4 sm:p-5 rounded-2xl shadow-sm border border-[#e8dfd8]">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary font-extrabold text-lg flex items-center justify-center" id="vendor-avatar-letter">
+                V
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h1 class="text-lg sm:text-xl font-extrabold text-on-surface" id="vendor-greeting-text">
+                    Good evening, Vendor
+                  </h1>
+                  <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#ffdbd0] text-[#852400]" id="vendor-business-badge">
+                    My Stall
+                  </span>
+                  <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-surface-container text-secondary" id="vendor-category-badge">
+                    Food
+                  </span>
+                </div>
+                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-0.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span id="gps-status-indicator">Acquiring GPS location...</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Check-in Action Button -->
+            <button
+              id="btn-vendor-checkin"
+              class="px-4 py-2.5 rounded-xl bg-primary text-white font-bold text-xs flex items-center gap-2 hover:bg-[#852400] transition-all shadow-md active:scale-95 cursor-pointer"
+            >
+              <span class="material-symbols-outlined text-[18px]">my_location</span>
+              Check In at Current Spot
+            </button>
+          </div>
+
           <!-- SECTION 1: TOP KPI ROW (Side-by-Side 38% / 62% Desktop Grid) -->
           <section
             class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-stretch"
@@ -502,7 +537,8 @@
                   </div>
                   <span
                     class="font-label-sm text-label-sm text-secondary px-2.5 py-1 bg-surface-container rounded-full"
-                    >Zone: Central Kurla</span
+                    id="rush-zone-name"
+                    >Acquiring Zone...</span
                   >
                 </div>
                 <h2
@@ -515,17 +551,18 @@
                   <span
                     class="font-display text-display text-on-surface font-extrabold tracking-tighter"
                     id="rush-score-display"
-                    >87</span
+                    >--</span
                   >
                   <span
                     class="font-headline-md text-headline-md text-on-surface-variant font-semibold"
                     >/ 100</span
                   >
                   <div
-                    class="ml-auto inline-flex items-center gap-1 px-3 py-1 rounded-full bg-error-container text-error font-label-md text-label-md font-bold"
+                    class="ml-auto inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container text-secondary font-label-md text-label-md font-bold"
+                    id="rush-level-badge"
                   >
-                    <span class="text-[14px]">🔥</span>
-                    <span class="">VERY BUSY</span>
+                    <span class="text-[14px]">⚡</span>
+                    <span class="">CALCULATING...</span>
                   </div>
                 </div>
                 <!-- Glowing Dynamic Progress Meter -->
@@ -535,29 +572,15 @@
                   <div
                     class="h-full bg-gradient-to-r from-tertiary-container via-primary-container to-primary rounded-full shadow-[0_0_12px_rgba(208,68,17,0.45)] transition-all duration-1000 ease-out"
                     id="rush-progress-bar"
-                    style="width: 87%"
+                    style="width: 50%"
                   ></div>
                 </div>
                 <!-- Trend and Context Description -->
-                <div
-                  class="flex items-center gap-1.5 font-label-md text-label-md text-tertiary mb-space-sm"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >trending_up</span
-                  >
-                  <span class="font-bold">↑ 18% surge</span>
-                  <span class="text-on-surface-variant font-normal"
-                    >compared to last hour</span
-                  >
-                </div>
                 <p
                   class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg"
+                  id="rush-description-text"
                 >
-                  Micro-merchant demand density is nearing peak capacity in your
-                  sector. Transit footfall peaks over the next
-                  <strong class="text-on-surface font-semibold"
-                    >30–45 minutes</strong
-                  >.
+                  Loading hyper-local demand telemetry computed from real active vendor check-ins around your spot...
                 </p>
               </div>
               <!-- Micro Telemetry Strips -->
@@ -567,29 +590,29 @@
                 <div class="flex flex-col">
                   <span
                     class="font-label-sm text-label-sm text-on-surface-variant"
-                    >Footfall</span
+                    >Footfall Engine</span
                   >
                   <span
                     class="font-headline-sm text-headline-sm font-bold text-on-surface"
-                    >Very High</span
+                    >Real-Time</span
                   >
                   <span
                     class="font-label-sm text-label-sm text-primary font-medium"
-                    >9.4k/hr</span
+                    >FastAPI Decay</span
                   >
                 </div>
                 <div class="flex flex-col">
                   <span
                     class="font-label-sm text-label-sm text-on-surface-variant"
-                    >Transit Flow</span
+                    >GPS Source</span
                   >
                   <span
                     class="font-headline-sm text-headline-sm font-bold text-tertiary"
-                    >+22%</span
+                    >Live Device</span
                   >
                   <span
                     class="font-label-sm text-label-sm text-on-surface-variant"
-                    >Local trains</span
+                    >Browser W3C</span
                   >
                 </div>
                 <div class="flex flex-col">
@@ -599,11 +622,13 @@
                   >
                   <span
                     class="font-headline-sm text-headline-sm font-bold text-secondary"
-                    >Moderate</span
+                    id="nearby-vendors-status"
+                    >Scanning...</span
                   >
                   <span
                     class="font-label-sm text-label-sm text-on-surface-variant"
-                    >14 stalls nearby</span
+                    id="nearby-vendors-count"
+                    >0 stalls nearby</span
                   >
                 </div>
               </div>
@@ -923,8 +948,9 @@
                 </div>
                 <h3
                   class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight mb-space-sm"
+                  id="rec-spot-title"
                 >
-                  Relocate toward Phoenix Marketcity (South Gate Plaza)
+                  Calculating Top Opportunity...
                 </h3>
                 <!-- Four-column Metrics Grid -->
                 <div
@@ -933,45 +959,45 @@
                   <div>
                     <span
                       class="font-label-sm text-label-sm text-on-surface-variant block"
-                      >Expected Rush Surge</span
+                      >Demand Footfall</span
                     >
                     <span
                       class="font-headline-sm text-headline-sm font-extrabold text-primary"
-                      >+34%</span
+                      id="rec-spot-score"
+                      >--</span
                     >
                   </div>
                   <div>
                     <span
                       class="font-label-sm text-label-sm text-on-surface-variant block"
-                      >Best Selling Window</span
+                      >Stall Protection</span
                     >
                     <span
                       class="font-headline-sm text-headline-sm font-bold text-on-surface"
-                      >Next 45 mins</span
+                      id="rec-spot-shelter"
+                      >Covered Spot</span
                     >
                   </div>
                   <div>
                     <span
                       class="font-label-sm text-label-sm text-on-surface-variant block"
-                      >Distance / Transit</span
+                      >Real GPS Distance</span
                     >
                     <span
                       class="font-headline-sm text-headline-sm font-bold text-on-surface"
-                      >1.4 km
-                      <span
-                        class="text-on-surface-variant text-[12px] font-normal"
-                        >(6m e-cart)</span
-                      ></span
+                      id="rec-spot-distance"
+                      >--</span
                     >
                   </div>
                   <div>
                     <span
                       class="font-label-sm text-label-sm text-on-surface-variant block"
-                      >Primary Driver</span
+                      >Transit Connectivity</span
                     >
                     <span
                       class="font-headline-sm text-headline-sm font-semibold text-tertiary truncate block"
-                      >Evening Shifts Out</span
+                      id="rec-spot-transit"
+                      >Metro / Station Access</span
                     >
                   </div>
                 </div>
@@ -981,10 +1007,8 @@
                     class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5"
                     >tips_and_updates</span
                   >
-                  <p class="font-body-md text-body-md italic">
-                    "Demand is accelerating rapidly around retail gates as
-                    office shifts wrap up; designated curb vending stalls are
-                    filling swiftly."
+                  <p class="font-body-md text-body-md italic" id="rec-spot-desc">
+                    Scanning nearby demand clusters and spots matching your vendor category...
                   </p>
                 </div>
               </div>
@@ -1621,30 +1645,7 @@
         <script src="js/map.js"></script>
         <script src="js/app.js"></script>
         <script src="js/pages/home.js"></script>
-        <script>
-          document.addEventListener("DOMContentLoaded", async () => {
-            if (window.VyaparAuth) {
-              // Enforce Authentication and check Profile
-              const authData = await window.VyaparAuth.requireAuthOrRedirect({ allowedRole: "vendor" });
-              if (authData) {
-                const { profile, vendor, user } = authData;
-                const vendorName = vendor?.display_name || vendor?.business_name || profile?.name || (user?.email ? user.email.split('@')[0] : "Vendor");
-                const greetingEl = document.getElementById("vendor-greeting-text");
-                if (greetingEl) {
-                  greetingEl.textContent = `Good evening, ${vendorName}`;
-                }
-              }
-
-              // Bind all logout triggers (desktop & mobile)
-              document.querySelectorAll('[data-path="logout"]').forEach(btn => {
-                btn.addEventListener("click", (e) => {
-                  e.preventDefault();
-                  window.VyaparAuth.logout();
-                });
-              });
-            }
-          });
-        </script>
+        <script src="js/vendor-controller.js"></script>
       </main>
     </div>
   </body>

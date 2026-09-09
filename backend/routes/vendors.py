@@ -1,10 +1,10 @@
-from typing import Any, Dict
-from fastapi import APIRouter, Depends, HTTPException, status
+from typing import Any, Dict, Optional
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pymongo.database import Database
 
 try:
     from backend.db import get_database
-    from backend.auth import get_current_user
+    from backend.auth import get_current_user, get_optional_current_user
     from backend.models.vendor import VendorCreate, VendorUpdate, VendorOnboarding
     from backend.models.response import success_response
     from backend.crud.vendors import (
@@ -12,11 +12,12 @@ try:
         create_vendor_profile,
         get_vendor_by_id,
         get_vendor_by_user_id,
+        get_active_vendors,
         update_vendor,
     )
 except ImportError:
     from db import get_database
-    from auth import get_current_user
+    from auth import get_current_user, get_optional_current_user
     from models.vendor import VendorCreate, VendorUpdate, VendorOnboarding
     from models.response import success_response
     from crud.vendors import (
@@ -24,10 +25,63 @@ except ImportError:
         create_vendor_profile,
         get_vendor_by_id,
         get_vendor_by_user_id,
+        get_active_vendors,
         update_vendor,
     )
 
 router = APIRouter(prefix="/api/vendors", tags=["Vendors"])
+
+
+@router.get(
+    "/active",
+    summary="Get active nearby vendors",
+    description="Returns active vendors within the given radius (meters) sorted by distance. Excludes the authenticated caller if logged in."
+)
+async def get_active_nearby_vendors(
+    lat: Optional[float] = Query(None, ge=-90.0, le=90.0, description="Current latitude"),
+    lng: Optional[float] = Query(None, ge=-180.0, le=180.0, description="Current longitude"),
+    radius: float = Query(5000.0, gt=0.0, le=50000.0, description="Search radius in meters"),
+    category: Optional[str] = Query(None, description="Optional category filter"),
+    current_user: Optional[Dict[str, Any]] = Depends(get_optional_current_user)
+):
+    db: Database = get_database()
+    exclude_vendor_id = None
+    if current_user:
+        auth_v = get_vendor_by_user_id(db, current_user["user_id"])
+        if auth_v:
+            exclude_vendor_id = auth_v.get("vendor_id")
+
+    vendors = get_active_vendors(
+        db=db,
+        lat=lat,
+        lng=lng,
+        radius_meters=radius,
+        category=category,
+        exclude_vendor_id=exclude_vendor_id
+    )
+    return success_response(data=vendors)
+
+
+@router.get(
+    "",
+    summary="List all active vendors",
+    description="Returns list of all active vendors with optional category and geospatial filtering."
+)
+async def list_vendors(
+    lat: Optional[float] = Query(None, ge=-90.0, le=90.0, description="Current latitude"),
+    lng: Optional[float] = Query(None, ge=-180.0, le=180.0, description="Current longitude"),
+    radius: float = Query(10000.0, gt=0.0, le=50000.0, description="Search radius in meters"),
+    category: Optional[str] = Query(None, description="Optional category filter")
+):
+    db: Database = get_database()
+    vendors = get_active_vendors(
+        db=db,
+        lat=lat,
+        lng=lng,
+        radius_meters=radius,
+        category=category
+    )
+    return success_response(data=vendors)
 
 
 @router.post(
