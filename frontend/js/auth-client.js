@@ -135,24 +135,155 @@
     return responseData;
   }
 
+  async function saveUserProfile(name, role = "user") {
+    // 1. Update in Supabase Auth Metadata (works seamlessly on Vercel static & cloud)
+    if (client) {
+      try {
+        await client.auth.updateUser({
+          data: { name: name, role: role }
+        });
+      } catch (err) {
+        console.warn("Supabase user metadata update error:", err);
+      }
+    }
+
+    // 2. Try FastAPI Backend if available
+    try {
+      await callBackendAPI("/api/users/profile", {
+        method: "POST",
+        body: JSON.stringify({ name, role })
+      });
+    } catch (err) {
+      if (err.status === 409) {
+        try {
+          await callBackendAPI("/api/users/profile", {
+            method: "PATCH",
+            body: JSON.stringify({ name, role })
+          });
+        } catch (e) {
+          console.warn("FastAPI backend PATCH error:", e);
+        }
+      } else {
+        console.warn("FastAPI backend not reachable at /api (using Supabase & local storage):", err.message);
+      }
+    }
+
+    // 3. Save to localStorage
+    const profile = { name, role };
+    localStorage.setItem("vyapar_user_profile", JSON.stringify(profile));
+    return profile;
+  }
+
+  async function saveVendorProfile(vendorData) {
+    const displayName = vendorData.display_name || vendorData.name || "Vendor";
+    const businessName = vendorData.business_name || displayName;
+
+    // 1. Update in Supabase Auth Metadata
+    if (client) {
+      try {
+        await client.auth.updateUser({
+          data: {
+            name: displayName,
+            role: "vendor",
+            business_name: businessName,
+            category: vendorData.category,
+            vendor_profile: vendorData
+          }
+        });
+      } catch (err) {
+        console.warn("Supabase user metadata update error:", err);
+      }
+    }
+
+    // 2. Try FastAPI Backend
+    try {
+      // User Profile
+      try {
+        await callBackendAPI("/api/users/profile", {
+          method: "POST",
+          body: JSON.stringify({ name: displayName, role: "vendor" })
+        });
+      } catch (uErr) {
+        if (uErr.status === 409) {
+          await callBackendAPI("/api/users/profile", {
+            method: "PATCH",
+            body: JSON.stringify({ name: displayName, role: "vendor" })
+          }).catch(() => {});
+        }
+      }
+
+      // Vendor Onboarding
+      await callBackendAPI("/api/vendors/onboarding", {
+        method: "POST",
+        body: JSON.stringify(vendorData)
+      });
+    } catch (err) {
+      console.warn("FastAPI backend not reachable at /api (using Supabase & local storage):", err.message);
+    }
+
+    // 3. Save to localStorage
+    localStorage.setItem("vyapar_user_profile", JSON.stringify({ name: displayName, role: "vendor" }));
+    localStorage.setItem("vyapar_vendor_profile", JSON.stringify(vendorData));
+    return vendorData;
+  }
+
   async function fetchUserProfile() {
+    // 1. Try FastAPI Backend
     try {
       const res = await callBackendAPI("/api/users/profile");
-      return res?.data || null;
+      if (res?.data) return res.data;
     } catch (err) {
-      if (err.status === 404) return null;
-      throw err;
+      // fallback
     }
+
+    // 2. Try Supabase Auth user_metadata
+    try {
+      const user = await getUser();
+      if (user?.user_metadata?.role) {
+        return {
+          name: user.user_metadata.name || user.email?.split("@")[0] || "User",
+          role: user.user_metadata.role
+        };
+      }
+    } catch (err) {
+      // fallback
+    }
+
+    // 3. Try LocalStorage
+    try {
+      const local = localStorage.getItem("vyapar_user_profile");
+      if (local) return JSON.parse(local);
+    } catch (e) {}
+
+    return null;
   }
 
   async function fetchVendorProfile() {
+    // 1. Try FastAPI Backend
     try {
       const res = await callBackendAPI("/api/vendors/me");
-      return res?.data || null;
+      if (res?.data) return res.data;
     } catch (err) {
-      if (err.status === 404) return null;
-      throw err;
+      // fallback
     }
+
+    // 2. Try Supabase Auth user_metadata
+    try {
+      const user = await getUser();
+      if (user?.user_metadata?.vendor_profile) {
+        return user.user_metadata.vendor_profile;
+      }
+    } catch (err) {
+      // fallback
+    }
+
+    // 3. Try LocalStorage
+    try {
+      const local = localStorage.getItem("vyapar_vendor_profile");
+      if (local) return JSON.parse(local);
+    } catch (e) {}
+
+    return null;
   }
 
   /**
@@ -218,6 +349,8 @@
     signupWithEmail,
     logout,
     callBackendAPI,
+    saveUserProfile,
+    saveVendorProfile,
     fetchUserProfile,
     fetchVendorProfile,
     requireAuthOrRedirect,

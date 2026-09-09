@@ -138,39 +138,14 @@
         submitBtn.textContent = "Saving Profile...";
 
         try {
-          // 1. Create or update user profile in MongoDB via FastAPI
-          try {
-            await auth.callBackendAPI("/api/users/profile", {
-              method: "POST",
-              body: JSON.stringify({
-                name: displayName,
-                role: "vendor"
-              })
-            });
-          } catch (pErr) {
-            if (pErr.status === 409) {
-              await auth.callBackendAPI("/api/users/profile", {
-                method: "PATCH",
-                body: JSON.stringify({
-                  name: displayName,
-                  role: "vendor"
-                })
-              }).catch(() => {});
-            }
-          }
-
-          // 2. Submit Vendor Onboarding to FastAPI
-          await auth.callBackendAPI("/api/vendors/onboarding", {
-            method: "POST",
-            body: JSON.stringify({
-              business_name: businessName,
-              display_name: displayName,
-              category: category,
-              business_description: businessDescription || null
-            })
+          await auth.saveVendorProfile({
+            business_name: businessName,
+            display_name: displayName,
+            category: category,
+            business_description: businessDescription || null
           });
 
-          // 3. Success -> Open Existing Vendor Dashboard
+          // Success -> Open Dashboard
           window.location.href = "../dashboard.html";
 
         } catch (err) {
