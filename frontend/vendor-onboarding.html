@@ -100,7 +100,7 @@
       </form>
 
       <div class="text-center mt-6">
-        <a href="/onboarding/role.html" class="text-xs text-[#635d5c] hover:text-[#aa3000]">
+        <a href="role.html" class="text-xs text-[#635d5c] hover:text-[#aa3000]">
           ← Back to Role Selection
         </a>
       </div>
@@ -121,7 +121,7 @@
       document.addEventListener("DOMContentLoaded", async () => {
         const session = await auth.getSession();
         if (!session) {
-          window.location.href = "/";
+          window.location.href = "../index.html";
         }
       });
 
@@ -171,7 +171,7 @@
           });
 
           // 3. Success -> Open Existing Vendor Dashboard
-          window.location.href = "/dashboard.html";
+          window.location.href = "../dashboard.html";
 
         } catch (err) {
           showError(err.message || "Failed to complete vendor onboarding. Please try again.");

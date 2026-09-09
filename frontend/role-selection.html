@@ -34,7 +34,7 @@
         
         <!-- Vendor Option -->
         <a
-          href="/onboarding/vendor.html"
+          href="vendor.html"
           class="group block p-6 rounded-2xl border-2 border-[#e8dfd8] hover:border-[#aa3000] bg-[#fff8f5] hover:bg-white transition-all shadow-sm hover:shadow-md cursor-pointer"
         >
           <div class="flex items-start gap-4">
@@ -57,7 +57,7 @@
 
         <!-- User Option -->
         <a
-          href="/onboarding/user.html"
+          href="user.html"
           class="group block p-6 rounded-2xl border-2 border-[#e8dfd8] hover:border-[#aa3000] bg-[#fff8f5] hover:bg-white transition-all shadow-sm hover:shadow-md cursor-pointer"
         >
           <div class="flex items-start gap-4">
@@ -98,7 +98,7 @@
       document.addEventListener("DOMContentLoaded", async () => {
         const session = await window.VyaparAuth.getSession();
         if (!session) {
-          window.location.href = "/";
+          window.location.href = "../index.html";
         }
       });
     </script>
