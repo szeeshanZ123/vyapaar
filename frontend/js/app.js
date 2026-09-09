@@ -16,11 +16,11 @@
 
   // Navigation route mapping
   const ROUTES = {
-    dashboard: "index.html",
-    places: "recommendations.html",
-    "check-in": "checkin.html",
-    alerts: "alerts.html",
-    "discover-vendors": "discover.html",
+    dashboard: "/vendor/dashboard.html",
+    places: "/recommendations.html",
+    "check-in": "/checkin.html",
+    alerts: "/alerts.html",
+    "discover-vendors": "/discover.html",
     profile: "#profile",
     settings: "#settings",
     logout: "#logout",

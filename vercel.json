@@ -56,6 +56,22 @@
       "dest": "/frontend/vendor/dashboard.html"
     },
     {
+      "src": "/(vendor|user)/alerts(\\.html)?",
+      "dest": "/frontend/alerts.html"
+    },
+    {
+      "src": "/(vendor|user)/recommendations(\\.html)?",
+      "dest": "/frontend/recommendations.html"
+    },
+    {
+      "src": "/(vendor|user)/checkin(\\.html)?",
+      "dest": "/frontend/checkin.html"
+    },
+    {
+      "src": "/(vendor|user)/discover(\\.html)?",
+      "dest": "/frontend/discover.html"
+    },
+    {
       "src": "/discover(\\.html)?",
       "dest": "/frontend/discover.html"
     },
