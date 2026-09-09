@@ -11,25 +11,45 @@
   "use strict";
 
   const config = window.VYAPAR_CONFIG || {
-    SUPABASE_URL: "https://your-project.supabase.co",
-    SUPABASE_ANON_KEY: "your-anon-key",
-    API_BASE_URL: "http://localhost:8000"
+    SUPABASE_URL: "",
+    SUPABASE_ANON_KEY: "",
+    API_BASE_URL: "http://localhost:8000",
+    isConfigured: () => false
   };
 
   // Initialize Supabase Client
   let client = null;
-  if (typeof supabase !== "undefined" && config.SUPABASE_URL && config.SUPABASE_ANON_KEY) {
+  if (typeof supabase !== "undefined" && config.SUPABASE_URL && config.SUPABASE_ANON_KEY && !config.SUPABASE_URL.includes("your-project")) {
     client = supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
   }
 
+  function ensureClient() {
+    if (!client) {
+      if (!config.SUPABASE_URL || !config.SUPABASE_ANON_KEY || config.SUPABASE_URL.includes("your-project")) {
+        throw new Error("Supabase is not configured yet. Please enter your Supabase Project URL and Anon Key.");
+      }
+      if (typeof supabase !== "undefined") {
+        client = supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
+      } else {
+        throw new Error("Supabase library is not loaded. Check internet connection.");
+      }
+    }
+    return client;
+  }
+
   async function getSession() {
-    if (!client) return null;
-    const { data: { session }, error } = await client.auth.getSession();
-    if (error) {
-      console.warn("Error fetching Supabase session:", error.message);
+    if (!client && (!config.SUPABASE_URL || !config.SUPABASE_ANON_KEY)) return null;
+    try {
+      const c = ensureClient();
+      const { data: { session }, error } = await c.auth.getSession();
+      if (error) {
+        console.warn("Error fetching Supabase session:", error.message);
+        return null;
+      }
+      return session;
+    } catch (err) {
       return null;
     }
-    return session;
   }
 
   async function getUser() {
@@ -43,10 +63,10 @@
   }
 
   async function loginWithGoogle() {
-    if (!client) throw new Error("Supabase client is not initialized.");
+    const c = ensureClient();
     // Dynamic redirect back to the current domain's login handler
     const redirectTo = window.location.origin + "/login.html";
-    const { error } = await client.auth.signInWithOAuth({
+    const { error } = await c.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: redirectTo
@@ -56,8 +76,8 @@
   }
 
   async function loginWithEmail(email, password) {
-    if (!client) throw new Error("Supabase client is not initialized.");
-    const { data, error } = await client.auth.signInWithPassword({
+    const c = ensureClient();
+    const { data, error } = await c.auth.signInWithPassword({
       email,
       password
     });
@@ -66,8 +86,8 @@
   }
 
   async function signupWithEmail(email, password) {
-    if (!client) throw new Error("Supabase client is not initialized.");
-    const { data, error } = await client.auth.signUp({
+    const c = ensureClient();
+    const { data, error } = await c.auth.signUp({
       email,
       password
     });

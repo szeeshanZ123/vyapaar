@@ -140,9 +140,41 @@
         infoAlert.classList.add("hidden");
       }
 
+      // Check if Supabase is configured
+      if (!window.VYAPAR_CONFIG.isConfigured()) {
+        showError("⚠️ Supabase credentials not set! Click 'Configure Supabase' below or add them in config.js.");
+        const configBtn = document.createElement("button");
+        configBtn.className = "mt-2 underline text-xs font-bold text-[#aa3000] block";
+        configBtn.textContent = "⚙️ Configure Supabase Credentials";
+        configBtn.onclick = () => {
+          const url = prompt("Enter your Supabase Project URL (e.g. https://xyz.supabase.co):", window.VYAPAR_CONFIG.SUPABASE_URL || "");
+          if (!url) return;
+          const key = prompt("Enter your Supabase Anon/Publishable Key:", window.VYAPAR_CONFIG.SUPABASE_ANON_KEY || "");
+          if (!key) return;
+          window.VYAPAR_CONFIG.saveCredentials(url, key);
+        };
+        errorAlert.appendChild(configBtn);
+      }
+
       // Check if already authenticated on page load
       document.addEventListener("DOMContentLoaded", async () => {
         if (auth) {
+          if (auth.client) {
+            auth.client.auth.onAuthStateChange(async (event, session) => {
+              if (session && (event === "SIGNED_IN" || event === "INITIAL_SESSION")) {
+                try {
+                  const profile = await auth.fetchUserProfile();
+                  if (profile) {
+                    window.location.href = "dashboard.html";
+                  } else {
+                    window.location.href = "onboarding/role.html";
+                  }
+                } catch (e) {
+                  window.location.href = "onboarding/role.html";
+                }
+              }
+            });
+          }
           await auth.redirectIfAuthenticated();
         }
       });
